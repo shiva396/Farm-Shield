@@ -1,7 +1,10 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:farmshield/models/weather_model.dart';
 import 'package:farmshield/pages/information.dart';
 import 'package:farmshield/services/weather_service.dart';
-import 'package:farmshield/utils/plant_custom.dart';
+import 'package:farmshield/utils/color_util.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
@@ -14,24 +17,28 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List fruits = [
+  List plants = [
     'apple',
-    // 'mango',
+    'mango',
     'potato',
     'tomato',
     'corn',
-    // 'soyabean',
+    'soyabeans',
     'grape',
     'orange',
     'strawberry',
     // 'maize',
-    // 'guava',
-    // 'pomegranate',
-    // 'coriander',
+    'guava',
+    'pomegranate',
+    'coriander',
     // 'pudina',
-    // 'guava',
+    'guava',
+    'cherry',
+    'lemon'
   ];
   String name = "Harish";
+
+  final user = FirebaseAuth.instance.currentUser!;
 //api key
   final _weatherService = WeatherService('f1fd87d085c9d19992fb6e5f415dedf0');
 
@@ -45,7 +52,7 @@ class _HomeState extends State<Home> {
         _weather = weather;
       });
     } catch (e) {
-      print(e);
+      showSnackBar(context, e.toString());
     }
   }
 
@@ -71,7 +78,7 @@ class _HomeState extends State<Home> {
         return "assets/sunny_rainy.json";
       case 'rain':
       case 'shower rain':
-      // return "assets/rain.json";
+        return "assets/rain.json";
       case 'thunderstorm':
         return "assets/thunder.json";
       case 'clear':
@@ -139,7 +146,7 @@ class _HomeState extends State<Home> {
                         child: Text(
                           _weather?.cityName ?? "loading city..",
                           textAlign: TextAlign.left,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.green,
                               fontSize: 20,
                               fontWeight: FontWeight.bold),
@@ -149,7 +156,7 @@ class _HomeState extends State<Home> {
                         padding: const EdgeInsets.only(left: 20, top: 10),
                         child: Text(
                           "${_weather?.temperature.round()}°C",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 23,
                               fontWeight: FontWeight.bold),
@@ -159,7 +166,7 @@ class _HomeState extends State<Home> {
                         padding: const EdgeInsets.only(left: 20, top: 10),
                         child: Text(
                           DateFormat.yMMMEd().format(DateTime.now()),
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 14,
                               color: Color.fromARGB(255, 89, 87, 87)),
                         ),
@@ -178,39 +185,39 @@ class _HomeState extends State<Home> {
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Container(
+          child: SizedBox(
             height: height * 0.14,
             width: double.infinity,
 
             // color: Colors.amber,
             child: ListView.builder(
-              itemCount: fruits.length,
+              itemCount: plants.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext context, int index) {
-                // print(fruits.length);
+                String? item = plants[index];
                 return InkWell(
                   onTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => InformationPage()));
+                            builder: (context) => InformationPage(
+                                  item: item ?? "apple",
+                                )));
                   },
                   child: Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     child: Container(
                       // height: height * 0.14,
                       // width: width * 0.9,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           // borderRadius: BorderRadius.circular(1),
                           color: Colors.white),
                       child: SizedBox(
                         height: 10,
                         width: 60,
-                        child: Image.asset(
-                          'assets/icon/${fruits[index]}.png',
-                          // fit: BoxFit.contain
-                        ),
+                        child: Image.asset('assets/icons/${plants[index]}.png',
+                            fit: BoxFit.scaleDown),
                       ),
                     ),
                   ),
@@ -218,7 +225,13 @@ class _HomeState extends State<Home> {
               },
             ),
           ),
-        )
+        ),
+        Text(user.email!),
+        ElevatedButton(
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+            },
+            child: const Text('Sign Out'))
       ],
     );
   }

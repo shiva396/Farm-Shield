@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "899901134352",
+    "project_id": "farmshield-8a521",
+    "storage_bucket": "farmshield-8a521.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899901134352:android:023da220f55ffde10a9c95",
+        "android_client_info": {
+          "package_name": "com.example.farmshield"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_3kvXfwqXU7FuojRY1vwnsebNj2zkMdk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

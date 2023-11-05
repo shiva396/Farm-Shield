@@ -1,5 +1,6 @@
 // ignore_for_file: unused_import
 
+import 'package:farmshield/auth/signin.dart';
 import 'package:farmshield/disease_detection.dart';
 import 'package:farmshield/calc/fertilizer_calculator.dart';
 import 'package:farmshield/languages/language.dart';
@@ -19,17 +20,15 @@ class _LoadingState extends State<Loading> {
   void initState() {
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (_) =>
-                  // const App()));
-                  // FertilizerCalculator(
-                  //   type: "banana",
-                  // )));
+          context, MaterialPageRoute(builder: (_) => const MainPage()));
+      // const App()));
+      // FertilizerCalculator(
+      //   type: "banana",
+      // )));
 
-                  // WeatherPage()));
-                  // const PlantApp()));
-                  const DiseaseDetection()));
+      // WeatherPage()));
+      // const PlantApp()));
+      // const DiseaseDetection()));
     });
     super.initState();
   }

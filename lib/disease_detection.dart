@@ -1,17 +1,12 @@
 // ignore_for_file: avoid_print, prefer_const_literals_to_create_immutables
 
 import 'package:farmshield/api/translator.dart';
-import 'package:farmshield/calc/fertilizer_calculator.dart';
-import 'package:farmshield/models/weather_model.dart';
 import 'package:farmshield/pages/home_page.dart';
 import 'package:farmshield/scanning_screen.dart';
-import 'package:farmshield/services/weather_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
-import 'package:lottie/lottie.dart';
 
 class DiseaseDetection extends StatefulWidget {
   const DiseaseDetection({super.key});
@@ -26,13 +21,11 @@ class _DiseaseDetectionState extends State<DiseaseDetection> {
   bool imageSelected = false;
   bool isOut = false;
 
-  String name = "Harish";
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   loadModel();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    loadModel();
+  }
 
   int pageNo = 0;
 
@@ -69,20 +62,11 @@ class _DiseaseDetectionState extends State<DiseaseDetection> {
   }
 
   @override
-  void initState() {
-    super.initState();
-
-    loadModel();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color.fromARGB(246, 242, 253, 248),
-        body: pageNo == 0 ? const Home() : Translate(),
+        backgroundColor: Color.fromARGB(246, 207, 252, 230),
+        body: pageNo == 0 ? const Home() : const Translate(),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
             showDialog<String>(
