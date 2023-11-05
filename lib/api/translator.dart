@@ -1,150 +1,807 @@
-// ignore: depend_on_referenced_packages
-// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: library_private_types_in_public_api, non_constant_identifier_names, prefer_typing_uninitialized_variables
 
-// ignore: depend_on_referenced_packages
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_translate/flutter_translate.dart';
+import 'package:translator/translator.dart';
+import 'package:flutter_tts/flutter_tts.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:clipboard/clipboard.dart';
+import 'package:flutter/services.dart';
 
-void main() async {
-  var delegate = await LocalizationDelegate.create(
-      fallbackLocale: 'en_US',
-      supportedLocales: ['en_US', 'es', 'fa', 'ar', 'ru']);
+class Translate extends StatefulWidget {
+  const Translate({super.key});
 
-  runApp(LocalizedApp(delegate, const MyApp()));
+  @override
+  _TranslateState createState() => _TranslateState();
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class _TranslateState extends State<Translate> {
+  void Speakin() async {
+    final FlutterTts tts = FlutterTts();
+    await tts.getLanguages;
+    if (input.text == "") {
+      Fluttertoast.showToast(
+          msg: "There Is No Content To Speak",
+          backgroundColor: Colors.deepPurpleAccent,
+          textColor: Colors.white,
+          gravity: ToastGravity.BOTTOM);
+    }
+    if (selected == "Tamil") {
+      tts.setLanguage('ta');
+    }
+    if (selected == "Hindi") {
+      tts.setLanguage('hi');
+    }
+    if (selected == "Malayalam") {
+      tts.setLanguage('ml');
+    }
+    if (selected == "Telugu") {
+      tts.setLanguage('te');
+    }
+    if (selected == "Japanese") {
+      tts.setLanguage('ja');
+    }
+    if (selected == "Italian") {
+      tts.setLanguage('it');
+    }
+    if (selected == "Chinese") {
+      tts.setLanguage('zh-cn');
+    }
+    if (selected == "Korean") {
+      tts.setLanguage('ko');
+    }
+    if (selected == "Spanish") {
+      tts.setLanguage('es');
+    }
+    if (selected == "Latin") {
+      tts.setLanguage('la');
+    }
+    if (selected == "German") {
+      tts.setLanguage('de');
+    }
+    if (selected == "Kannada") {
+      tts.setLanguage('kn');
+    }
+    if (selected == "Russian") {
+      tts.setLanguage('ru');
+    }
+    if (selected == "Urdu") {
+      tts.setLanguage('ur');
+    }
+    if (selected == "Portuguese") {
+      tts.setLanguage('pt');
+    }
+    if (selected == "French") {
+      tts.setLanguage('fr');
+    }
+    if (selected == "English") {
+      tts.setLanguage('en');
+    }
+    if (selected == "Bengali") {
+      tts.setLanguage('bn');
+    }
+    if (selected == "Dutch") {
+      tts.setLanguage('nl');
+    }
+    if (selected == "Greek") {
+      tts.setLanguage('el');
+    }
+    if (selected == "Gujarati") {
+      tts.setLanguage('gu');
+    }
+    if (selected == "Malay") {
+      tts.setLanguage('ms');
+    }
+    if (selected == "Marathi") {
+      tts.setLanguage('mr');
+    }
+    if (selected == "Nepali") {
+      tts.setLanguage('ne');
+    }
+    if (selected == "Arabic") {
+      tts.setLanguage('ar');
+    }
+    await tts.setPitch(1);
+    tts.speak(input.text);
+  }
+
+  void Speakout() async {
+    final FlutterTts tts = FlutterTts();
+    await tts.getLanguages;
+    await tts.setPitch(1);
+    tts.speak(output.text);
+    if (output.text == "") {
+      Fluttertoast.showToast(
+          msg: "There Is No Content To Speak",
+          backgroundColor: Colors.deepPurpleAccent,
+          textColor: Colors.white,
+          gravity: ToastGravity.BOTTOM);
+    }
+    if (selected == "Tamil") {
+      tts.setLanguage('ta');
+    }
+    if (selected == "Hindi") {
+      tts.setLanguage('hi');
+    }
+    if (selected == "Malayalam") {
+      tts.setLanguage('ml');
+    }
+    if (selected == "Telugu") {
+      tts.setLanguage('te');
+    }
+    if (selected == "Japanese") {
+      tts.setLanguage('ja');
+    }
+    if (selected == "Italian") {
+      tts.setLanguage('it');
+    }
+    if (selected == "Chinese") {
+      tts.setLanguage('zh-cn');
+    }
+    if (selected == "Korean") {
+      tts.setLanguage('ko');
+    }
+    if (selected == "Spanish") {
+      tts.setLanguage('es');
+    }
+    if (selected == "Latin") {
+      tts.setLanguage('la');
+    }
+    if (selected == "German") {
+      tts.setLanguage('de');
+    }
+    if (selected == "Kannada") {
+      tts.setLanguage('kn');
+    }
+    if (selected == "Russian") {
+      tts.setLanguage('ru');
+    }
+    if (selected == "Urdu") {
+      tts.setLanguage('ur');
+    }
+    if (selected == "Portuguese") {
+      tts.setLanguage('pt');
+    }
+    if (selected == "French") {
+      tts.setLanguage('fr');
+    }
+    if (selected == "English") {
+      tts.setLanguage('en');
+    }
+    if (selected == "Bengali") {
+      tts.setLanguage('bn');
+    }
+    if (selected == "Dutch") {
+      tts.setLanguage('nl');
+    }
+    if (selected == "Greek") {
+      tts.setLanguage('el');
+    }
+    if (selected == "Gujarati") {
+      tts.setLanguage('gu');
+    }
+    if (selected == "Malay") {
+      tts.setLanguage('ms');
+    }
+    if (selected == "Marathi") {
+      tts.setLanguage('mr');
+    }
+    if (selected == "Nepali") {
+      tts.setLanguage('ne');
+    }
+    if (selected == "Arabic") {
+      tts.setLanguage('ar');
+    }
+  }
+
+  TextEditingController input = TextEditingController();
+  TextEditingController output = TextEditingController();
+  List<String> lang = [
+    "Tamil",
+    'Hindi',
+    'Malayalam',
+    'Telugu',
+    'English',
+    'Japanese',
+    'Italian',
+    'Arabic',
+    'Chinese',
+    'Korean',
+    'Spanish',
+    'Latin',
+    'German',
+    'Kannada',
+    'Russian',
+    'Urdu',
+    'Portuguese',
+    'French',
+    'Bengali',
+    'Dutch',
+    'Greek',
+    'Gujarati',
+    'Malay',
+    'Marathi',
+    'Nepali'
+  ];
+  var selected;
+  String o = "";
+
+  void Trans() {
+    final trans = GoogleTranslator();
+    if (input.text == "") {
+      Fluttertoast.showToast(
+          msg: "There Is No Content To Translate !",
+          backgroundColor: Colors.deepPurpleAccent,
+          textColor: Colors.white,
+          gravity: ToastGravity.BOTTOM);
+    }
+    if (selected == "Tamil") {
+      trans.translate(input.text, to: 'ta').then((out) {
+        setState(() {
+          o = out.toString();
+          Fluttertoast.showToast(
+              msg: "Translated !",
+              backgroundColor: Colors.deepPurpleAccent,
+              textColor: Colors.white);
+        });
+
+        output.text = o;
+      });
+    }
+    if (selected == "Hindi") {
+      trans.translate(input.text, to: 'hi').then((out) {
+        setState(() {
+          o = out.toString();
+          Fluttertoast.showToast(
+              msg: "Translated !",
+              backgroundColor: Colors.deepPurpleAccent,
+              textColor: Colors.white);
+        });
+
+        output.text = o;
+      });
+    }
+    if (selected == "Malayalam") {
+      trans.translate(input.text, to: 'ml').then((out) {
+        setState(() {
+          o = out.toString();
+          Fluttertoast.showToast(
+              msg: "Translated !",
+              backgroundColor: Colors.deepPurpleAccent,
+              textColor: Colors.white);
+        });
+
+        output.text = o;
+      });
+    }
+    if (selected == "Telugu") {
+      trans.translate(input.text, to: 'te').then((out) {
+        setState(() {
+          o = out.toString();
+          Fluttertoast.showToast(
+              msg: "Translated !",
+              backgroundColor: Colors.deepPurpleAccent,
+              textColor: Colors.white);
+        });
+
+        output.text = o;
+      });
+    }
+    if (selected == "Japanese") {
+      trans.translate(input.text, to: 'ja').then((out) {
+        setState(() {
+          o = out.toString();
+          Fluttertoast.showToast(
+              msg: "Translated !",
+              backgroundColor: Colors.deepPurpleAccent,
+              textColor: Colors.white);
+        });
+
+        output.text = o;
+      });
+    }
+    if (selected == "Italian") {
+      trans.translate(input.text, to: 'it').then((out) {
+        setState(() {
+          o = out.toString();
+          Fluttertoast.showToast(
+              msg: "Translated !",
+              backgroundColor: Colors.deepPurpleAccent,
+              textColor: Colors.white);
+        });
+
+        output.text = o;
+      });
+    }
+    if (selected == "Chinese") {
+      trans.translate(input.text, to: 'zh-cn').then((out) {
+        setState(() {
+          o = out.toString();
+          Fluttertoast.showToast(
+              msg: "Translated !",
+              backgroundColor: Colors.deepPurpleAccent,
+              textColor: Colors.white);
+        });
+
+        output.text = o;
+      });
+    }
+    if (selected == "Korean") {
+      trans.translate(input.text, to: 'ko').then((out) {
+        setState(() {
+          o = out.toString();
+          Fluttertoast.showToast(
+              msg: "Translated !",
+              backgroundColor: Colors.deepPurpleAccent,
+              textColor: Colors.white);
+        });
+
+        output.text = o;
+      });
+    }
+    if (selected == "Spanish") {
+      trans.translate(input.text, to: 'es').then((out) {
+        setState(() {
+          o = out.toString();
+          Fluttertoast.showToast(
+              msg: "Translated !",
+              backgroundColor: Colors.deepPurpleAccent,
+              textColor: Colors.white);
+        });
+
+        output.text = o;
+      });
+    }
+    if (selected == "Latin") {
+      trans.translate(input.text, to: 'la').then((out) {
+        setState(() {
+          o = out.toString();
+          Fluttertoast.showToast(
+              msg: "Translated !",
+              backgroundColor: Colors.deepPurpleAccent,
+              textColor: Colors.white);
+        });
+
+        output.text = o;
+      });
+    }
+    if (selected == "German") {
+      trans.translate(input.text, to: 'de').then((out) {
+        setState(() {
+          o = out.toString();
+          Fluttertoast.showToast(
+              msg: "Translated !",
+              backgroundColor: Colors.deepPurpleAccent,
+              textColor: Colors.white);
+        });
+
+        output.text = o;
+      });
+    }
+    if (selected == "Kannada") {
+      trans.translate(input.text, to: 'kn').then((out) {
+        setState(() {
+          o = out.toString();
+          Fluttertoast.showToast(
+              msg: "Translated !",
+              backgroundColor: Colors.deepPurpleAccent,
+              textColor: Colors.white);
+        });
+
+        output.text = o;
+      });
+    }
+    if (selected == "Russian") {
+      trans.translate(input.text, to: 'ru').then((out) {
+        setState(() {
+          o = out.toString();
+          Fluttertoast.showToast(
+              msg: "Translated !",
+              backgroundColor: Colors.deepPurpleAccent,
+              textColor: Colors.white);
+        });
+
+        output.text = o;
+      });
+    }
+    if (selected == "Urdu") {
+      trans.translate(input.text, to: 'ur').then((out) {
+        setState(() {
+          o = out.toString();
+          Fluttertoast.showToast(
+              msg: "Translated !",
+              backgroundColor: Colors.deepPurpleAccent,
+              textColor: Colors.white);
+        });
+
+        output.text = o;
+      });
+    }
+    if (selected == "Portuguese") {
+      trans.translate(input.text, to: 'pt').then((out) {
+        setState(() {
+          o = out.toString();
+          Fluttertoast.showToast(
+              msg: "Translated !",
+              backgroundColor: Colors.deepPurpleAccent,
+              textColor: Colors.white);
+        });
+
+        output.text = o;
+      });
+    }
+    if (selected == "French") {
+      trans.translate(input.text, to: 'fr').then((out) {
+        setState(() {
+          o = out.toString();
+          Fluttertoast.showToast(
+              msg: "Translated !",
+              backgroundColor: Colors.deepPurpleAccent,
+              textColor: Colors.white);
+        });
+
+        output.text = o;
+      });
+    }
+    if (selected == "English") {
+      trans.translate(input.text, to: 'en').then((out) {
+        setState(() {
+          o = out.toString();
+          Fluttertoast.showToast(
+              msg: "Translated !",
+              backgroundColor: Colors.deepPurpleAccent,
+              textColor: Colors.white);
+        });
+
+        output.text = o;
+      });
+    }
+    if (selected == "Bengali") {
+      trans.translate(input.text, to: 'bn').then((out) {
+        setState(() {
+          o = out.toString();
+          Fluttertoast.showToast(
+              msg: "Translated !",
+              backgroundColor: Colors.deepPurpleAccent,
+              textColor: Colors.white);
+        });
+
+        output.text = o;
+      });
+    }
+    if (selected == "Dutch") {
+      trans.translate(input.text, to: 'nl').then((out) {
+        setState(() {
+          o = out.toString();
+          Fluttertoast.showToast(
+              msg: "Translated !",
+              backgroundColor: Colors.deepPurpleAccent,
+              textColor: Colors.white);
+        });
+
+        output.text = o;
+      });
+    }
+    if (selected == "Marathi") {
+      trans.translate(input.text, to: 'mr').then((out) {
+        setState(() {
+          o = out.toString();
+          Fluttertoast.showToast(
+              msg: "Translated !",
+              backgroundColor: Colors.deepPurpleAccent,
+              textColor: Colors.white);
+        });
+
+        output.text = o;
+      });
+    }
+    if (selected == "Greek") {
+      trans.translate(input.text, to: 'el').then((out) {
+        setState(() {
+          o = out.toString();
+          Fluttertoast.showToast(
+              msg: "Translated !",
+              backgroundColor: Colors.deepPurpleAccent,
+              textColor: Colors.white);
+        });
+
+        output.text = o;
+      });
+    }
+    if (selected == "Gujarati") {
+      trans.translate(input.text, to: 'gu').then((out) {
+        setState(() {
+          o = out.toString();
+          Fluttertoast.showToast(
+              msg: "Translated !",
+              backgroundColor: Colors.deepPurpleAccent,
+              textColor: Colors.white);
+        });
+
+        output.text = o;
+      });
+    }
+    if (selected == "Malay") {
+      trans.translate(input.text, to: 'ms').then((out) {
+        setState(() {
+          o = out.toString();
+          Fluttertoast.showToast(
+              msg: "Translated !",
+              backgroundColor: Colors.deepPurpleAccent,
+              textColor: Colors.white);
+        });
+
+        output.text = o;
+      });
+    }
+    if (selected == "Nepali") {
+      trans.translate(input.text, to: 'ne').then((out) {
+        setState(() {
+          o = out.toString();
+          Fluttertoast.showToast(
+              msg: "Translated !",
+              backgroundColor: Colors.deepPurpleAccent,
+              textColor: Colors.white);
+        });
+
+        output.text = o;
+      });
+    }
+    if (selected == "Arabic") {
+      trans.translate(input.text, to: 'ar').then((out) {
+        setState(() {
+          o = out.toString();
+          Fluttertoast.showToast(
+              msg: "Translated !",
+              backgroundColor: Colors.deepPurpleAccent,
+              textColor: Colors.white);
+        });
+
+        output.text = o;
+      });
+    }
+  }
+
+  void copy() {
+    if (output.text == "") {
+      Fluttertoast.showToast(
+          msg: 'No Content Is Available To Copy',
+          backgroundColor: Colors.deepPurpleAccent,
+          textColor: Colors.white);
+    } else {
+      FlutterClipboard.copy(output.text);
+      Fluttertoast.showToast(
+          msg: "Copied To Clipboard !",
+          backgroundColor: Colors.deepPurpleAccent,
+          textColor: Colors.white,
+          gravity: ToastGravity.BOTTOM,
+          toastLength: Toast.LENGTH_SHORT);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    var localizationDelegate = LocalizedApp.of(context).delegate;
-
-    return LocalizationProvider(
-      state: LocalizationProvider.of(context).state,
-      child: MaterialApp(
-        title: 'Flutter Translate Demo',
-        localizationsDelegates: [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          localizationDelegate
-        ],
-        supportedLocales: localizationDelegate.supportedLocales,
-        locale: localizationDelegate.currentLocale,
-        theme: ThemeData(primarySwatch: Colors.blue),
-        home: const MyHomePage(),
-      ),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, this.title}) : super(key: key);
-  final String? title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _decrementCounter() => setState(() => _counter--);
-
-  void _incrementCounter() => setState(() => _counter++);
-
-  @override
-  Widget build(BuildContext context) {
-    var localizationDelegate = LocalizedApp.of(context).delegate;
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(translate('app_bar.title')),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(translate('language.selected_message', args: {
-              'language': translate(
-                  'language.name.${localizationDelegate.currentLocale.languageCode}')
-            })),
-            Padding(
-                padding: const EdgeInsets.only(top: 25, bottom: 160),
-                child: CupertinoButton.filled(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 36.0),
-                  onPressed: () => _onActionSheetPress(context),
-                  child: Text(translate('button.change_language')),
-                )),
-            Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: Text(translatePlural('plural.demo', _counter))),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                IconButton(
-                  icon: const Icon(Icons.remove_circle),
-                  iconSize: 48,
-                  onPressed: _counter > 0
-                      ? () => setState(() => _decrementCounter())
-                      : null,
-                ),
-                IconButton(
-                  icon: const Icon(Icons.add_circle),
-                  color: Colors.blue,
-                  iconSize: 48,
-                  onPressed: () => setState(() => _incrementCounter()),
-                ),
-              ],
-            )
-          ],
+    return
+        //  Scaffold(
+        // appBar: AppBar(
+        //   title: const Text("Translator"),
+        //   backgroundColor: Colors.deepPurpleAccent,
+        //   centerTitle: true,
+        //   systemOverlayStyle: SystemUiOverlayStyle.light,
+        // ),
+        // body:
+        SingleChildScrollView(
+            child: Column(
+      children: <Widget>[
+        const SizedBox(
+          height: 20,
         ),
-      ),
-    );
-  }
-
-  void showDemoActionSheet(
-      {required BuildContext context, required Widget child}) {
-    showCupertinoModalPopup<String>(
-        context: context,
-        builder: (BuildContext context) => child).then((String? value) {
-      if (value != null) changeLocale(context, value);
-    });
-  }
-
-  void _onActionSheetPress(BuildContext context) {
-    showDemoActionSheet(
-      context: context,
-      child: CupertinoActionSheet(
-        title: Text(translate('language.selection.title')),
-        message: Text(translate('language.selection.message')),
-        actions: <Widget>[
-          CupertinoActionSheetAction(
-            child: Text(translate('language.name.en')),
-            onPressed: () => Navigator.pop(context, 'en_US'),
-          ),
-          CupertinoActionSheetAction(
-            child: Text(translate('language.name.es')),
-            onPressed: () => Navigator.pop(context, 'es'),
-          ),
-          CupertinoActionSheetAction(
-            child: Text(translate('language.name.ar')),
-            onPressed: () => Navigator.pop(context, 'ar'),
-          ),
-          CupertinoActionSheetAction(
-            child: Text(translate('language.name.ru')),
-            onPressed: () => Navigator.pop(context, 'ru'),
-          ),
-        ],
-        cancelButton: CupertinoActionSheetAction(
-          isDefaultAction: true,
-          onPressed: () => Navigator.pop(context, null),
-          child: Text(translate('button.cancel')),
+        Container(
+            padding: const EdgeInsets.all(20),
+            child: TextField(
+              controller: input,
+              textAlign: TextAlign.center,
+              style: const TextStyle(color: Colors.deepPurpleAccent),
+              minLines: 5,
+              maxLines: 5,
+              decoration: InputDecoration(
+                  fillColor: Colors.deepPurpleAccent,
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: const BorderSide(
+                          width: 2, color: Colors.deepPurpleAccent)),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: const BorderSide(
+                          width: 2, color: Colors.deepPurpleAccent)),
+                  suffixIcon: InkWell(
+                    onTap: Speakin,
+                    child: const Icon(
+                      Icons.volume_up_sharp,
+                      color: Colors.deepPurpleAccent,
+                    ),
+                  ),
+                  prefixIcon: const Icon(Icons.text_fields_sharp,
+                      color: Colors.deepPurpleAccent),
+                  hintText: "\nInput The Content You Want \nTo Translate",
+                  hintStyle: const TextStyle(color: Colors.deepPurpleAccent)),
+            )),
+        const SizedBox(
+          height: 20,
         ),
-      ),
-    );
+        Container(
+          padding: const EdgeInsets.only(left: 30, right: 30),
+          child: DropdownButtonFormField(
+            items: lang
+                .map((value) => DropdownMenuItem(
+                      value: value,
+                      child: Text(
+                        value,
+                        style: const TextStyle(
+                            color: Colors.deepPurpleAccent,
+                            fontStyle: FontStyle.italic,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ))
+                .toList(),
+            onChanged: (select) {
+              setState(() {
+                selected = select;
+              });
+            },
+            icon: const Icon(
+              Icons.translate,
+              color: Colors.deepPurpleAccent,
+            ),
+            value: selected,
+            hint: const Text(
+              "Select Language To Translate",
+              style: TextStyle(
+                  color: Colors.deepPurpleAccent,
+                  fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.bold),
+            ),
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.deepPurpleAccent),
+                borderRadius: BorderRadius.circular(25),
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        ElevatedButton.icon(
+          onPressed: () {
+            Trans();
+          },
+          // padding:
+          //     EdgeInsets.only(left: 50, right: 50, top: 10, bottom: 10),
+          icon: const Icon(
+            Icons.translate_sharp,
+            color: Colors.white,
+          ),
+          // elevation: 20,
+          label: const Text(
+            "Translate",
+            style: TextStyle(color: Colors.white),
+          ),
+          // shape: StadiumBorder(),
+          // color: Colors.deepPurpleAccent,
+        ),
+        Container(
+            padding: const EdgeInsets.all(20),
+            child: TextField(
+              controller: output,
+              textAlign: TextAlign.center,
+              style: const TextStyle(color: Colors.deepPurpleAccent),
+              minLines: 5,
+              maxLines: 5,
+              decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                        width: 2, color: Colors.deepPurpleAccent)),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                        width: 2, color: Colors.deepPurpleAccent)),
+                hintText: "\n\nTranslated Content Goes Here",
+                suffixIcon: InkWell(
+                  onTap: Speakout,
+                  child: const Icon(
+                    Icons.volume_up_sharp,
+                    color: Colors.deepPurpleAccent,
+                  ),
+                ),
+                prefixIcon: const Icon(Icons.text_fields_sharp,
+                    color: Colors.deepPurpleAccent),
+                hintStyle: const TextStyle(color: Colors.deepPurpleAccent),
+              ),
+            )),
+        ElevatedButton.icon(
+          onPressed: () {
+            copy();
+          },
+          icon: const Icon(
+            Icons.copy_sharp,
+            color: Colors.white,
+          ),
+          // elevation: 20,
+          label: const Text(
+            "Copy Translated",
+            style: TextStyle(color: Colors.white),
+          ),
+          // shape: StadiumBorder(),
+          // color: Colors.deepPurpleAccent,
+        ),
+      ],
+    ));
+    //   ),
+    // );
   }
 }
+// class HomePage extends StatefulWidget {
+//   @override
+//   _HomePageState createState() => _HomePageState();
+// }
+
+// class _HomePageState extends State<HomePage> {
+//   GoogleTranslator translator = new GoogleTranslator();
+
+//   String _originaltext = '';
+//   String _changedtext = '';
+
+//   _translate(String text) {
+//     translator.translate(text, to: 'hi').then((value) {
+//       setState(() {
+//         _changedtext = value.toString();
+//       });
+//       print(_changedtext);
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Translator'),
+//       ),
+//       body: Container(
+//           child: Column(
+//         children: [
+//           Container(
+//             // color: Colors.blue,
+//             child: SafeArea(
+//               minimum: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+//               child: TextField(
+//                 decoration: InputDecoration(
+//                   hintText: 'Enter text here',
+//                   filled: true,
+//                 ),
+//                 onChanged: (value) {
+//                   setState(() {
+//                     _originaltext = value.toString();
+//                   });
+//                   _translate(_originaltext);
+//                 },
+//               ),
+//             ),
+//           ),
+//           SizedBox(
+//             height: 20.0,
+//           ),
+//           Container(
+//             color: Colors.blue,
+//             child: SafeArea(
+//               minimum: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+//               child: Text(
+//                 _changedtext,
+//               ),
+//             ),
+//           ),
+//         ],
+//       )),
+//     );
+//   }
+// }

@@ -2,7 +2,7 @@
 
 import 'dart:async';
 
-import 'package:farmshield/plant/time_util.dart';
+import 'package:farmshield/utils/time_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rive/rive.dart';
