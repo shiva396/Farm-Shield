@@ -743,7 +743,7 @@ class _TranslateState extends State<Translate> {
             "Copy Translated",
             style: TextStyle(color: Colors.white),
           ),
-          // shape: StadiumBorder(),
+          style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
           // color: Colors.deepPurpleAccent,
         ),
       ],

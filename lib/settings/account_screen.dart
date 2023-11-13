@@ -28,15 +28,10 @@ class _AccountScreenState extends State<AccountScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Ionicons.chevron_back_outline),
-        ),
-        leadingWidth: 80,
-      ),
-      body: SingleChildScrollView(
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      color: Colors.white,
+      child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(30),
           child: Column(
@@ -121,18 +116,18 @@ class _AccountScreenState extends State<AccountScreen> {
                           builder: (context) => const Translate()));
                 },
               ),
-              // const SizedBox(height: 20),
-              // SettingItem(
-              //   title: "Notifications",
-              //   icon: Ionicons.notifications,
-              //   bgColor: Colors.blue.shade100,
-              //   iconColor: Colors.blue,
-              //   onTap: () {},
-              // ),
+              const SizedBox(height: 20),
+              SettingItem(
+                title: "Notifications",
+                icon: Ionicons.notifications,
+                bgColor: Colors.blue.shade100,
+                iconColor: Colors.blue,
+                onTap: () {},
+              ),
               const SizedBox(height: 20),
               SettingSwitch(
                 title: "Dark Mode",
-                icon: Ionicons.earth,
+                icon: Ionicons.invert_mode,
                 bgColor: Colors.purple.shade100,
                 iconColor: Colors.purple,
                 value: isDarkMode,
@@ -145,7 +140,7 @@ class _AccountScreenState extends State<AccountScreen> {
               const SizedBox(height: 20),
               SettingItem(
                 title: "About",
-                icon: Ionicons.nuclear,
+                icon: Icons.description,
                 bgColor: Colors.red.shade100,
                 iconColor: Colors.red,
                 onTap: () {},

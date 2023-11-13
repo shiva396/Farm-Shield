@@ -59,11 +59,11 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                 title: "Photo",
                 widget: Column(
                   children: [
-                    // Image.asset(
-                    //   "assets/avatar.png",
-                    //   height: 100,
-                    //   width: 100,
-                    // ),
+                    Image.asset(
+                      "assets/icons/apple.png",
+                      height: 100,
+                      width: 100,
+                    ),
                     TextButton(
                       onPressed: () {},
                       style: TextButton.styleFrom(
@@ -83,43 +83,33 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                 title: "Gender",
                 widget: Row(
                   children: [
-                    IconButton(
+                    OutlinedButton.icon(
+                      style: OutlinedButton.styleFrom(
+                          backgroundColor: gender == 'man'
+                              ? const Color.fromARGB(255, 252, 234, 255)
+                              : Colors.white),
+                      label: const Text('Male'),
                       onPressed: () {
                         setState(() {
-                          gender = "man";
+                          gender = 'man';
                         });
                       },
-                      style: IconButton.styleFrom(
-                        backgroundColor: gender == "man"
-                            ? Colors.deepPurple
-                            : Colors.grey.shade200,
-                        fixedSize: const Size(50, 50),
-                      ),
-                      icon: Icon(
-                        Ionicons.male,
-                        color: gender == "man" ? Colors.white : Colors.black,
-                        size: 18,
-                      ),
+                      icon: const Icon(Icons.male),
                     ),
                     const SizedBox(width: 20),
-                    IconButton(
+                    OutlinedButton.icon(
+                      style: OutlinedButton.styleFrom(
+                          backgroundColor: gender == 'female'
+                              ? const Color.fromARGB(255, 252, 234, 255)
+                              : Colors.white),
+                      label: const Text('Female'),
                       onPressed: () {
                         setState(() {
-                          gender = "woman";
+                          gender = 'female';
                         });
                       },
-                      style: IconButton.styleFrom(
-                        backgroundColor: gender == "woman"
-                            ? Colors.deepPurple
-                            : Colors.grey.shade200,
-                        fixedSize: const Size(50, 50),
-                      ),
-                      icon: Icon(
-                        Ionicons.female,
-                        color: gender == "woman" ? Colors.white : Colors.black,
-                        size: 18,
-                      ),
-                    )
+                      icon: const Icon(Icons.male),
+                    ),
                   ],
                 ),
               ),

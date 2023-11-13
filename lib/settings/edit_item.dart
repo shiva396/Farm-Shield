@@ -20,13 +20,13 @@ class EditItem extends StatelessWidget {
             title,
             style: const TextStyle(
               fontSize: 18,
-              color: Colors.grey,
+              color: Color.fromARGB(255, 0, 0, 0),
             ),
           ),
         ),
         const SizedBox(width: 40),
         Expanded(
-          flex: 5,
+          flex: 7,
           child: widget,
         )
       ],

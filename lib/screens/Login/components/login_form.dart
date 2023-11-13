@@ -1,8 +1,10 @@
 // ignore_for_file: unused_element, use_build_context_synchronously, unused_local_variable, non_constant_identifier_names
 
+import 'package:farmshield/screens/disease_detection.dart';
 import 'package:farmshield/utils/color_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../../components/already_have_an_account_acheck.dart';
 import '../../../constants.dart';
@@ -100,11 +102,28 @@ class _LoginFormState extends State<LoginForm> {
                 child: TextFormField(
                   controller: passwordContoller,
                   textInputAction: TextInputAction.done,
-                  obscureText: true,
+                  obscureText: show_password,
                   cursorColor: kPrimaryColor,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.all(defaultPadding),
+                      child: IconButton(
+                        icon: Icon(
+                            color: const Color.fromARGB(255, 148, 67, 223),
+                            show_password == true
+                                ? Icons.visibility
+                                : Icons.visibility_off),
+                        onPressed: () {
+                          setState(() {
+                            show_password == true
+                                ? show_password = false
+                                : show_password = true;
+                          });
+                        },
+                      ),
+                    ),
                     hintText: "Your password",
-                    prefixIcon: Padding(
+                    prefixIcon: const Padding(
                       padding: EdgeInsets.all(defaultPadding),
                       child: Icon(Icons.lock),
                     ),

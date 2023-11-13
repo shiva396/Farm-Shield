@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, non_constant_identifier_names
 
 import 'package:farmshield/screens/disease_detection.dart';
 import 'package:farmshield/utils/color_util.dart';
@@ -30,6 +30,8 @@ class _SignUpFormState extends State<SignUpForm> {
     super.dispose();
   }
 
+  bool show_password = true;
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -54,11 +56,28 @@ class _SignUpFormState extends State<SignUpForm> {
             child: TextFormField(
               controller: passwordContoller,
               textInputAction: TextInputAction.done,
-              obscureText: true,
+              obscureText: show_password,
               cursorColor: kPrimaryColor,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
+                suffixIcon: Padding(
+                  padding: const EdgeInsets.all(defaultPadding),
+                  child: IconButton(
+                    icon: Icon(
+                        color: const Color.fromARGB(255, 148, 67, 223),
+                        show_password == true
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                    onPressed: () {
+                      setState(() {
+                        show_password == true
+                            ? show_password = false
+                            : show_password = true;
+                      });
+                    },
+                  ),
+                ),
                 hintText: "Your password",
-                prefixIcon: Padding(
+                prefixIcon: const Padding(
                   padding: EdgeInsets.all(defaultPadding),
                   child: Icon(Icons.lock),
                 ),
@@ -93,14 +112,9 @@ class _SignUpFormState extends State<SignUpForm> {
 
   Future signUpFunction() async {
     try {
-      await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-              email: emailController.text.trim(),
-              password: passwordContoller.text.trim())
-          .then((value) => Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const DiseaseDetection())));
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordContoller.text.trim());
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.toString());
     }

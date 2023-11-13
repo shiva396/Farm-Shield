@@ -70,6 +70,7 @@ class _DiseaseDetectionState extends State<DiseaseDetection> {
         body: pageNo == 0 ? const Home() : const AccountScreen(),
         // Translate(),
         floatingActionButton: FloatingActionButton(
+          backgroundColor: const Color.fromARGB(255, 7, 255, 40),
           onPressed: () async {
             showDialog<String>(
                 context: context,
@@ -91,15 +92,16 @@ class _DiseaseDetectionState extends State<DiseaseDetection> {
                       ],
                     ));
           },
-          child:
-              const Icon(Icons.document_scanner_outlined), //icon inside button
+          child: const Icon(
+            Icons.document_scanner_outlined,
+          ), //icon inside button
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: BottomAppBar(
           //bottom navigation bar on scaffold
-          color: const Color.fromARGB(255, 88, 232, 60),
+          color: Color.fromARGB(255, 21, 231, 35),
           shape: const CircularNotchedRectangle(), //shape of notch
-          notchMargin: 5,
+          notchMargin: 7,
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceAround,

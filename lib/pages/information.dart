@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names, unused_local_variable
 
+import 'package:farmshield/settings/setting_item.dart';
 import 'package:flutter/material.dart';
 
 class InformationPage extends StatefulWidget {
@@ -306,11 +307,56 @@ class _InformationPageState extends State<InformationPage> {
                             wordSpacing: 3,
                             fontWeight: FontWeight.w500,
                             fontSize: 16)),
-                    test('image', 'Description', description),
-                    // test('image', 'Diseases:', disease),
-                    test('image', 'Disease prevention:', prevention),
-                    test('image', 'Fertilizer ingredients', fertilizer),
-                    test('image', 'Precaution:', precausion)
+                    const Padding(
+                      padding: EdgeInsets.all(14.0),
+                      child: InformationItem(
+                        title: 'Description',
+                        bgColor: Colors.orangeAccent,
+                        iconColor: Colors.deepOrange,
+                        icon: Icons.description,
+                      ),
+                    ),
+                    test(description),
+                    const Padding(
+                      padding: EdgeInsets.all(14.0),
+                      child: InformationItem(
+                        title: 'Disease prevention',
+                        bgColor: Colors.orangeAccent,
+                        iconColor: Colors.deepOrange,
+                        icon: Icons.shield_moon_outlined,
+                      ),
+                    ),
+                    test(prevention),
+                    const Padding(
+                      padding: EdgeInsets.all(14.0),
+                      child: InformationItem(
+                        title: 'Fertlizer Ingredients',
+                        bgColor: Colors.orangeAccent,
+                        iconColor: Colors.deepOrange,
+                        icon: Icons.flip_camera_ios_outlined,
+                      ),
+                    ),
+                    test(fertilizer),
+                    const Padding(
+                      padding: EdgeInsets.all(14.0),
+                      child: InformationItem(
+                        title: 'Precautions',
+                        bgColor: Colors.orangeAccent,
+                        iconColor: Colors.deepOrange,
+                        icon: Icons.description,
+                      ),
+                    ),
+                    test(precausion),
+                    const Padding(
+                      padding: EdgeInsets.all(14.0),
+                      child: InformationItem(
+                        title: 'Disease',
+                        bgColor: Colors.orangeAccent,
+                        iconColor: Colors.deepOrange,
+                        icon: Icons.dangerous,
+                      ),
+                    ),
+                    test(disease)
                   ],
                 ),
               )
@@ -321,38 +367,10 @@ class _InformationPageState extends State<InformationPage> {
     );
   }
 
-  Widget test(String image, String title, String text) {
+  Widget test(String text) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        children: [
-          const Expanded(
-            flex: 1,
-            child: CircleAvatar(
-              radius: 30,
-            ),
-          ),
-          Expanded(
-            flex: 3,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    letterSpacing: 1,
-                    wordSpacing: 3,
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 30, 238, 7),
-                  ),
-                ),
-                Text(text),
-              ],
-            ),
-          ),
-        ],
-      ),
+      padding: const EdgeInsets.all(16.0),
+      child: Text(text),
     );
   }
 }

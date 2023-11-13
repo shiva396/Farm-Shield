@@ -2,8 +2,10 @@
 
 import 'package:farmshield/models/weather_model.dart';
 import 'package:farmshield/pages/information.dart';
+import 'package:farmshield/screens/Welcome/welcome_screen.dart';
 import 'package:farmshield/services/weather_service.dart';
 import 'package:farmshield/utils/color_util.dart';
+import 'package:farmshield/utils/custom_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -246,11 +248,14 @@ class _HomeState extends State<Home> {
         //       color: Colors.white, borderRadius: BorderRadius.circular(15)),
         // ),
         Text(user.email!),
-        ElevatedButton(
-            onPressed: () {
-              FirebaseAuth.instance.signOut();
-            },
-            child: const Text('Sign Out'))
+        Padding(
+          padding: const EdgeInsets.all(100.0),
+          child: CustomButton(
+              onPressed: () {
+                FirebaseAuth.instance.signOut();
+              },
+              text: 'Sign Out'),
+        )
       ],
     );
   }
