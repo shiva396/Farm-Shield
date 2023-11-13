@@ -1,10 +1,10 @@
 // ignore_for_file: unused_import
 
-import 'package:farmshield/auth/signin.dart';
-import 'package:farmshield/disease_detection.dart';
+import 'package:farmshield/authentication/signin.dart';
+import 'package:farmshield/screens/disease_detection.dart';
 import 'package:farmshield/calc/fertilizer_calculator.dart';
-import 'package:farmshield/languages/language.dart';
-import 'package:farmshield/utils/plant_custom.dart';
+
+import 'package:farmshield/pages/plant_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -37,7 +37,7 @@ class _LoadingState extends State<Loading> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-      child: LottieBuilder.asset('assets/loading.json'),
+      child: LottieBuilder.asset('assets/json/loading.json'),
     ));
   }
 }

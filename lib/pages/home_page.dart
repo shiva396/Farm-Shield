@@ -27,12 +27,9 @@ class _HomeState extends State<Home> {
     'grape',
     'orange',
     'strawberry',
-    // 'maize',
     'guava',
     'pomegranate',
     'coriander',
-    // 'pudina',
-    'guava',
     'cherry',
     'lemon'
   ];
@@ -63,7 +60,7 @@ class _HomeState extends State<Home> {
   }
 
   String getWeatherAnimation(String? mainCondition) {
-    if (mainCondition == null) return "assets/sunny.json";
+    if (mainCondition == null) return "assets/json/sunny.json";
 
     switch (mainCondition.toLowerCase()) {
       case 'clouds':
@@ -72,19 +69,19 @@ class _HomeState extends State<Home> {
       case 'haze':
       case 'dust':
       case 'fog':
-        return "assets/cloudy.json";
+        return "assets/json/cloudy.json";
 
       case 'drizzle':
-        return "assets/sunny_rainy.json";
+        return "assets/json/sunny_rainy.json";
       case 'rain':
       case 'shower rain':
-        return "assets/rain.json";
+        return "assets/json/rain.json";
       case 'thunderstorm':
-        return "assets/thunder.json";
+        return "assets/json/thunder.json";
       case 'clear':
-        return "assets/sunny.json";
+        return "assets/json/sunny.json";
       default:
-        return "assets/sunny.json";
+        return "assets/json/sunny.json";
     }
   }
 
@@ -226,6 +223,28 @@ class _HomeState extends State<Home> {
             ),
           ),
         ),
+        // Container(
+        //   width: 150,
+        //   height: 90,
+        //   child: Padding(
+        //     padding: const EdgeInsets.all(12.0),
+        //     child: Row(
+        //       mainAxisAlignment: MainAxisAlignment.start,
+        //       children: [
+        //         CircleAvatar(
+        //           backgroundColor: Colors.white,
+        //           backgroundImage: AssetImage('assets/icons/fertilizer.png'),
+        //         ),
+        //         Text(
+        //           " Fertilizer\n Calculator",
+        //           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+        //         ),
+        //       ],
+        //     ),
+        //   ),
+        //   decoration: BoxDecoration(
+        //       color: Colors.white, borderRadius: BorderRadius.circular(15)),
+        // ),
         Text(user.email!),
         ElevatedButton(
             onPressed: () {

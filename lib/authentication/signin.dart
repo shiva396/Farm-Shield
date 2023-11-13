@@ -1,5 +1,5 @@
-import 'package:farmshield/disease_detection.dart';
-import 'package:farmshield/models/authpage.dart';
+import 'package:farmshield/screens/disease_detection.dart';
+import 'package:farmshield/authentication/authpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

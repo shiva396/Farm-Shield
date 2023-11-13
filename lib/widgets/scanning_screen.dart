@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import 'detection_image.dart';
+import '../screens/detection_image.dart';
 
 // ignore: must_be_immutable
 class ScanningScreen extends StatefulWidget {

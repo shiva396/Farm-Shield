@@ -30,7 +30,7 @@ class _PlantScreenState extends State<PlantScreen> {
     plantButtonText = "Plant";
     // Load the animation file from the bundle, note that you could also
     // download this. The RiveFile just expects a list of bytes.
-    rootBundle.load('assets/tree_demo.riv').then(
+    rootBundle.load('assets/model/tree_demo.riv').then(
       (data) async {
         // Load the RiveFile from the binary data.
         final file = RiveFile.import(data);

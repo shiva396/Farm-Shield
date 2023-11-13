@@ -195,6 +195,19 @@ class _TranslateState extends State<Translate> {
 
   TextEditingController input = TextEditingController();
   TextEditingController output = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    input.dispose();
+    output.dispose();
+    super.dispose();
+  }
+
   List<String> lang = [
     "Tamil",
     'Hindi',
@@ -580,16 +593,14 @@ class _TranslateState extends State<Translate> {
 
   @override
   Widget build(BuildContext context) {
-    return
-        //  Scaffold(
+    return Scaffold(
         // appBar: AppBar(
         //   title: const Text("Translator"),
         //   backgroundColor: Colors.deepPurpleAccent,
         //   centerTitle: true,
         //   systemOverlayStyle: SystemUiOverlayStyle.light,
         // ),
-        // body:
-        SingleChildScrollView(
+        body: SingleChildScrollView(
             child: Column(
       children: <Widget>[
         const SizedBox(
@@ -736,72 +747,6 @@ class _TranslateState extends State<Translate> {
           // color: Colors.deepPurpleAccent,
         ),
       ],
-    ));
-    //   ),
-    // );
+    )));
   }
 }
-// class HomePage extends StatefulWidget {
-//   @override
-//   _HomePageState createState() => _HomePageState();
-// }
-
-// class _HomePageState extends State<HomePage> {
-//   GoogleTranslator translator = new GoogleTranslator();
-
-//   String _originaltext = '';
-//   String _changedtext = '';
-
-//   _translate(String text) {
-//     translator.translate(text, to: 'hi').then((value) {
-//       setState(() {
-//         _changedtext = value.toString();
-//       });
-//       print(_changedtext);
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Translator'),
-//       ),
-//       body: Container(
-//           child: Column(
-//         children: [
-//           Container(
-//             // color: Colors.blue,
-//             child: SafeArea(
-//               minimum: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-//               child: TextField(
-//                 decoration: InputDecoration(
-//                   hintText: 'Enter text here',
-//                   filled: true,
-//                 ),
-//                 onChanged: (value) {
-//                   setState(() {
-//                     _originaltext = value.toString();
-//                   });
-//                   _translate(_originaltext);
-//                 },
-//               ),
-//             ),
-//           ),
-//           SizedBox(
-//             height: 20.0,
-//           ),
-//           Container(
-//             color: Colors.blue,
-//             child: SafeArea(
-//               minimum: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-//               child: Text(
-//                 _changedtext,
-//               ),
-//             ),
-//           ),
-//         ],
-//       )),
-//     );
-//   }
-// }
