@@ -61,6 +61,11 @@ class _HomeState extends State<Home> {
     _fetchWeather();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   String getWeatherAnimation(String? mainCondition) {
     if (mainCondition == null) return "assets/json/sunny.json";
 
@@ -251,8 +256,9 @@ class _HomeState extends State<Home> {
         Padding(
           padding: const EdgeInsets.all(100.0),
           child: CustomButton(
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut().then((value) =>
+                    Navigator.of(context, rootNavigator: true).pop(context));
               },
               text: 'Sign Out'),
         )

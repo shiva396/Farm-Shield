@@ -25,8 +25,8 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   void dispose() {
-    emailController.dispose();
-    passwordContoller.dispose();
+    emailController.clear();
+    passwordContoller.clear();
     super.dispose();
   }
 
@@ -162,9 +162,12 @@ class _LoginFormState extends State<LoginForm> {
 
   Future signIn() async {
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailController.text.trim(),
-          password: passwordContoller.text.trim());
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+              email: emailController.text.trim(),
+              password: passwordContoller.text.trim())
+          .whenComplete(() => Navigator.push(context,
+              MaterialPageRoute(builder: (context) => DiseaseDetection())));
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.toString());
     }

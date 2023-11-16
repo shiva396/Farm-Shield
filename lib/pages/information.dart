@@ -307,53 +307,53 @@ class _InformationPageState extends State<InformationPage> {
                             wordSpacing: 3,
                             fontWeight: FontWeight.w500,
                             fontSize: 16)),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.all(14.0),
                       child: InformationItem(
                         title: 'Description',
-                        bgColor: Colors.orangeAccent,
-                        iconColor: Colors.deepOrange,
+                        bgColor: Colors.orange.shade100,
+                        iconColor: Colors.orange,
                         icon: Icons.description,
                       ),
                     ),
                     test(description),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.all(14.0),
                       child: InformationItem(
                         title: 'Disease prevention',
-                        bgColor: Colors.orangeAccent,
-                        iconColor: Colors.deepOrange,
+                        bgColor: Colors.deepPurple.shade100,
+                        iconColor: Colors.deepPurple,
                         icon: Icons.shield_moon_outlined,
                       ),
                     ),
                     test(prevention),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.all(14.0),
                       child: InformationItem(
                         title: 'Fertlizer Ingredients',
-                        bgColor: Colors.orangeAccent,
-                        iconColor: Colors.deepOrange,
-                        icon: Icons.flip_camera_ios_outlined,
+                        bgColor: Colors.pink.shade100,
+                        iconColor: Colors.pink,
+                        icon: Icons.import_contacts_outlined,
                       ),
                     ),
                     test(fertilizer),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.all(14.0),
                       child: InformationItem(
                         title: 'Precautions',
-                        bgColor: Colors.orangeAccent,
-                        iconColor: Colors.deepOrange,
-                        icon: Icons.description,
+                        bgColor: Colors.brown.shade100,
+                        iconColor: Colors.brown,
+                        icon: Icons.add_task_outlined,
                       ),
                     ),
                     test(precausion),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.all(14.0),
                       child: InformationItem(
                         title: 'Disease',
-                        bgColor: Colors.orangeAccent,
-                        iconColor: Colors.deepOrange,
-                        icon: Icons.dangerous,
+                        bgColor: Colors.blue.shade100,
+                        iconColor: Colors.blue,
+                        icon: Icons.bug_report_rounded,
                       ),
                     ),
                     test(disease)
@@ -370,7 +370,10 @@ class _InformationPageState extends State<InformationPage> {
   Widget test(String text) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Text(text),
+      child: Text(
+        text,
+        style: TextStyle(fontSize: 17, letterSpacing: 0.8, wordSpacing: 2),
+      ),
     );
   }
 }

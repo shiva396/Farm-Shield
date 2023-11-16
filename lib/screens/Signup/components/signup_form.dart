@@ -111,12 +111,24 @@ class _SignUpFormState extends State<SignUpForm> {
   }
 
   Future signUpFunction() async {
+    // showDialog(
+    //     context: context,
+    //     barrierDismissible: false,
+    //     builder: (context) => const Center(
+    //           child: CircularProgressIndicator(),
+    //         ));
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailController.text.trim(),
-          password: passwordContoller.text.trim());
+      await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: emailController.text.trim(),
+              password: passwordContoller.text.trim())
+          .then((value) => Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const DiseaseDetection())));
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.toString());
     }
+    // GlobalKey<NavigatorState>().currentState!.pop();
   }
 }

@@ -591,6 +591,25 @@ class _TranslateState extends State<Translate> {
     }
   }
 
+  String translate_to_any_language(
+      {required String language, required String input_string}) {
+    final trans = GoogleTranslator();
+    trans
+        .translate(input_string.toString(), to: language.toString())
+        .then((out) {
+      setState(() {
+        o = out.toString();
+        // Fluttertoast.showToast(
+        //     msg: "Translated !",
+        //     backgroundColor: Colors.deepPurpleAccent,
+        //     textColor: Colors.white);
+      });
+
+      output.text = o;
+    });
+    return output.text.toString();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

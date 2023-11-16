@@ -1,4 +1,4 @@
-// ignore_for_file: unused_field
+// ignore_for_file: unused_field, non_constant_identifier_names
 
 import 'package:farmshield/languages/translator.dart';
 import 'package:farmshield/settings/edit_screen.dart';
@@ -7,6 +7,7 @@ import 'package:farmshield/settings/setting_item.dart';
 import 'package:farmshield/settings/setting_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:translator/translator.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
@@ -17,14 +18,94 @@ class AccountScreen extends StatefulWidget {
 
 class _AccountScreenState extends State<AccountScreen> {
   bool isDarkMode = false;
+  var language_code;
 
-  final List<String> _lang = [
-    'Option 1',
-    'Option 2',
-    'Option 3',
-    'Option 4',
-    'Option 5'
+  @override
+  void initState() {
+    language_code = lang.indexOf(language_selected);
+    super.initState();
+  }
+
+  var selected;
+  List<String> lang = [
+    "Tamil",
+    'Hindi',
+    'Malayalam',
+    'Telugu',
+    'English',
+    'Japanese',
+    'Italian',
+    'Arabic',
+    'Chinese',
+    'Korean',
+    'Spanish',
+    'Latin',
+    'German',
+    'Kannada',
+    'Russian',
+    'Urdu',
+    'Portuguese',
+    'French',
+    'Bengali',
+    'Dutch',
+    'Greek',
+    'Gujarati',
+    'Malay',
+    'Marathi',
+    'Nepali'
   ];
+  List code = [
+    'ta',
+    'hi',
+    'ml',
+    'te',
+    'en',
+    'ja',
+    'it',
+    'ar',
+    'zh',
+    'ko',
+    'es',
+    'la',
+    'de',
+    'kn',
+    'ru',
+    'ur',
+    'pt',
+    'fr',
+    'bn',
+    'nl',
+    'el',
+    'gu',
+    'ms',
+    'mr',
+    'ne',
+  ];
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  var language_selected = "English";
+  // final trans = GoogleTranslator();
+
+  String translate_to_any_language({required String input_string}) {
+    var output = "";
+    final trans = GoogleTranslator();
+    var s = trans
+        .translate(input_string.toString(), from: 'auto', to: 'mr'.toString())
+        .then((
+      out,
+    ) {
+      print(out);
+      setState(() {
+        output = out.toString();
+      });
+    });
+    return output;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,16 +118,18 @@ class _AccountScreenState extends State<AccountScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "Settings",
+              Text(
+                translate_to_any_language(input_string: "Settings"),
+                // "Settings",
                 style: TextStyle(
                   fontSize: 36,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 40),
-              const Text(
-                "Account",
+              Text(
+                translate_to_any_language(input_string: "Account"),
+                // "Account",
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w500,
@@ -108,12 +191,66 @@ class _AccountScreenState extends State<AccountScreen> {
                 icon: Ionicons.earth,
                 bgColor: Colors.orange.shade100,
                 iconColor: Colors.orange,
-                value: "English",
+                value: language_selected,
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const Translate()));
+                  showModalBottomSheet<void>(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Container(
+                        height: 600,
+                        color: Color.fromARGB(255, 132, 238, 185),
+                        child: Center(
+                          child: SingleChildScrollView(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                for (var item in lang)
+                                  ListTile(
+                                    title: Text(item.toString()),
+                                    onTap: () {
+                                      setState(() {
+                                        language_selected = item.toString();
+                                      });
+
+                                      Navigator.pop(context);
+                                    },
+                                  )
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  );
+
+                  print("language");
+                  // return DropdownButtonFormField(
+                  //   items: lang
+                  //       .map((value) => DropdownMenuItem(
+                  //             value: value,
+                  //             child: Text(
+                  //               value,
+                  //               style: const TextStyle(
+                  //                   color: Colors.deepPurpleAccent,
+                  //                   fontStyle: FontStyle.italic,
+                  //                   fontWeight: FontWeight.bold),
+                  //             ),
+                  //           ))
+                  //       .toList(),
+                  //   onChanged: (select) {
+                  //     setState(() {
+                  //       selected = select;
+                  //     });
+                  //   },
+                  //   value: selected,
+                  // );
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => const Translate()));
                 },
               ),
               const SizedBox(height: 20),

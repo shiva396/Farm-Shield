@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously, unused_local_variable, dead_code, unused_element, non_constant_identifier_names, prefer_final_fields, avoid_print
 
 import 'package:farmshield/authentication/signup.dart';
+import 'package:farmshield/screens/disease_detection.dart';
 import 'package:farmshield/utils/color_util.dart';
 import 'package:farmshield/utils/custom_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,8 +20,8 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   @override
   void dispose() {
-    emailController.dispose();
-    passwordContoller.dispose();
+    emailController.clear();
+    passwordContoller.clear();
     super.dispose();
   }
 
@@ -209,6 +210,10 @@ class _LoginWidgetState extends State<LoginWidget> {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passwordContoller.text.trim());
+      // .whenComplete(() => Navigator.push(
+      //     context,
+      //     MaterialPageRoute(
+      //         builder: (context) => const DiseaseDetection())));
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.toString());
     }
