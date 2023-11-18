@@ -1,6 +1,6 @@
 import 'package:farmshield/constants.dart';
 import 'package:farmshield/firebase_options.dart';
-import 'package:farmshield/provider/auth_provider.dart';
+import 'package:farmshield/provider/firebase_collections.dart';
 import 'package:farmshield/widgets/loading.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

@@ -123,7 +123,7 @@ class _PlantScreenState extends State<PlantScreen> {
               "Time left to grow the plant",
               style: TextStyle(
                   color: Colors.white60,
-                  fontSize: 10,
+                  fontSize: 20,
                   fontWeight: FontWeight.normal),
             ),
           ),

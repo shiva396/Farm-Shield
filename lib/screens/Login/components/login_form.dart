@@ -166,8 +166,10 @@ class _LoginFormState extends State<LoginForm> {
           .signInWithEmailAndPassword(
               email: emailController.text.trim(),
               password: passwordContoller.text.trim())
-          .whenComplete(() => Navigator.push(context,
-              MaterialPageRoute(builder: (context) => DiseaseDetection())));
+          .whenComplete(() => Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const DiseaseDetection())));
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.toString());
     }

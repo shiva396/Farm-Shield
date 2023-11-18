@@ -105,48 +105,6 @@ class InformationItem extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 color: Color.fromARGB(255, 72, 71, 71)),
           ),
-          // Container(
-          //   padding: const EdgeInsets.only(left: 30, right: 30),
-          //   child: DropdownButtonFormField(
-
-          //     // items: lang
-          //     //     .map((value) =>
-          //          DropdownMenuItem(
-          //               value: value,
-          //               child: Text(
-          //                 value,
-          //                 style: const TextStyle(
-          //                     color: Colors.deepPurpleAccent,
-          //                     fontStyle: FontStyle.italic,
-          //                     fontWeight: FontWeight.bold),
-          //               ),
-          //             ))
-          //         .toList(),
-          //     onChanged: (select) {
-          //       // setState(() {
-          //       //   selected = select;
-          //       // });
-          //     },
-          //     icon: const Icon(
-          //       Icons.translate,
-          //       color: Colors.deepPurpleAccent,
-          //     ),
-          //     // value: selected,
-          //     hint: const Text(
-          //       "Select Language To Translate",
-          //       style: TextStyle(
-          //           color: Colors.deepPurpleAccent,
-          //           fontStyle: FontStyle.italic,
-          //           fontWeight: FontWeight.bold),
-          //     ),
-          //     decoration: InputDecoration(
-          //       border: OutlineInputBorder(
-          //         borderSide: const BorderSide(color: Colors.deepPurpleAccent),
-          //         borderRadius: BorderRadius.circular(25),
-          //       ),
-          //     ),
-          //   ),
-          // ),
           const Spacer(),
           value != null
               ? Text(

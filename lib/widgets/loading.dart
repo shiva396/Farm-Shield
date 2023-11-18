@@ -20,15 +20,7 @@ class _LoadingState extends State<Loading> {
   void initState() {
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (_) => const MainPage()));
-      // const App()));
-      // FertilizerCalculator(
-      //   type: "banana",
-      // )));
-
-      // WeatherPage()));
-      // const PlantApp()));
-      // const DiseaseDetection()));
+          context, MaterialPageRoute(builder: (_) => const DiseaseDetection()));
     });
     super.initState();
   }

@@ -1,6 +1,5 @@
 // ignore_for_file: avoid_print, prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_import
 
-import 'package:farmshield/languages/translator.dart';
 import 'package:farmshield/pages/home_page.dart';
 import 'package:farmshield/widgets/scanning_screen.dart';
 import 'package:farmshield/settings/account_screen.dart';
@@ -68,7 +67,6 @@ class _DiseaseDetectionState extends State<DiseaseDetection> {
       child: Scaffold(
         backgroundColor: Color.fromARGB(246, 207, 252, 230),
         body: pageNo == 0 ? const Home() : const AccountScreen(),
-        // Translate(),
         floatingActionButton: FloatingActionButton(
           backgroundColor: const Color.fromARGB(255, 7, 255, 40),
           onPressed: () async {

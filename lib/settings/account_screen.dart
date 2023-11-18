@@ -1,13 +1,15 @@
 // ignore_for_file: unused_field, non_constant_identifier_names
 
-import 'package:farmshield/languages/translator.dart';
+import 'package:farmshield/pages/plant_custom.dart';
+import 'package:farmshield/provider/firebase_collections.dart';
+import 'package:farmshield/settings/account_view.dart';
 import 'package:farmshield/settings/edit_screen.dart';
 import 'package:farmshield/utils/forward_button.dart';
 import 'package:farmshield/settings/setting_item.dart';
 import 'package:farmshield/settings/setting_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:translator/translator.dart';
+import 'package:provider/provider.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
@@ -18,94 +20,14 @@ class AccountScreen extends StatefulWidget {
 
 class _AccountScreenState extends State<AccountScreen> {
   bool isDarkMode = false;
-  var language_code;
-
+  String language_selected = "English";
   @override
-  void initState() {
-    language_code = lang.indexOf(language_selected);
-    super.initState();
-  }
-
-  var selected;
-  List<String> lang = [
-    "Tamil",
-    'Hindi',
-    'Malayalam',
-    'Telugu',
-    'English',
-    'Japanese',
-    'Italian',
-    'Arabic',
-    'Chinese',
-    'Korean',
-    'Spanish',
-    'Latin',
-    'German',
-    'Kannada',
-    'Russian',
-    'Urdu',
-    'Portuguese',
-    'French',
-    'Bengali',
-    'Dutch',
-    'Greek',
-    'Gujarati',
-    'Malay',
-    'Marathi',
-    'Nepali'
-  ];
-  List code = [
-    'ta',
-    'hi',
-    'ml',
-    'te',
-    'en',
-    'ja',
-    'it',
-    'ar',
-    'zh',
-    'ko',
-    'es',
-    'la',
-    'de',
-    'kn',
-    'ru',
-    'ur',
-    'pt',
-    'fr',
-    'bn',
-    'nl',
-    'el',
-    'gu',
-    'ms',
-    'mr',
-    'ne',
-  ];
-
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
   }
 
-  var language_selected = "English";
-  // final trans = GoogleTranslator();
-
-  String translate_to_any_language({required String input_string}) {
-    var output = "";
-    final trans = GoogleTranslator();
-    var s = trans
-        .translate(input_string.toString(), from: 'auto', to: 'mr'.toString())
-        .then((
-      out,
-    ) {
-      print(out);
-      setState(() {
-        output = out.toString();
-      });
-    });
-    return output;
-  }
+  List<String> lang = ["English", "Marathi"];
 
   @override
   Widget build(BuildContext context) {
@@ -119,18 +41,16 @@ class _AccountScreenState extends State<AccountScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                translate_to_any_language(input_string: "Settings"),
-                // "Settings",
-                style: TextStyle(
+                "Settings",
+                style: const TextStyle(
                   fontSize: 36,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 40),
               Text(
-                translate_to_any_language(input_string: "Account"),
-                // "Account",
-                style: TextStyle(
+                "Account",
+                style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w500,
                 ),
@@ -140,14 +60,18 @@ class _AccountScreenState extends State<AccountScreen> {
                 width: double.infinity,
                 child: Row(
                   children: [
-                    Image.asset("assets/icons/apple.png",
+                    Image.asset("assets/icons/avatar.png",
                         width: 70, height: 70),
                     const SizedBox(width: 20),
-                    const Column(
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Harisharajan",
+                          // ap.userModel.name.isEmpty
+                          // ?
+                          "Create Account"
+                          // : "View Account"
+                          ,
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
@@ -155,7 +79,8 @@ class _AccountScreenState extends State<AccountScreen> {
                         ),
                         SizedBox(height: 10),
                         Text(
-                          "sit21cs163@sairamtap.edu.in",
+                          "sx",
+                          // ap.userModel.email.isEmpty ? "" : ap.userModel.email,
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.grey,
@@ -166,12 +91,21 @@ class _AccountScreenState extends State<AccountScreen> {
                     const Spacer(),
                     ForwardButton(
                       onTap: () {
+                        // if (ap.userModel.email.isEmpty) {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const EditAccountScreen(),
                           ),
                         );
+                        // } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ShowProfile(),
+                          ),
+                        );
+                        // }
                       },
                     )
                   ],
@@ -186,6 +120,21 @@ class _AccountScreenState extends State<AccountScreen> {
                 ),
               ),
               const SizedBox(height: 20),
+              // ap.userModel.name.isNotEmpty
+              //     ? SettingItem(
+              //         title: "Edit Profile",
+              //         icon: Ionicons.person,
+              //         bgColor: const Color.fromARGB(206, 255, 158, 128),
+              //         iconColor: Colors.deepOrangeAccent,
+              //         onTap: () {
+              //           Navigator.push(
+              //               context,
+              //               MaterialPageRoute(
+              //                   builder: (context) => EditAccountScreen()));
+              //         },
+              //       )
+              //     : SizedBox(),
+              const SizedBox(height: 20),
               SettingItem(
                 title: "Language",
                 icon: Ionicons.earth,
@@ -199,8 +148,8 @@ class _AccountScreenState extends State<AccountScreen> {
                     context: context,
                     builder: (BuildContext context) {
                       return Container(
-                        height: 600,
-                        color: Color.fromARGB(255, 132, 238, 185),
+                        height: 100,
+                        color: Color.fromARGB(255, 170, 223, 196),
                         child: Center(
                           child: SingleChildScrollView(
                             child: Column(
@@ -225,32 +174,6 @@ class _AccountScreenState extends State<AccountScreen> {
                       );
                     },
                   );
-
-                  print("language");
-                  // return DropdownButtonFormField(
-                  //   items: lang
-                  //       .map((value) => DropdownMenuItem(
-                  //             value: value,
-                  //             child: Text(
-                  //               value,
-                  //               style: const TextStyle(
-                  //                   color: Colors.deepPurpleAccent,
-                  //                   fontStyle: FontStyle.italic,
-                  //                   fontWeight: FontWeight.bold),
-                  //             ),
-                  //           ))
-                  //       .toList(),
-                  //   onChanged: (select) {
-                  //     setState(() {
-                  //       selected = select;
-                  //     });
-                  //   },
-                  //   value: selected,
-                  // );
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => const Translate()));
                 },
               ),
               const SizedBox(height: 20),
@@ -281,6 +204,17 @@ class _AccountScreenState extends State<AccountScreen> {
                 bgColor: Colors.red.shade100,
                 iconColor: Colors.red,
                 onTap: () {},
+              ),
+              const SizedBox(height: 20),
+              SettingItem(
+                title: "Grow virtual plant",
+                icon: Icons.forest,
+                bgColor: Colors.green.shade100,
+                iconColor: Colors.green,
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => PlantApp()));
+                },
               ),
             ],
           ),

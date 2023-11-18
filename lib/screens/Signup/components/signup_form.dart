@@ -1,9 +1,11 @@
 // ignore_for_file: use_build_context_synchronously, non_constant_identifier_names
 
+import 'package:farmshield/provider/firebase_collections.dart';
 import 'package:farmshield/screens/disease_detection.dart';
 import 'package:farmshield/utils/color_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../components/already_have_an_account_acheck.dart';
 import '../../../constants.dart';
