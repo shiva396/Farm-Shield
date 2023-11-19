@@ -5,6 +5,7 @@ import 'package:farmshield/widgets/scanning_screen.dart';
 import 'package:farmshield/settings/account_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
+import 'package:get/get.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
@@ -76,16 +77,16 @@ class _DiseaseDetectionState extends State<DiseaseDetection> {
                       // icon: Icon(Icons.abc),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15)),
-                      title: const Text('Identify disease'),
-                      content: const Text('Choose the method'),
+                      title:  Text('identifydisease'.tr),
+                      content:  Text('Choose the method'.tr),
                       actions: <Widget>[
                         TextButton(
                           onPressed: () => pickImageFromCamera(),
-                          child: const Text('Take a Pic'),
+                          child: Text('Take a Pic'.tr),
                         ),
                         TextButton(
                           onPressed: () => pickImageFromGallery(),
-                          child: const Text('Choose  from Gallery'),
+                          child: Text('Choose  from Gallery'.tr),
                         ),
                       ],
                     ));

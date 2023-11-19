@@ -8,8 +8,8 @@ import 'package:get/get.dart';
 class InformationPage extends StatefulWidget {
   final String item;
   final int item_index;
-  const InformationPage(
-      {super.key, required this.item, required this.item_index});
+
+  InformationPage({super.key, required this.item, required this.item_index});
 
   @override
   State<InformationPage> createState() => _InformationPageState();
@@ -21,136 +21,149 @@ class _InformationPageState extends State<InformationPage> {
       'apple_species_name'.tr,
       'apple_family_name'.tr,
       'apple_description'.tr,
-      ['apple_disese_1'.tr, 'apple_disese_1'.tr, 'apple_disese_1'.tr],
+      ['apple_disease_1'.tr, 'apple_disease_2'.tr, 'apple_disease_3'.tr],
       'apple_disease_prevention'.tr,
       'apple_fertilizer'.tr,
-      'apple_precautions'.tr
+      'apple_precautions'.tr,
     ],
+
     [
       'mango_species_name'.tr,
       'mango_family_name'.tr,
       'mango_description'.tr,
-      ['mango_disease_1'.tr, 'mango_disease_1'.tr, 'mango_disease_1'.tr],
+      ['mango_disease_1'.tr, 'mango_disease_2'.tr, 'mango_disease_1'.tr],
       'mango_disease_prevention'.tr,
       'mango_fertilizer'.tr,
-      'mango_precautions'.tr
+      'mango_precautions'.tr,
     ],
+
     [
       'potato_species_name'.tr,
       'potato_family_name'.tr,
       'potato_description'.tr,
-      ['potato_disease_1'.tr, 'potato_disease_1'.tr, 'potato_disease_1'.tr],
+      ['potato_disease_1'.tr, 'potato_disease_2'.tr, 'potato_disease_1'.tr],
       'potato_disease_prevention'.tr,
       'potato_fertilizer'.tr,
       'potato_precautions'.tr
     ],
+
     [
       'tomato_species_name'.tr,
       'tomato_family_name'.tr,
       'tomato_description'.tr,
-      ['tomato_disease_1'.tr, 'tomato_disease_1'.tr, 'tomato_disease_1'.tr],
+      ['tomato_disease_1'.tr, 'tomato_disease_2'.tr, 'tomato_disease_3'.tr],
       'tomato_disease_prevention'.tr,
       'tomato_fertilizer'.tr,
       'tomato_precautions'.tr
     ],
+
     [
       'corn_species_name'.tr,
       'corn_family_name'.tr,
       'corn_description'.tr,
-      ['corn_disease_1'.tr, 'corn_disease_1'.tr, 'corn_disease_1'.tr],
+      ['corn_disease_1'.tr, 'corn_disease_2'.tr, 'corn_disease_3'.tr],
       'corn_disease_prevention'.tr,
       'corn_fertilizer'.tr,
       'corn_precautions'.tr
     ],
+
     [
       'soybean_species_name'.tr,
       'soybean_family_name'.tr,
       'soybean_description'.tr,
-      ['soybean_disease_1'.tr, 'soybean_disease_1'.tr, 'soybean_disease_1'.tr],
+      ['soybean_disease_1'.tr, 'soybean_disease_2'.tr, 'soybean_disease_3'.tr],
       'soybean_disease_prevention'.tr,
       'soybean_fertilizer'.tr,
       'soybean_precautions'.tr
     ],
+
     [
       'grape_species_name'.tr,
       'grape_family_name'.tr,
       'grape_description'.tr,
-      ['grape_disease_1'.tr, 'grape_disease_1'.tr, 'grape_disease_1'.tr],
+      ['grape_disease_1'.tr, 'grape_disease_2'.tr, 'grape_disease_3'.tr],
       'grape_disease_prevention'.tr,
       'grape_fertilizer'.tr,
       'grape_precautions'.tr
     ],
+
     [
       'orange_species_name'.tr,
       'orange_family_name'.tr,
       'orange_description'.tr,
-      ['orange_disease_1'.tr, 'orange_disease_1'.tr, 'orange_disease_1'.tr],
+      ['orange_disease_1'.tr, 'orange_disease_2'.tr, 'orange_disease_3'.tr],
       'orange_disease_prevention'.tr,
       'orange_fertilizer'.tr,
       'orange_precautions'.tr
     ],
+
     [
-      'strawberries_species_name'.tr,
-      'strawberries_family_name'.tr,
-      'strawberries_description'.tr,
+      'strawberry_species_name'.tr,
+      'strawberry_family_name'.tr,
+      'strawberry_description'.tr,
       [
-        'strawberries_disease_1'.tr,
-        'strawberries_disease_1'.tr,
-        'strawberries_disease_1'.tr
+        'strawberry_disease_1'.tr,
+        'strawberry_disease_2'.tr,
+        'strawberry_disease_3'.tr
       ],
-      'strawberries_disease_prevention'.tr,
-      'strawberries_fertilizer'.tr,
-      'strawberries_precautions'.tr
+      'strawberry_disease_prevention'.tr,
+      'strawberry_fertilizer'.tr,
+      'strawberry_precautions'.tr
     ],
+
     [
       'guava_species_name'.tr,
       'guava_family_name'.tr,
       'guava_description'.tr,
-      ['guava_disease_1'.tr, 'guava_disease_1'.tr, 'guava_disease_1'.tr],
+      ['guava_disease_1'.tr, 'guava_disease_2'.tr, 'guava_disease_3'.tr],
       'guava_disease_prevention'.tr,
       'guava_fertilizer'.tr,
       'guava_precautions'.tr
     ],
+
     [
       'pomegranate_species_name'.tr,
       'pomegranate_family_name'.tr,
       'pomegranate_description'.tr,
       [
         'pomegranate_disease_1'.tr,
-        'pomegranate_disease_1'.tr,
-        'pomegranate_disease_1'.tr
+        'pomegranate_disease_2'.tr,
+        'pomegranate_disease_3'.tr
       ],
       'pomegranate_disease_prevention'.tr,
       'pomegranate_fertilizer'.tr,
       'pomegranate_precautions'.tr
     ],
+
     [
       'coriander_species_name'.tr,
       'coriander_family_name'.tr,
       'coriander_description'.tr,
       [
         'coriander_disease_1'.tr,
-        'coriander_disease_1'.tr,
-        'coriander_disease_1'.tr
+        'coriander_disease_2'.tr,
+        'coriander_disease_3'.tr
       ],
       'coriander_disease_prevention'.tr,
       'coriander_fertilizer'.tr,
       'coriander_precautions'.tr
     ],
+
     [
       'cherry_species_name'.tr,
       'cherry_family_name'.tr,
       'cherry_description'.tr,
-      ['cherry_disease_1'.tr, 'cherry_disease_1'.tr, 'cherry_disease_1'.tr],
+      ['cherry_disease_1'.tr, 'cherry_disease_2'.tr, 'cherry_disease_3'.tr],
       'cherry_disease_prevention'.tr,
       'cherry_fertilizer'.tr,
       'cherry_precautions'.tr
     ],
+
     [
       'lemon_species_name'.tr,
       'lemon_family_name'.tr,
       'lemon_description'.tr,
-      ['lemon_disease_1'.tr, 'lemon_disease_1'.tr, 'lemon_disease_1'.tr],
+      ['lemon_disease_1'.tr, 'lemon_disease_2'.tr, 'lemon_disease_3'.tr],
       'lemon_disease_prevention'.tr,
       'lemon_fertilizer'.tr,
       'lemon_precautions'.tr
@@ -449,15 +462,15 @@ class _InformationPageState extends State<InformationPage> {
                     Positioned(
                         top: 60,
                         right: 50,
-                        child: items_name("Name", widget.item)),
+                        child: items_name("plantname".tr, widget.item.tr)),
                     Positioned(
                         top: 130,
                         right: 50,
-                        child: items_name("Species", species)),
+                        child: items_name("species".tr, species)),
                     Positioned(
                         bottom: 50,
                         right: 50,
-                        child: items_name("Family", family)),
+                        child: items_name("family".tr, family)),
                     Positioned(
                       top: 2,
                       left: 10,
@@ -480,7 +493,7 @@ class _InformationPageState extends State<InformationPage> {
                     Padding(
                       padding: const EdgeInsets.all(14.0),
                       child: InformationItem(
-                        title: 'Description',
+                        title: 'desc'.tr,
                         bgColor: Colors.orange.shade100,
                         iconColor: Colors.orange,
                         icon: Icons.description,
@@ -490,7 +503,7 @@ class _InformationPageState extends State<InformationPage> {
                     Padding(
                       padding: const EdgeInsets.all(14.0),
                       child: InformationItem(
-                        title: 'Disease',
+                        title: 'disease'.tr,
                         bgColor: Colors.blue.shade100,
                         iconColor: Colors.blue,
                         icon: Icons.bug_report_rounded,
@@ -500,7 +513,7 @@ class _InformationPageState extends State<InformationPage> {
                     Padding(
                       padding: const EdgeInsets.all(14.0),
                       child: InformationItem(
-                        title: 'Disease prevention',
+                        title: 'diseaseprevention'.tr,
                         bgColor: Colors.deepPurple.shade100,
                         iconColor: Colors.deepPurple,
                         icon: Icons.shield_moon_outlined,
@@ -510,7 +523,7 @@ class _InformationPageState extends State<InformationPage> {
                     Padding(
                       padding: const EdgeInsets.all(14.0),
                       child: InformationItem(
-                        title: 'Fertlizer Ingredients',
+                        title: 'fertilizeringredients'.tr,
                         bgColor: Colors.pink.shade100,
                         iconColor: Colors.pink,
                         icon: Icons.import_contacts_outlined,
@@ -520,7 +533,7 @@ class _InformationPageState extends State<InformationPage> {
                     Padding(
                       padding: const EdgeInsets.all(14.0),
                       child: InformationItem(
-                        title: 'Precautions',
+                        title: 'precautions'.tr,
                         bgColor: Colors.brown.shade100,
                         iconColor: Colors.brown,
                         icon: Icons.add_task_outlined,
@@ -530,7 +543,7 @@ class _InformationPageState extends State<InformationPage> {
                     Padding(
                       padding: const EdgeInsets.all(14.0),
                       child: InformationItem(
-                        title: 'Fertilizer Calculator',
+                        title: 'fertilizercalc'.tr,
                         bgColor: Colors.green.shade100,
                         iconColor: Colors.green,
                         icon: Icons.free_cancellation_outlined,
@@ -550,7 +563,7 @@ class _InformationPageState extends State<InformationPage> {
                                   builder: (context) => MyCustomForm(
                                       type: widget.item.toLowerCase())));
                         },
-                        child: Text("${widget.item} Precise calculator"))
+                        child: Text("${widget.item.tr} ${'precisecalc'.tr}"))
                   ],
                 ),
               )

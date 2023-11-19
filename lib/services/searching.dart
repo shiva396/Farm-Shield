@@ -3,6 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
+import 'package:get/get.dart';
+
 class CustomSearchDelegate extends SearchDelegate {
 // start
   Color getColor(Set<MaterialState> states) {
@@ -41,7 +43,7 @@ class CustomSearchDelegate extends SearchDelegate {
     'potato',
     'tomato',
     'corn',
-    'soyabeans',
+    'soyabean',
     'grape',
     'orange',
     'strawberry',
@@ -52,20 +54,20 @@ class CustomSearchDelegate extends SearchDelegate {
     'lemon'
   ];
   List<String> nutrientDescriptions = [
-    'Fiber, Vitamin C',
-    'Vitamin A, Vitamin C',
-    'P Potassium, Vitamin B6',
-    'T Lycopene, Vitamin C',
-    'Fiber, Vitamin B',
-    'Soy Protein, Iron',
-    'Antioxidants, Resveratrol',
-    'O Vitamin C, Fiber',
-    'Straw Vitamin C, Antioxidants',
-    'Vitamin C, Fiber',
-    'Pomegr Antioxidants, Vitamin C',
-    'Cori Antioxidants, Vitamin K',
-    'C Antioxidants, Vitamin C',
-    'Vitamin C, Citric Acid'
+    'fiber_vitamin_c',
+    'vitamin_a_vitamin_c',
+    'p_potassium_vitamin_b6',
+    't_lycopene_vitamin_c',
+    'fiber_vitamin_b',
+    'soy_protein_iron',
+    'antioxidants_resveratrol',
+    'o_vitamin_c_fiber',
+    'straw_vitamin_c_antioxidants',
+    'vitamin_c_fiber',
+    'pomegr_antioxidants_vitamin_c',
+    'cori_antioxidants_vitamin_k',
+    'c_antioxidants_vitamin_c',
+    'vitamin_c_citric_acid',
   ];
 
 // first overwrite to
@@ -205,7 +207,7 @@ class CustomSearchDelegate extends SearchDelegate {
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Text(
-                        result.toUpperCase(),
+                        result.tr.toUpperCase(),
                         style: const TextStyle(
                             fontSize: 20,
                             color: Colors.white,
@@ -217,7 +219,7 @@ class CustomSearchDelegate extends SearchDelegate {
                       left: width * 0.28,
                       top: 60,
                       child: Text(
-                        nutrientDescriptions[index],
+                        nutrientDescriptions[index].tr,
                         style: const TextStyle(
                             fontSize: 18,
                             color: Color.fromARGB(210, 10, 8, 8),

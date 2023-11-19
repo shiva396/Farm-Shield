@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:farmshield/utils/time_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:rive/rive.dart';
 
 class PlantScreen extends StatefulWidget {
@@ -94,10 +95,10 @@ class _PlantScreenState extends State<PlantScreen> {
                     color: Colors.white,
                   )),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(top: 20),
               child: Text(
-                "Stay Focused",
+                "stayfocused".tr,
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 30,
@@ -131,10 +132,10 @@ class _PlantScreenState extends State<PlantScreen> {
                     fontWeight: FontWeight.bold),
               ),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(bottom: 30),
               child: Text(
-                "Time left to grow the plant",
+                "timelefttogrowtheplant".tr,
                 style: TextStyle(
                     color: Colors.white60,
                     fontSize: 20,
@@ -154,11 +155,11 @@ class _PlantScreenState extends State<PlantScreen> {
                 onPressed: () {
                   if (_treeProgress > 0) {
                     stopTimer();
-                    plantButtonText = "Plant";
+                    plantButtonText = "plant".tr;
                     _treeProgress = 0;
                     _treeMaxProgress = 60;
                   } else {
-                    plantButtonText = "Surrender";
+                    plantButtonText = "surrender".tr;
                     startTimer();
                   }
                 },

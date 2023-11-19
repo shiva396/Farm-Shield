@@ -8,6 +8,7 @@ import 'package:farmshield/settings/edit_item.dart';
 import 'package:farmshield/utils/color_util.dart';
 import 'package:farmshield/utils/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
 
@@ -85,8 +86,8 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "Account",
+              Text(
+                "account".tr,
                 style: TextStyle(
                   fontSize: 36,
                   fontWeight: FontWeight.bold,
@@ -123,7 +124,7 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                 height: 20,
               ),
               EditItem(
-                title: "Name",
+                title: "plantname".tr,
                 widget: TextField(
                   controller: nameController,
                   keyboardType: TextInputType.name,
@@ -131,7 +132,7 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
               ),
               const SizedBox(height: 40),
               EditItem(
-                title: "Gender",
+                title: "gender".tr,
                 widget: Row(
                   children: [
                     OutlinedButton.icon(
@@ -139,7 +140,7 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                           backgroundColor: gender == 'male'
                               ? const Color.fromARGB(161, 217, 177, 232)
                               : Colors.white),
-                      label: const Text('Male'),
+                      label:  Text('male'.tr),
                       onPressed: () {
                         setState(() {
                           gender = 'male';
@@ -153,7 +154,7 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                           backgroundColor: gender == 'female'
                               ? const Color.fromARGB(161, 217, 177, 232)
                               : Colors.white),
-                      label: const Text('Female'),
+                      label: Text('female'.tr),
                       onPressed: () {
                         setState(() {
                           gender = 'female';
@@ -170,7 +171,7 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                   controller: ageController,
                   keyboardType: TextInputType.number,
                 ),
-                title: "Age",
+                title: "age".tr,
               ),
               const SizedBox(height: 40),
               EditItem(
@@ -178,7 +179,7 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                   controller: emailController,
                   keyboardType: TextInputType.emailAddress,
                 ),
-                title: "Email",
+                title: "email".tr,
               ),
               const SizedBox(height: 40),
               EditItem(
@@ -186,7 +187,7 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                   controller: phoneController,
                   keyboardType: TextInputType.phone,
                 ),
-                title: "Phone Number",
+                title: "phnumber".tr,
               ),
               const SizedBox(height: 40),
               EditItem(
@@ -194,14 +195,14 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                   controller: passwordController,
                   keyboardType: TextInputType.visiblePassword,
                 ),
-                title: "Password",
+                title: "password".tr,
               ),
               const SizedBox(height: 40),
               SizedBox(
                 height: 50,
                 width: MediaQuery.of(context).size.width * 0.90,
                 child: CustomButton(
-                  text: 'Continue',
+                  text: 'continue'.tr,
                   onPressed: () async {
                     await userData();
                   },

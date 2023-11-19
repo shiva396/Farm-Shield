@@ -2,6 +2,7 @@
 
 import 'package:farmshield/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // Define a custom Form widget.
 class MyCustomForm extends StatefulWidget {
@@ -53,15 +54,15 @@ class _MyCustomFormState extends State<MyCustomForm> {
                     size: width * 0.07,
                   )),
             ),
-            const Text(
-              "Fertilizer  Calculator",
+             Text(
+              "fertilizercalc".tr,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             SizedBox(
               height: height * 0.04,
             ),
-            const Text(
-              'Enter Plot Size',
+            Text(
+              'enterplotsize'.tr,
               textAlign: TextAlign.left,
               style:
                   TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
@@ -70,8 +71,8 @@ class _MyCustomFormState extends State<MyCustomForm> {
               padding: const EdgeInsets.symmetric(vertical: defaultPadding),
               child: TextFormField(
                 cursorColor: kPrimaryColor,
-                decoration: const InputDecoration(
-                  hintText: "Enter in acres",
+                decoration: InputDecoration(
+                  hintText: "enterinacres".tr,
                   prefixIcon: Padding(
                     padding: EdgeInsets.all(defaultPadding),
                     child: Icon(Icons.area_chart),
@@ -81,8 +82,8 @@ class _MyCustomFormState extends State<MyCustomForm> {
                 keyboardType: TextInputType.number,
               ),
             ),
-            const Text(
-              'Acres',
+            Text(
+              'acres'.tr,
               textAlign: TextAlign.right,
               style: TextStyle(color: Colors.green),
             ),
@@ -92,16 +93,16 @@ class _MyCustomFormState extends State<MyCustomForm> {
             Column(
               children: <Widget>[
                 if (show_value)
-                  const Column(
+                  Column(
                     children: <Widget>[
                       Text(
-                        'We advise you not to use Chemicals for the next 45 days...',
+                        'We advise you not to use Chemicals for the next 45 days...'.tr,
                         style: TextStyle(fontSize: 16),
                       ),
                     ],
                   ),
                 CheckboxListTile(
-                  title: const Text("Natural Enemies in your Field"),
+                  title: Text("Natural Enemies in your Field".tr),
                   controlAffinity: ListTileControlAffinity.leading,
                   value: show_value,
                   onChanged: (bool? showvalue) {
@@ -157,16 +158,16 @@ class _MyCustomFormState extends State<MyCustomForm> {
                 barrierDismissible: false,
                 builder: (BuildContext context) {
                   return AlertDialog(
-                    content: const Text("Please enter the correct field"),
+                    content: Text("Please enter the correct field".tr),
                     actions: [
                       TextButton(
-                        child: const Text("OK"),
+                        child: Text("OK".tr),
                         onPressed: () {
-                          Navigator.pop(context, 'Cancel');
+                          Navigator.pop(context, 'Cancel'.tr);
                         },
                       ),
                     ],
-                    title: const Text("Error"),
+                    title: Text("Error".tr),
                   );
                 });
           }

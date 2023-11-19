@@ -9,6 +9,7 @@ import 'package:farmshield/utils/color_util.dart';
 import 'package:farmshield/utils/custom_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 
@@ -26,7 +27,7 @@ class _HomeState extends State<Home> {
     'potato',
     'tomato',
     'corn',
-    'soyabeans',
+    'soybean',
     'grape',
     'orange',
     'strawberry',
@@ -132,7 +133,7 @@ class _HomeState extends State<Home> {
             child: Row(
               children: [
                 Text(
-                  "Hello, $name 🌿",
+                  "${"hello".tr}  ${name} 🌿",
                   style: TextStyle(
                       fontWeight: FontWeight.bold, fontSize: width * 0.06),
                 )
@@ -251,16 +252,16 @@ class _HomeState extends State<Home> {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(17)),
-                  child: const Column(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Image(
+                      const Image(
                         image: AssetImage("assets/icons/fertilizer.png"),
                         height: 60,
                       ),
                       Text(
-                        "Fertilizer Calculator",
-                        style: TextStyle(
+                        "fertilizercalc".tr,
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 20,
                             fontWeight: FontWeight.bold),
@@ -278,7 +279,7 @@ class _HomeState extends State<Home> {
                   await FirebaseAuth.instance.signOut().then((value) =>
                       Navigator.of(context, rootNavigator: true).pop(context));
                 },
-                text: 'Sign Out'),
+                text: 'signout'.tr),
           )
         ],
       ),

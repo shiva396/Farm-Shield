@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SettingSwitch extends StatelessWidget {
   final String title;
@@ -46,7 +47,7 @@ class SettingSwitch extends StatelessWidget {
           ),
           const Spacer(),
           Text(
-            value ? "On" : "Off",
+            value ? 'theme_bool_off'.tr : 'theme_bool_on'.tr,
             style: const TextStyle(
               fontSize: 16,
               color: Colors.grey,

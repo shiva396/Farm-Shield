@@ -29,12 +29,12 @@ class _AccountScreenState extends State<AccountScreen> {
     super.dispose();
   }
 
-  List<String> lang = ["English", "Marathi", "Hindi"];
+  // List<String> lang = ["English", "Marathi", "Hindi"];
 
   final List locale = [
     {'name': 'ENGLISH', 'locale': Locale('en', 'US')},
     {'name': 'MARATHI', 'locale': Locale('mr', 'IN')},
-    {'name': 'HINDI', 'locale': Locale('hi', 'IN')},
+    // {'name': 'HINDI', 'locale': Locale('hi', 'IN')},
   ];
 
   updatelanguage(Locale locale) {
@@ -47,7 +47,7 @@ class _AccountScreenState extends State<AccountScreen> {
         context: context,
         builder: (builder) {
           return AlertDialog(
-            title: Text("Choose your language"),
+            title: Text("chooselang".tr),
             content: Container(
               width: double.maxFinite,
               child: ListView.separated(
@@ -57,7 +57,9 @@ class _AccountScreenState extends State<AccountScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: GestureDetector(
                         onTap: () {
-                          print(locale[index]['name']);
+                          setState(() {
+                              language_selected = locale[index]['name'];
+                          });
                           updatelanguage(locale[index]['locale']);
                         },
                         child: Text(locale[index]['name'])),
@@ -88,16 +90,16 @@ class _AccountScreenState extends State<AccountScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "Settings",
+              Text(
+                "settings".tr,
                 style: TextStyle(
                   fontSize: 36,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 40),
-              const Text(
-                "Account",
+              Text(
+                "account".tr,
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w500,
@@ -111,20 +113,20 @@ class _AccountScreenState extends State<AccountScreen> {
                     Image.asset("assets/icons/avatar.png",
                         width: 70, height: 70),
                     const SizedBox(width: 20),
-                    const Column(
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           // ?
-                          "Create Account",
+                          "createaccount".tr,
                           // : "View Account",
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
                         SizedBox(height: 10),
-                        Text(
+                        const Text(
                           // ap.userModel.email.isEmpty ? "" : ap.userModel.email,
                           "as",
                           style: TextStyle(
@@ -158,8 +160,8 @@ class _AccountScreenState extends State<AccountScreen> {
                 ),
               ),
               const SizedBox(height: 40),
-              const Text(
-                "Settings",
+              Text(
+                "settings".tr,
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w500,
@@ -182,7 +184,7 @@ class _AccountScreenState extends State<AccountScreen> {
               //     : SizedBox(),
               const SizedBox(height: 20),
               SettingItem(
-                  title: "Language",
+                  title: "language".tr,
                   icon: Ionicons.earth,
                   bgColor: Colors.orange.shade100,
                   iconColor: Colors.orange,
@@ -192,7 +194,7 @@ class _AccountScreenState extends State<AccountScreen> {
                   }),
               const SizedBox(height: 20),
               SettingItem(
-                title: "Notifications",
+                title: "notifications".tr,
                 icon: Ionicons.notifications,
                 bgColor: Colors.blue.shade100,
                 iconColor: Colors.blue,
@@ -200,7 +202,7 @@ class _AccountScreenState extends State<AccountScreen> {
               ),
               const SizedBox(height: 20),
               SettingSwitch(
-                title: "Dark Mode",
+                title: "theme".tr,
                 icon: Ionicons.invert_mode,
                 bgColor: Colors.purple.shade100,
                 iconColor: Colors.purple,
@@ -213,7 +215,7 @@ class _AccountScreenState extends State<AccountScreen> {
               ),
               const SizedBox(height: 20),
               SettingItem(
-                title: "About",
+                title: "about".tr,
                 icon: Icons.description,
                 bgColor: Colors.red.shade100,
                 iconColor: Colors.red,
@@ -221,7 +223,7 @@ class _AccountScreenState extends State<AccountScreen> {
               ),
               const SizedBox(height: 20),
               SettingItem(
-                title: "Grow virtual plant",
+                title: "virplant".tr,
                 icon: Icons.forest,
                 bgColor: Colors.green.shade100,
                 iconColor: Colors.green,
