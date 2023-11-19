@@ -4,7 +4,9 @@ import 'package:farmshield/provider/firebase_collections.dart';
 import 'package:farmshield/widgets/loading.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:farmshield/language/lang.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,8 +18,10 @@ Future main() async {
         create: (_) => AuthProvider(),
       ),
     ],
-    child: MaterialApp(
+    child: GetMaterialApp(
       navigatorKey: navigatorKey,
+      translations: LocalString(),
+      locale: Locale('en', 'US'),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primaryColor: kPrimaryColor,

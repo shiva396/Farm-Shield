@@ -1,4 +1,4 @@
-// ignore_for_file: unused_field, non_constant_identifier_names
+// ignore_for_file: unused_field, non_constant_identifier_names, unused_import
 
 import 'package:farmshield/pages/plant_custom.dart';
 import 'package:farmshield/provider/firebase_collections.dart';
@@ -8,6 +8,8 @@ import 'package:farmshield/utils/forward_button.dart';
 import 'package:farmshield/settings/setting_item.dart';
 import 'package:farmshield/settings/setting_switch.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
 
@@ -27,10 +29,56 @@ class _AccountScreenState extends State<AccountScreen> {
     super.dispose();
   }
 
-  List<String> lang = ["English", "Marathi"];
+  List<String> lang = ["English", "Marathi", "Hindi"];
+
+  final List locale = [
+    {'name': 'ENGLISH', 'locale': Locale('en', 'US')},
+    {'name': 'MARATHI', 'locale': Locale('mr', 'IN')},
+    {'name': 'HINDI', 'locale': Locale('hi', 'IN')},
+  ];
+
+  updatelanguage(Locale locale) {
+    Get.back();
+    Get.updateLocale(locale);
+  }
+
+  builddialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (builder) {
+          return AlertDialog(
+            title: Text("Choose your language"),
+            content: Container(
+              width: double.maxFinite,
+              child: ListView.separated(
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                        onTap: () {
+                          print(locale[index]['name']);
+                          updatelanguage(locale[index]['locale']);
+                        },
+                        child: Text(locale[index]['name'])),
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return Divider(
+                    color: Colors.blue,
+                  );
+                },
+                itemCount: locale.length,
+              ),
+            ),
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final ap = Provider.of<AuthProvider>(context, listen: false);
+
     return Container(
       height: MediaQuery.of(context).size.height,
       color: Colors.white,
@@ -40,17 +88,17 @@ class _AccountScreenState extends State<AccountScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 "Settings",
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 36,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 40),
-              Text(
+              const Text(
                 "Account",
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w500,
                 ),
@@ -63,15 +111,13 @@ class _AccountScreenState extends State<AccountScreen> {
                     Image.asset("assets/icons/avatar.png",
                         width: 70, height: 70),
                     const SizedBox(width: 20),
-                    Column(
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          // ap.userModel.name.isEmpty
                           // ?
-                          "Create Account"
-                          // : "View Account"
-                          ,
+                          "Create Account",
+                          // : "View Account",
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
@@ -79,8 +125,8 @@ class _AccountScreenState extends State<AccountScreen> {
                         ),
                         SizedBox(height: 10),
                         Text(
-                          "sx",
                           // ap.userModel.email.isEmpty ? "" : ap.userModel.email,
+                          "as",
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.grey,
@@ -99,12 +145,12 @@ class _AccountScreenState extends State<AccountScreen> {
                           ),
                         );
                         // } else {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ShowProfile(),
-                          ),
-                        );
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => const ShowProfile(),
+                        //   ),
+                        // );
                         // }
                       },
                     )
@@ -136,46 +182,14 @@ class _AccountScreenState extends State<AccountScreen> {
               //     : SizedBox(),
               const SizedBox(height: 20),
               SettingItem(
-                title: "Language",
-                icon: Ionicons.earth,
-                bgColor: Colors.orange.shade100,
-                iconColor: Colors.orange,
-                value: language_selected,
-                onTap: () {
-                  showModalBottomSheet<void>(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)),
-                    context: context,
-                    builder: (BuildContext context) {
-                      return Container(
-                        height: 100,
-                        color: Color.fromARGB(255, 170, 223, 196),
-                        child: Center(
-                          child: SingleChildScrollView(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                for (var item in lang)
-                                  ListTile(
-                                    title: Text(item.toString()),
-                                    onTap: () {
-                                      setState(() {
-                                        language_selected = item.toString();
-                                      });
-
-                                      Navigator.pop(context);
-                                    },
-                                  )
-                              ],
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                },
-              ),
+                  title: "Language",
+                  icon: Ionicons.earth,
+                  bgColor: Colors.orange.shade100,
+                  iconColor: Colors.orange,
+                  value: language_selected,
+                  onTap: () {
+                    builddialog(context);
+                  }),
               const SizedBox(height: 20),
               SettingItem(
                 title: "Notifications",
@@ -212,8 +226,10 @@ class _AccountScreenState extends State<AccountScreen> {
                 bgColor: Colors.green.shade100,
                 iconColor: Colors.green,
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => PlantApp()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const PlantApp()));
                 },
               ),
             ],

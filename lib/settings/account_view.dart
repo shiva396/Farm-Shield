@@ -48,6 +48,7 @@ class _ShowProfileState extends State<ShowProfile> {
                 ),
               ]),
             ),
+            // ignore: prefer_const_constructors
             SizedBox(
               height: 20,
             ),

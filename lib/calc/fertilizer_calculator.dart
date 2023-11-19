@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:farmshield/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +9,6 @@ class MyCustomForm extends StatefulWidget {
 
   const MyCustomForm({super.key, required this.type});
   @override
-  // ignore: library_private_types_in_public_api
   _MyCustomFormState createState() => _MyCustomFormState();
 }
 
@@ -21,26 +22,25 @@ class _MyCustomFormState extends State<MyCustomForm> {
   // of the TextField.
   final myController = TextEditingController();
 
-  // ignore: prefer_typing_uninitialized_variables
-  var val;
+  String? val;
   @override
   void dispose() {
-    // Clean up the controller when the widget is disposed.
     myController.dispose();
     super.dispose();
-    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     var type = widget.type.toLowerCase();
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             SizedBox(
-              height: 50,
+              height: height * 0.06,
             ),
             Align(
               alignment: Alignment.topLeft,
@@ -48,14 +48,17 @@ class _MyCustomFormState extends State<MyCustomForm> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: Icon(Icons.arrow_back)),
+                  icon: Icon(
+                    Icons.arrow_back,
+                    size: width * 0.07,
+                  )),
             ),
-            Text(
+            const Text(
               "Fertilizer  Calculator",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             SizedBox(
-              height: 20,
+              height: height * 0.04,
             ),
             const Text(
               'Enter Plot Size',
@@ -109,7 +112,8 @@ class _MyCustomFormState extends State<MyCustomForm> {
                 ),
                 Text(
                   val ?? "",
-                  style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontSize: 19, fontWeight: FontWeight.bold),
                 )
               ],
             ),
@@ -122,76 +126,47 @@ class _MyCustomFormState extends State<MyCustomForm> {
         // the text that the user has entered into the text field.
         onPressed: () {
           if (myController.text.toString().trim().isNotEmpty) {
-            double acre = double.parse(myController.text);
             if (type == 'banana') {
-              //name: 'banana'
-              double dap = 0.109 * acre * 2;
-              double mop = 0.250 * acre * 2;
-              double urea = 0.175 * acre * 2;
               setState(() {
-                val = 'MOP: $mop kg,\nDAP: $dap kg \nUrea: $urea kg';
+                val = calculation(myController, 0.109, 0.250, 0.175);
               });
             } else if (type == 'cucumber') {
-              double dap = 30 * acre * 2;
-              double mop = 17 * acre * 2;
-              double urea = 51 * acre * 2;
               setState(() {
-                val = 'MOP: $mop kg,\nDAP: $dap kg \nUrea: $urea kg';
+                val = calculation(myController, 30, 17, 51);
               });
             } else if (type == 'pepper') {
-              double dap = 27 * acre * 2;
-              double mop = 17 * acre * 2;
-              double urea = 40 * acre * 2;
               setState(() {
-                val = 'MOP: $mop kg,\nDAP: $dap kg \nUrea: $urea kg';
+                val = calculation(myController, 27, 17, 40);
               });
             } else if (type == 'potato') {
-              double dap = 26 * acre * 2;
-              double mop = 40 * acre * 2;
-              double urea = 56 * acre * 2;
               setState(() {
-                val = 'MOP: $mop kg,\nDAP: $dap kg \nUrea: $urea kg';
+                val = calculation(myController, 26, 40, 56);
               });
             } else if (type == 'tomato') {
-              double dap = 27 * acre * 2;
-              double mop = 17 * acre * 2;
-              double urea = 40 * acre * 2;
               setState(() {
-                val = 'MOP: $mop kg,\nDAP: $dap kg \nUrea: $urea kg';
+                val = calculation(myController, 27, 17, 40);
               });
             } else {
-              double acre = double.parse(myController.text);
-              //name: 'rice', dap: 10, mop: 10, urea: 30
-              double dap = 10 * acre * 2;
-              double mop = 10 * acre * 2;
-              double urea = 30 * acre * 2;
-
               setState(() {
-                val = 'MOP: $mop kg,\nDAP: $dap kg \nUrea: $urea kg';
+                val = calculation(myController, 10, 10, 30);
               });
             }
-            // val = 'MOP: $mop kg,\nDAP: $dap kg \nUrea: $urea kg';
-            // return AlertDialog(
-            //   // Retrieve the text the that user has entered by using the
-            //   // TextEditingController.
-            //   content: Text('MOP: $mop kg,\nDAP: $dap kg \nUrea: $urea kg'),
-            // );
           } else {
             showDialog<void>(
                 context: context,
                 barrierDismissible: false,
                 builder: (BuildContext context) {
                   return AlertDialog(
-                    content: Text("Please enter the correct field"),
+                    content: const Text("Please enter the correct field"),
                     actions: [
                       TextButton(
-                        child: Text("OK"),
+                        child: const Text("OK"),
                         onPressed: () {
                           Navigator.pop(context, 'Cancel');
                         },
                       ),
                     ],
-                    title: Text("Error"),
+                    title: const Text("Error"),
                   );
                 });
           }
@@ -202,4 +177,14 @@ class _MyCustomFormState extends State<MyCustomForm> {
       ),
     );
   }
+}
+
+String calculation(TextEditingController myController, double dap_value,
+    double mop_value, double urea_value) {
+  double acre = double.parse(myController.text);
+  double dap = dap_value * acre * 2;
+  double mop = mop_value * acre * 2;
+  double urea = urea_value * acre * 2;
+
+  return 'MOP: $mop kg,\nDAP: $dap kg \nUrea: $urea kg';
 }

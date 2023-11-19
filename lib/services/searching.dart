@@ -1,4 +1,5 @@
 import 'package:farmshield/pages/information.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
@@ -17,14 +18,14 @@ class CustomSearchDelegate extends SearchDelegate {
   }
 
   //colors for the containers
-  List items = [
-    [Color.fromARGB(255, 117, 191, 226), Color(0xff73A1F9)],
-    [Color(0xffFFB157), Color(0xffFFA057)],
-    [Color(0xffD76895), Color(0xff8F7AFE)],
+  List color_items = [
+    [const Color.fromARGB(255, 117, 191, 226), const Color(0xff73A1F9)],
+    [const Color(0xffFFB157), const Color(0xffFFA057)],
+    [const Color(0xffD76895), const Color(0xff8F7AFE)],
     [Colors.pink, Colors.red],
     [
-      Color(0xff42E695),
-      Color(0xff388288),
+      const Color(0xff42E695),
+      const Color(0xff388288),
     ],
   ];
 
@@ -76,7 +77,7 @@ class CustomSearchDelegate extends SearchDelegate {
         onPressed: () {
           query = '';
         },
-        icon: Icon(Icons.clear),
+        icon: const Icon(Icons.clear),
       ),
     ];
   }
@@ -88,7 +89,7 @@ class CustomSearchDelegate extends SearchDelegate {
       onPressed: () {
         close(context, null);
       },
-      icon: Icon(Icons.arrow_back),
+      icon: const Icon(Icons.arrow_back),
     );
   }
 
@@ -127,6 +128,7 @@ class CustomSearchDelegate extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     List<String> matchQuery = [];
+
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     for (var fruit in searchTerms) {
@@ -134,11 +136,17 @@ class CustomSearchDelegate extends SearchDelegate {
         matchQuery.add(fruit);
       }
     }
+    int colorCount = 0;
+
     return ListView.builder(
       itemCount: matchQuery.length,
       itemBuilder: (context, index) {
         var result = matchQuery[index];
-
+        if (index >= color_items.length) {
+          colorCount = index % color_items.length;
+        } else {
+          colorCount = index;
+        }
         return GestureDetector(
             onTap: () {
               Navigator.push(
@@ -157,15 +165,15 @@ class CustomSearchDelegate extends SearchDelegate {
                     width: width,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: items[0],
+                        colors: color_items[colorCount],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: items[0][0],
+                          color: color_items[colorCount][1],
                           blurRadius: 12,
-                          offset: Offset(0, 6),
+                          offset: const Offset(0, 6),
                         )
                       ],
                       borderRadius: BorderRadius.circular(19),
@@ -176,8 +184,9 @@ class CustomSearchDelegate extends SearchDelegate {
                     bottom: 0,
                     top: height * 0.0001,
                     child: CustomPaint(
-                      size: Size(100, 150),
-                      painter: Custompaint(12, items[0][0], items[0][1]),
+                      size: const Size(100, 150),
+                      painter: Custompaint(12, color_items[colorCount][0],
+                          color_items[colorCount][1]),
                     ),
                   ),
                   Positioned(
@@ -238,7 +247,7 @@ class Custompaint extends CustomPainter {
     var radius = 24.0;
     var paint = Paint();
     paint.shader = ui.Gradient.linear(
-        Offset(0, 0), Offset(size.width, size.height), [
+        const Offset(0, 0), Offset(size.width, size.height), [
       HSLColor.fromColor(startColor).withLightness(0.8).toColor(),
       endColor
     ]);

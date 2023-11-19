@@ -3,7 +3,6 @@
 import 'package:farmshield/calc/fertilizer_calculator.dart';
 import 'package:farmshield/models/weather_model.dart';
 import 'package:farmshield/pages/information.dart';
-import 'package:farmshield/screens/Welcome/welcome_screen.dart';
 import 'package:farmshield/services/searching.dart';
 import 'package:farmshield/services/weather_service.dart';
 import 'package:farmshield/utils/color_util.dart';
@@ -108,7 +107,7 @@ class _HomeState extends State<Home> {
                     EdgeInsets.only(left: height * 0.03, top: height * 0.03),
                 child: CircleAvatar(
                   radius: height * 0.04,
-                  backgroundImage: AssetImage("assets/icons/avatar.png"),
+                  backgroundImage: const AssetImage("assets/icons/avatar.png"),
                 ),
               ),
               Padding(
@@ -141,7 +140,7 @@ class _HomeState extends State<Home> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(height * 0.022),
             child: Container(
               height: height * 0.20,
               width: double.infinity,
@@ -201,8 +200,6 @@ class _HomeState extends State<Home> {
             child: SizedBox(
               height: height * 0.14,
               width: double.infinity,
-
-              // color: Colors.amber,
               child: ListView.builder(
                 itemCount: plants.length,
                 scrollDirection: Axis.horizontal,
@@ -221,12 +218,8 @@ class _HomeState extends State<Home> {
                     child: Padding(
                       padding: const EdgeInsets.all(10),
                       child: Container(
-                        // height: height * 0.14,
-                        // width: width * 0.9,
                         decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            // borderRadius: BorderRadius.circular(1),
-                            color: Colors.white),
+                            shape: BoxShape.circle, color: Colors.white),
                         child: SizedBox(
                           height: 10,
                           width: 60,
@@ -246,7 +239,7 @@ class _HomeState extends State<Home> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => MyCustomForm(type: "any")));
+                      builder: (context) => const MyCustomForm(type: "any")));
             },
             child: Align(
               alignment: Alignment.bottomLeft,
@@ -258,7 +251,7 @@ class _HomeState extends State<Home> {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(17)),
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Image(

@@ -1,8 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:farmshield/provider/user_model.dart';
+import 'package:farmshield/models/user_model.dart';
 import 'package:farmshield/utils/color_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -53,6 +56,28 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
+  void createAccount(
+      {required TextEditingController emailController,
+      required TextEditingController passwordController,
+      required BuildContext context}) async {
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim());
+      User? user = _firebaseAuth.currentUser!;
+      if (user != null) {
+        // carry our logic
+        _uid = user.phoneNumber;
+      }
+      _isLoading = false;
+      notifyListeners();
+    } on FirebaseAuthException catch (e) {
+      showSnackBar(context, e.toString());
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
   void saveUserDataToFirebase({
     required BuildContext context,
     required UserModel userModel,
@@ -65,8 +90,6 @@ class AuthProvider extends ChangeNotifier {
       // uploading image to firebase storage.
       await storeFileToStorage("profilePic/$_uid", profilePic).then((value) {
         userModel.profilePic = value;
-        userModel.createdAt = DateTime.now().millisecondsSinceEpoch.toString();
-        // userModel.uid = _firebaseAuth.currentUser!.phoneNumber!;
       });
       _userModel = userModel;
 
@@ -80,12 +103,29 @@ class AuthProvider extends ChangeNotifier {
         _isLoading = false;
         notifyListeners();
       });
-    } on FirebaseException catch (e) {
-      showSnackBar(context, e.message.toString());
+    } on (FirebaseAuthException, FirebaseException) catch (e) {
+      showSnackBar(context, e.toString());
       _isLoading = false;
       notifyListeners();
     }
   }
+
+  // Future signUpFunction() async {
+  //   // showDialog(
+  //   //     context: context,
+  //   //     barrierDismissible: false,
+  //   //     builder: (context) => const Center(
+  //   //           child: CircularProgressIndicator(),
+  //   //         ));
+  //   try {
+  //     await FirebaseAuth.instance
+  //         .createUserWithEmailAndPassword(
+  //             email: emailController.text.trim(),
+  //             password: passwordContoller.text.trim())
+
+  //   }
+  //   // GlobalKey<NavigatorState>().currentState!.pop();
+  // }
 
   void updateUserDataToFirebase({
     required BuildContext context,
@@ -143,11 +183,11 @@ class AuthProvider extends ChangeNotifier {
         gender: snapshot['gender'],
         createdAt: snapshot['createdAt'],
         age: snapshot['age'],
-        // uid: snapshot['uid'],
+        uid: snapshot['uid'],
         profilePic: snapshot['profilePic'],
         phoneNumber: snapshot['phoneNumber'],
       );
-      // _uid = userModel.uid;
+      _uid = userModel.uid;
     });
   }
 

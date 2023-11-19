@@ -1,22 +1,19 @@
-import 'package:firebase_auth/firebase_auth.dart';
-
 class UserModel {
   String name;
   String email;
   String phoneNumber;
-  // String uid;
+  String uid;
   String createdAt;
   String profilePic;
   String age;
   String gender;
-  // List<Coordinate> locations;
   UserModel(
       {required this.name,
       required this.gender,
       required this.email,
       required this.createdAt,
       required this.phoneNumber,
-      // required this.uid,
+      required this.uid,
       required this.age,
       required this.profilePic});
   // From map
@@ -28,7 +25,7 @@ class UserModel {
         phoneNumber: map['phoneNumber'] ?? '',
         createdAt: map['createdAt'] ?? '',
         profilePic: map['profilePic'] ?? '',
-        // uid: map['uid'] ?? '',
+        uid: map['uid'] ?? '',
         age: map['age'] ?? '');
   }
   // To map
@@ -37,7 +34,7 @@ class UserModel {
       'name': name,
       'email': email,
       'phoneNumber': phoneNumber,
-      // 'uid': uid,
+      'uid': uid,
       'gender': gender,
       'age': age,
       'profilepic': profilePic,
