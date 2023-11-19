@@ -98,7 +98,7 @@ class _DiseaseDetectionState extends State<DiseaseDetection> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: BottomAppBar(
           //bottom navigation bar on scaffold
-          color: Color.fromARGB(255, 21, 231, 35),
+          color: Color(0xFF1DB954),
           shape: const CircularNotchedRectangle(), //shape of notch
           notchMargin: 7,
           child: Row(

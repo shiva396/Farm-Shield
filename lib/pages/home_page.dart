@@ -97,96 +97,190 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding:
-                    EdgeInsets.only(left: height * 0.03, top: height * 0.03),
-                child: CircleAvatar(
-                  radius: height * 0.04,
-                  backgroundImage: const AssetImage("assets/icons/avatar.png"),
-                ),
-              ),
-              Padding(
-                padding:
-                    EdgeInsets.only(right: height * 0.04, top: height * 0.04),
-                child: IconButton(
-                    onPressed: () {
-                      showSearch(
-                          context: context,
-                          // delegate to customize the search bar
-                          delegate: CustomSearchDelegate());
-                    },
-                    icon: Icon(
-                      Icons.search,
-                      size: height * 0.03,
-                    )),
-              ),
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: height * 0.03, top: height * 0.03),
-            child: Row(
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+<<<<<<< HEAD
                 Text(
                   "${"hello".tr}  ${name} 🌿",
                   style: TextStyle(
                       fontWeight: FontWeight.bold, fontSize: width * 0.06),
                 )
+=======
+                Padding(
+                  padding:
+                      EdgeInsets.only(left: height * 0.03, top: height * 0.03),
+                  child: CircleAvatar(
+                    radius: height * 0.04,
+                    backgroundImage:
+                        const AssetImage("assets/icons/avatar.png"),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      EdgeInsets.only(right: height * 0.04, top: height * 0.04),
+                  child: IconButton(
+                      onPressed: () {
+                        showSearch(
+                            context: context,
+                            // delegate to customize the search bar
+                            delegate: CustomSearchDelegate());
+                      },
+                      icon: Icon(
+                        Icons.search,
+                        size: height * 0.03,
+                      )),
+                ),
+>>>>>>> 9218bde1076d968904d28104e5026524a4d2f753
               ],
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(height * 0.022),
-            child: Container(
-              height: height * 0.20,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16), color: Colors.white),
+            Padding(
+              padding: EdgeInsets.only(left: height * 0.03, top: height * 0.03),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(
-                    height: height * 0.20,
-                    child: Column(
+                  Text(
+                    "Hello, $name 🌿",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: width * 0.06),
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(height * 0.022),
+              child: Container(
+                height: height * 0.20,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: Colors.white),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      height: height * 0.20,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 30, left: 40),
+                            child: Text(
+                              _weather?.cityName ?? "loading city..",
+                              textAlign: TextAlign.left,
+                              style: const TextStyle(
+                                  color: Colors.green,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20, top: 10),
+                            child: Text(
+                              "${_weather?.temperature.round()}°C",
+                              style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 23,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20, top: 10),
+                            child: Text(
+                              DateFormat.yMMMEd().format(DateTime.now()),
+                              style: const TextStyle(
+                                  fontSize: 14,
+                                  color: Color.fromARGB(255, 89, 87, 87)),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    ClipRect(
+                      child: Lottie.asset(
+                          getWeatherAnimation(_weather?.mainCondition),
+                          height: height * 0.20),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                height: height * 0.14,
+                width: double.infinity,
+                child: ListView.builder(
+                  itemCount: plants.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (BuildContext context, int index) {
+                    String? item = plants[index];
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => InformationPage(
+                                      item_index: index,
+                                      item: item ?? "apple",
+                                    )));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Container(
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle, color: Colors.white),
+                          child: SizedBox(
+                            height: 10,
+                            width: 60,
+                            child: Image.asset(
+                                'assets/icons/${plants[index]}.png',
+                                fit: BoxFit.scaleDown),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MyCustomForm(type: "any")));
+              },
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Container(
+                    height: 140,
+                    width: 200,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(17)),
+                    child: const Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 30, left: 40),
-                          child: Text(
-                            _weather?.cityName ?? "loading city..",
-                            textAlign: TextAlign.left,
-                            style: const TextStyle(
-                                color: Colors.green,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
+                        Image(
+                          image: AssetImage("assets/icons/fertilizer.png"),
+                          height: 60,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20, top: 10),
-                          child: Text(
-                            "${_weather?.temperature.round()}°C",
-                            style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 23,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20, top: 10),
-                          child: Text(
-                            DateFormat.yMMMEd().format(DateTime.now()),
-                            style: const TextStyle(
-                                fontSize: 14,
-                                color: Color.fromARGB(255, 89, 87, 87)),
-                          ),
+                        Text(
+                          "Fertilizer Calculator",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
                         )
                       ],
                     ),
                   ),
+<<<<<<< HEAD
                   ClipRect(
                     child: Lottie.asset(
                         getWeatherAnimation(_weather?.mainCondition),
@@ -282,6 +376,23 @@ class _HomeState extends State<Home> {
                 text: 'signout'.tr),
           )
         ],
+=======
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(100.0),
+              child: CustomButton(
+                  onPressed: () async {
+                    await FirebaseAuth.instance.signOut().then((value) =>
+                        Navigator.of(context, rootNavigator: true)
+                            .pop(context));
+                  },
+                  text: 'Sign Out'),
+            )
+          ],
+        ),
+>>>>>>> 9218bde1076d968904d28104e5026524a4d2f753
       ),
     );
   }
