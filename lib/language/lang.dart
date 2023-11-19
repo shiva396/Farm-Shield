@@ -499,9 +499,9 @@ class LocalString extends Translations {
               "मकास नाइट्रोजन आणि फॉस्फोरससाठी उच्च खते फायदा करू शकतात.",
           'corn_precautions':
               "मकाचं उपयोग असलेलं चांगलं जमिन आणि योग्य अंतराळ पुरवण्यात आणि रोगाचं जोखीम कमी करण्यात मदत करण्यासाठी, चांगलं अचूक आणि वायू सरकुलेशन पुरवा.",
-          //SOYABEAN
+          //SOYBEAN
 
-          'soyabean': 'सोयाबीन',
+          'soybean': 'सोयाबीन',
           'soybean_species_name': 'ग्लाइसिन मॅक्स',
           'soybean_family_name': 'फॅबेसी',
           'soybean_description':

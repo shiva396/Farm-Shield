@@ -43,7 +43,7 @@ class CustomSearchDelegate extends SearchDelegate {
     'potato',
     'tomato',
     'corn',
-    'soyabean',
+    'soybean',
     'grape',
     'orange',
     'strawberry',

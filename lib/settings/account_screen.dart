@@ -59,7 +59,7 @@ class _AccountScreenState extends State<AccountScreen> {
                     child: GestureDetector(
                         onTap: () {
                           setState(() {
-                              language_selected = locale[index]['name'];
+                            language_selected = locale[index]['name'];
                           });
                           updatelanguage(locale[index]['locale']);
                         },
@@ -80,13 +80,10 @@ class _AccountScreenState extends State<AccountScreen> {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
     final ap = Provider.of<AuthProvider>(context, listen: false);
-
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      color: Colors.white,
-      child: SingleChildScrollView(
+    final themeChange = Provider.of<DarkThemeProvider>(context);
+    return Scaffold(
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(30),
           child: Column(
@@ -208,11 +205,9 @@ class _AccountScreenState extends State<AccountScreen> {
                 icon: Ionicons.invert_mode,
                 bgColor: Colors.purple.shade100,
                 iconColor: Colors.purple,
-                value: isDarkMode,
+                value: themeChange.getDarkTheme,
                 onTap: (value) {
-                  setState(() {
-                    isDarkMode = value;
-                  });
+                  themeChange.setDarkTheme = value;
                 },
               ),
               const SizedBox(height: 20),
@@ -237,165 +232,163 @@ class _AccountScreenState extends State<AccountScreen> {
                 },
               ),
             ],
-=======
-    final themeChange = Provider.of<DarkThemeProvider>(context);
-    return Scaffold(
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(30),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "Settings",
-                  style: TextStyle(
-                    fontSize: 36,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 40),
-                const Text(
-                  "Account",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                SizedBox(
-                  width: double.infinity,
-                  child: Row(
-                    children: [
-                      Image.asset("assets/icons/avatar.png",
-                          width: 70, height: 70),
-                      const SizedBox(width: 20),
-                      const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            // ?
-                            "Create Account",
-                            // : "View Account",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                          Text(
-                            // ap.userModel.email.isEmpty ? "" : ap.userModel.email,
-                            "as",
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.grey,
-                            ),
-                          )
-                        ],
-                      ),
-                      const Spacer(),
-                      ForwardButton(
-                        onTap: () {
-                          // if (ap.userModel.email.isEmpty) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const EditAccountScreen(),
-                            ),
-                          );
-                          // } else {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => const ShowProfile(),
-                          //   ),
-                          // );
-                          // }
-                        },
-                      )
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 40),
-                const Text(
-                  "Settings",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                // ap.userModel.name.isNotEmpty
-                //     ? SettingItem(
-                //         title: "Edit Profile",
-                //         icon: Ionicons.person,
-                //         bgColor: const Color.fromARGB(206, 255, 158, 128),
-                //         iconColor: Colors.deepOrangeAccent,
-                //         onTap: () {
-                //           Navigator.push(
-                //               context,
-                //               MaterialPageRoute(
-                //                   builder: (context) => EditAccountScreen()));
-                //         },
-                //       )
-                //     : SizedBox(),
-                const SizedBox(height: 20),
-                SettingItem(
-                    title: "Language",
-                    icon: Ionicons.earth,
-                    bgColor: Colors.orange.shade100,
-                    iconColor: Colors.orange,
-                    value: language_selected,
-                    onTap: () {
-                      builddialog(context);
-                    }),
-                const SizedBox(height: 20),
-                SettingItem(
-                  title: "Notifications",
-                  icon: Ionicons.notifications,
-                  bgColor: Colors.blue.shade100,
-                  iconColor: Colors.blue,
-                  onTap: () {},
-                ),
-                const SizedBox(height: 20),
-                SettingSwitch(
-                  title: "Dark Mode",
-                  icon: Ionicons.invert_mode,
-                  bgColor: Colors.purple.shade100,
-                  iconColor: Colors.purple,
-                  value: themeChange.getDarkTheme,
-                  onTap: (value) {
-                    setState(() {
-                      themeChange.setDarkTheme = value;
-                      print(value);
-                    });
-                  },
-                ),
-                const SizedBox(height: 20),
-                SettingItem(
-                  title: "About",
-                  icon: Icons.description,
-                  bgColor: Colors.red.shade100,
-                  iconColor: Colors.red,
-                  onTap: () {},
-                ),
-                const SizedBox(height: 20),
-                SettingItem(
-                  title: "Grow virtual plant",
-                  icon: Icons.forest,
-                  bgColor: Colors.green.shade100,
-                  iconColor: Colors.green,
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const PlantApp()));
-                  },
-                ),
-              ],
-            ),
->>>>>>> 9218bde1076d968904d28104e5026524a4d2f753
+            // final themeChange = Provider.of<DarkThemeProvider>(context);
+            // return Scaffold(
+            //   body: SizedBox(
+            //     height: MediaQuery.of(context).size.height,
+            //     child: SingleChildScrollView(
+            //       child: Padding(
+            //         padding: const EdgeInsets.all(30),
+            //         child: Column(
+            //           crossAxisAlignment: CrossAxisAlignment.start,
+            //           children: [
+            //             const Text(
+            //               "Settings",
+            //               style: TextStyle(
+            //                 fontSize: 36,
+            //                 fontWeight: FontWeight.bold,
+            //               ),
+            //             ),
+            //             const SizedBox(height: 40),
+            //             const Text(
+            //               "Account",
+            //               style: TextStyle(
+            //                 fontSize: 24,
+            //                 fontWeight: FontWeight.w500,
+            //               ),
+            //             ),
+            //             const SizedBox(height: 20),
+            //             SizedBox(
+            //               width: double.infinity,
+            //               child: Row(
+            //                 children: [
+            //                   Image.asset("assets/icons/avatar.png",
+            //                       width: 70, height: 70),
+            //                   const SizedBox(width: 20),
+            //                   const Column(
+            //                     crossAxisAlignment: CrossAxisAlignment.start,
+            //                     children: [
+            //                       Text(
+            //                         // ?
+            //                         "Create Account",
+            //                         // : "View Account",
+            //                         style: TextStyle(
+            //                           fontSize: 18,
+            //                           fontWeight: FontWeight.w500,
+            //                         ),
+            //                       ),
+            //                       SizedBox(height: 10),
+            //                       Text(
+            //                         // ap.userModel.email.isEmpty ? "" : ap.userModel.email,
+            //                         "as",
+            //                         style: TextStyle(
+            //                           fontSize: 14,
+            //                           color: Colors.grey,
+            //                         ),
+            //                       )
+            //                     ],
+            //                   ),
+            //                   const Spacer(),
+            //                   ForwardButton(
+            //                     onTap: () {
+            //                       // if (ap.userModel.email.isEmpty) {
+            //                       Navigator.push(
+            //                         context,
+            //                         MaterialPageRoute(
+            //                           builder: (context) => const EditAccountScreen(),
+            //                         ),
+            //                       );
+            //                       // } else {
+            //                       // Navigator.push(
+            //                       //   context,
+            //                       //   MaterialPageRoute(
+            //                       //     builder: (context) => const ShowProfile(),
+            //                       //   ),
+            //                       // );
+            //                       // }
+            //                     },
+            //                   )
+            //                 ],
+            //               ),
+            //             ),
+            //             const SizedBox(height: 40),
+            //             const Text(
+            //               "Settings",
+            //               style: TextStyle(
+            //                 fontSize: 24,
+            //                 fontWeight: FontWeight.w500,
+            //               ),
+            //             ),
+            //             const SizedBox(height: 20),
+            //             // ap.userModel.name.isNotEmpty
+            //             //     ? SettingItem(
+            //             //         title: "Edit Profile",
+            //             //         icon: Ionicons.person,
+            //             //         bgColor: const Color.fromARGB(206, 255, 158, 128),
+            //             //         iconColor: Colors.deepOrangeAccent,
+            //             //         onTap: () {
+            //             //           Navigator.push(
+            //             //               context,
+            //             //               MaterialPageRoute(
+            //             //                   builder: (context) => EditAccountScreen()));
+            //             //         },
+            //             //       )
+            //             //     : SizedBox(),
+            //             const SizedBox(height: 20),
+            //             SettingItem(
+            //                 title: "Language",
+            //                 icon: Ionicons.earth,
+            //                 bgColor: Colors.orange.shade100,
+            //                 iconColor: Colors.orange,
+            //                 value: language_selected,
+            //                 onTap: () {
+            //                   builddialog(context);
+            //                 }),
+            //             const SizedBox(height: 20),
+            //             SettingItem(
+            //               title: "Notifications",
+            //               icon: Ionicons.notifications,
+            //               bgColor: Colors.blue.shade100,
+            //               iconColor: Colors.blue,
+            //               onTap: () {},
+            //             ),
+            //             const SizedBox(height: 20),
+            //             SettingSwitch(
+            //               title: "Dark Mode",
+            //               icon: Ionicons.invert_mode,
+            //               bgColor: Colors.purple.shade100,
+            //               iconColor: Colors.purple,
+            //               value: themeChange.getDarkTheme,
+            //               onTap: (value) {
+            //                 setState(() {
+            //                   themeChange.setDarkTheme = value;
+            //                   print(value);
+            //                 });
+            //               },
+            //             ),
+            //             const SizedBox(height: 20),
+            //             SettingItem(
+            //               title: "About",
+            //               icon: Icons.description,
+            //               bgColor: Colors.red.shade100,
+            //               iconColor: Colors.red,
+            //               onTap: () {},
+            //             ),
+            //             const SizedBox(height: 20),
+            //             SettingItem(
+            //               title: "Grow virtual plant",
+            //               icon: Icons.forest,
+            //               bgColor: Colors.green.shade100,
+            //               iconColor: Colors.green,
+            //               onTap: () {
+            //                 Navigator.push(
+            //                     context,
+            //                     MaterialPageRoute(
+            //                         builder: (context) => const PlantApp()));
+            //               },
+            //             ),
+            //           ],
+            //         ),
           ),
         ),
       ),
