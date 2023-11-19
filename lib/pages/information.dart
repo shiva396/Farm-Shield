@@ -449,7 +449,7 @@ class _InformationPageState extends State<InformationPage> {
                     Positioned(
                         top: 60,
                         right: 50,
-                        child: items_name("Name", widget.item)),
+                        child: items_name("Name", widget.item.tr)),
                     Positioned(
                         top: 130,
                         right: 50,
@@ -550,7 +550,7 @@ class _InformationPageState extends State<InformationPage> {
                                   builder: (context) => MyCustomForm(
                                       type: widget.item.toLowerCase())));
                         },
-                        child: Text("${widget.item} Precise calculator"))
+                        child: Text("${widget.item.tr} Precise calculator"))
                   ],
                 ),
               )
