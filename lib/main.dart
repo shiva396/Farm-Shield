@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:farmshield/constants.dart';
 import 'package:farmshield/firebase_options.dart';
 import 'package:farmshield/provider/firebase_collections.dart';
