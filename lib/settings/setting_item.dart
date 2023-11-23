@@ -101,9 +101,10 @@ class InformationItem extends StatelessWidget {
           Text(
             title,
             style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 72, 71, 71)),
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 72, 71, 71),
+            ),
           ),
           const Spacer(),
           value != null

@@ -140,7 +140,7 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                           backgroundColor: gender == 'male'
                               ? const Color.fromARGB(161, 217, 177, 232)
                               : Colors.white),
-                      label:  Text('male'.tr),
+                      label: Text('male'.tr),
                       onPressed: () {
                         setState(() {
                           gender = 'male';

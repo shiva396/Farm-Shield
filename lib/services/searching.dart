@@ -159,7 +159,7 @@ class CustomSearchDelegate extends SearchDelegate {
                           item_index: searchTerms.indexOf(result))));
             },
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(16.0),
               child: Stack(
                 children: [
                   Container(

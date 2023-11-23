@@ -1,4 +1,6 @@
+import 'package:farmshield/theme/provider/dark_theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class EditItem extends StatelessWidget {
   final Widget widget;
@@ -11,6 +13,7 @@ class EditItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeChange = Provider.of<DarkThemeProvider>(context);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -18,10 +21,12 @@ class EditItem extends StatelessWidget {
           flex: 2,
           child: Text(
             title,
-            style: const TextStyle(
-              fontSize: 18,
-              color: Color.fromARGB(255, 0, 0, 0),
-            ),
+            style: TextStyle(
+                fontSize: 18,
+                color: themeChange.getDarkTheme ? Colors.white : Colors.black
+
+                // color: Color.fromARGB(255, 0, 0, 0),
+                ),
           ),
         ),
         const SizedBox(width: 40),

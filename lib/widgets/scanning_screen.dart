@@ -33,8 +33,9 @@ class _ScanningScreenState extends State<ScanningScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
         body: Center(
-      child: LottieBuilder.asset('assets/scan.json'),
+      child: LottieBuilder.asset('assets/json/scan.json'),
     ));
   }
 }

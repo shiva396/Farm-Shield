@@ -62,11 +62,6 @@ class _HomeState extends State<Home> {
     _fetchWeather();
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
   String getWeatherAnimation(String? mainCondition) {
     if (mainCondition == null) return "assets/json/sunny.json";
 

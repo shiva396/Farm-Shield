@@ -1,5 +1,8 @@
 // ignore_for_file: unused_field, non_constant_identifier_names, unused_import
 
+import 'dart:io';
+
+import 'package:farmshield/language/lang.dart';
 import 'package:farmshield/pages/plant_custom.dart';
 import 'package:farmshield/provider/firebase_collections.dart';
 import 'package:farmshield/settings/account_view.dart';
@@ -23,13 +26,6 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
-  String language_selected = "English";
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
   // List<String> lang = ["English", "Marathi", "Hindi"];
 
   final List locale = [
@@ -43,7 +39,7 @@ class _AccountScreenState extends State<AccountScreen> {
     Get.updateLocale(locale);
   }
 
-  builddialog(BuildContext context) {
+  builddialog(BuildContext context, String language_selected) {
     showDialog(
         context: context,
         builder: (builder) {
@@ -81,6 +77,10 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
     final ap = Provider.of<AuthProvider>(context, listen: false);
+    String language_selected = Localizations.localeOf(context).languageCode;
+
+    print(language_selected);
+
     final themeChange = Provider.of<DarkThemeProvider>(context);
     return Scaffold(
       body: SingleChildScrollView(
@@ -187,9 +187,11 @@ class _AccountScreenState extends State<AccountScreen> {
                   icon: Ionicons.earth,
                   bgColor: Colors.orange.shade100,
                   iconColor: Colors.orange,
-                  value: language_selected,
+                  value: language_selected == 'en'
+                      ? locale[0]['name']
+                      : locale[1]['name'],
                   onTap: () {
-                    builddialog(context);
+                    builddialog(context, language_selected);
                   }),
               const SizedBox(height: 20),
               SettingItem(
