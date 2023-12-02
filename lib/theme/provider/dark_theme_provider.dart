@@ -12,3 +12,15 @@ class DarkThemeProvider with ChangeNotifier {
     notifyListeners();
   }
 }
+
+class LanguageProvider with ChangeNotifier {
+  LanguagePreferences languagePreferences = LanguagePreferences();
+  String _darkTheme = "en";
+  String get getDarkTheme => _darkTheme;
+
+  set setDarkTheme(String value) {
+    _darkTheme = value;
+    languagePreferences.setDarkTheme(value);
+    notifyListeners();
+  }
+}

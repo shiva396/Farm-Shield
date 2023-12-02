@@ -54,9 +54,9 @@ class _MyCustomFormState extends State<MyCustomForm> {
                     size: width * 0.07,
                   )),
             ),
-             Text(
+            Text(
               "fertilizercalc".tr,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             SizedBox(
               height: height * 0.04,
@@ -64,8 +64,8 @@ class _MyCustomFormState extends State<MyCustomForm> {
             Text(
               'enterplotsize'.tr,
               textAlign: TextAlign.left,
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold, color: Colors.green),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: defaultPadding),
@@ -73,7 +73,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                 cursorColor: kPrimaryColor,
                 decoration: InputDecoration(
                   hintText: "enterinacres".tr,
-                  prefixIcon: Padding(
+                  prefixIcon: const Padding(
                     padding: EdgeInsets.all(defaultPadding),
                     child: Icon(Icons.area_chart),
                   ),
@@ -85,7 +85,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
             Text(
               'acres'.tr,
               textAlign: TextAlign.right,
-              style: TextStyle(color: Colors.green),
+              style: const TextStyle(color: Colors.green),
             ),
             const SizedBox(
               height: 10,
@@ -96,8 +96,9 @@ class _MyCustomFormState extends State<MyCustomForm> {
                   Column(
                     children: <Widget>[
                       Text(
-                        'We advise you not to use Chemicals for the next 45 days...'.tr,
-                        style: TextStyle(fontSize: 16),
+                        'We advise you not to use Chemicals for the next 45 days...'
+                            .tr,
+                        style: const TextStyle(fontSize: 16),
                       ),
                     ],
                   ),

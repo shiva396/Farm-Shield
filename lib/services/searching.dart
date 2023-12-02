@@ -1,9 +1,9 @@
 import 'package:farmshield/pages/information.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
 // start
@@ -104,25 +104,113 @@ class CustomSearchDelegate extends SearchDelegate {
         matchQuery.add(fruit);
       }
     }
-    return ListView.builder(
-      itemCount: matchQuery.length,
-      itemBuilder: (context, index) {
-        var result = matchQuery[index];
-        return GestureDetector(
-          onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => InformationPage(
-                        item: result,
-                        item_index: searchTerms.indexOf(result))));
-          },
-          child: ListTile(
-            title: Text(result),
-          ),
-        );
-      },
-    );
+
+    if (matchQuery.isEmpty) {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Lottie.asset("assets/json/notfound.json"),
+          const Text(
+            "Search not found",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          )
+        ],
+      );
+    } else {
+      return ListView.builder(
+        itemCount: matchQuery.length,
+        itemBuilder: (context, index) {
+          int colorCount = 0;
+          var result = matchQuery[index];
+          if (index >= color_items.length) {
+            colorCount = index % color_items.length;
+          } else {
+            colorCount = index;
+          }
+          var height = MediaQuery.of(context).size.height;
+          var width = MediaQuery.of(context).size.width;
+          return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => InformationPage(
+                            item: result,
+                            item_index: searchTerms.indexOf(result))));
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Stack(
+                  children: [
+                    Container(
+                      height: height * 0.15,
+                      width: width,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: color_items[colorCount],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: color_items[colorCount][1],
+                            blurRadius: 12,
+                            offset: const Offset(0, 6),
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(19),
+                      ),
+                    ),
+                    Positioned(
+                      right: 0,
+                      bottom: 0,
+                      top: height * 0.0001,
+                      child: CustomPaint(
+                        size: const Size(100, 150),
+                        painter: Custompaint(12, color_items[colorCount][0],
+                            color_items[colorCount][1]),
+                      ),
+                    ),
+                    Positioned(
+                      left: width * 0.02,
+                      top: height * 0.03,
+                      child: CircleAvatar(
+                        radius: 40,
+                        backgroundImage: AssetImage(
+                          'assets/icons/${result.toLowerCase()}.png',
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 10,
+                      left: width * 0.25,
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Text(
+                          result.tr.toUpperCase(),
+                          style: const TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                        left: width * 0.28,
+                        top: 60,
+                        child: Text(
+                          nutrientDescriptions[index].tr,
+                          style: const TextStyle(
+                              fontSize: 18,
+                              color: Color.fromARGB(210, 10, 8, 8),
+                              fontWeight: FontWeight.w500),
+                        ))
+                  ],
+                ),
+              ));
+        },
+      );
+    }
   }
 
 // last overwrite to show the

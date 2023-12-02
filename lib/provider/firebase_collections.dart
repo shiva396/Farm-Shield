@@ -13,8 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthProvider extends ChangeNotifier {
-  bool _isSignedIn = false;
-  bool get isSignedIn => _isSignedIn;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
   String? _uid;
@@ -26,21 +24,21 @@ class AuthProvider extends ChangeNotifier {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   final FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
   AuthProvider() {
-    checkSign();
+    // checkSign();
   }
 
-  void checkSign() async {
-    final SharedPreferences s = await SharedPreferences.getInstance();
-    _isSignedIn = s.getBool("is_signedin") ?? false;
-    notifyListeners();
-  }
+  // void checkSign() async {
+  //   final SharedPreferences s = await SharedPreferences.getInstance();
+  //   // _isSignedIn = s.getBool("is_signedin") ?? false;
+  //   notifyListeners();
+  // }
 
-  Future setSignIn() async {
-    final SharedPreferences s = await SharedPreferences.getInstance();
-    s.setBool("is_signedin", true);
-    _isSignedIn = true;
-    notifyListeners();
-  }
+  // Future setSignIn() async {
+  //   final SharedPreferences s = await SharedPreferences.getInstance();
+  //   s.setBool("is_signedin", true);
+  //   _isSignedIn = true;
+  //   notifyListeners();
+  // }
 
   Future<bool> checkExistingUser() async {
     DocumentSnapshot snapshot =
@@ -65,11 +63,9 @@ class AuthProvider extends ChangeNotifier {
           email: emailController.text.trim(),
           password: passwordController.text.trim());
       User? user = _firebaseAuth.currentUser!;
-      if (user != null) {
-        // carry our logic
-        _uid = user.phoneNumber;
-      }
-      _isLoading = false;
+      // carry our logic
+      _uid = user.phoneNumber;
+          _isLoading = false;
       notifyListeners();
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.toString());
@@ -207,7 +203,7 @@ class AuthProvider extends ChangeNotifier {
   Future userSignOut() async {
     SharedPreferences s = await SharedPreferences.getInstance();
     await _firebaseAuth.signOut();
-    _isSignedIn = false;
+
     notifyListeners();
     s.clear();
   }

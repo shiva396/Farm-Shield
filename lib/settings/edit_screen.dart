@@ -1,12 +1,11 @@
 // ignore_for_file: use_build_context_synchronously, unused_local_variable, avoid_print
 
 import 'dart:io';
-
 import 'package:farmshield/provider/firebase_collections.dart';
-import 'package:farmshield/models/user_model.dart';
 import 'package:farmshield/settings/edit_item.dart';
 import 'package:farmshield/utils/color_util.dart';
 import 'package:farmshield/utils/custom_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
@@ -88,7 +87,7 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
             children: [
               Text(
                 "account".tr,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 36,
                   fontWeight: FontWeight.bold,
                 ),
@@ -204,7 +203,7 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                 child: CustomButton(
                   text: 'continue'.tr,
                   onPressed: () async {
-                    await userData();
+                    await signUpFunction();
                   },
                 ),
               ),
@@ -215,96 +214,115 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
     );
   }
 
-  Future<void> userData() async {
-    final ap = Provider.of<AuthProvider>(context, listen: false);
-    // if (ap.userModel!.name.isNotEmpty) {
-    // UserModel userModel = UserModel(
-    //   gender: gender.trim(),
-    //   name: nameController.text.trim().isEmpty
-    //       ? ap.userModel!.name
-    //       : nameController.text.trim(),
-    //   email: emailController.text.trim().isEmpty
-    //       ? ap.userModel!.email
-    //       : emailController.text.trim(),
-    //   age: ageController.text.trim().isEmpty
-    //       ? ap.userModel!.age
-    //       : ageController.text.trim(),
-    //   profilePic: '',
-    //   createdAt: DateTime.now().toString(),
-    //   phoneNumber: phoneController.text.trim().isEmpty
-    //       ? ap.userModel!.phoneNumber
-    //       : phoneController.text.trim(),
-    //   // uid: phoneController.text.trim(),
-    // );
-    // if (image != null) {
-    //   userModel.profilePic =
-    //       await ap.storeFileToStorage("profilePic}", image!);
-    //   // ignore: use_build_context_synchronously
-    //   ap.updateUserDataToFirebase(
+  Future signUpFunction() async {
+    // showDialog(
     //     context: context,
-    //     userModel: userModel,
-    //     profilePic: image!,
-    //     onSuccess: () async {
-    //       // once data is saved  we store locally
-    //       ap.saveUserDataToSP().then(
-    //         (value) {
-    //           ap.setSignIn();
-    //           Navigator.pop(context, 'Update Sucessful');
-    //         },
-    //       );
-    //     },
-    //   );
-    // } else {
-    //   showSnackBar(context, 'Please upload your profile photo');
-    // }
-    // } else {
-    if (emailController.text.trim().isNotEmpty &&
-        image != null &&
-        nameController.text.trim().isNotEmpty &&
-        gender.isNotEmpty &&
-        ageController.text.isNotEmpty &&
-        emailController.text.trim().isNotEmpty &&
-        phoneController.text.trim().isNotEmpty) {
-      if (mounted) {
-        UserModel userModel = UserModel(
-          gender: gender.trim(),
-          name: nameController.text.trim(),
-          email: emailController.text.trim(),
-          age: ageController.text.trim(),
-          profilePic: '',
-          createdAt: DateTime.now().toString(),
-          phoneNumber: phoneController.text.trim(),
-          uid: phoneController.text.trim(),
-        );
-        if (image != null) {
-          userModel.profilePic =
-              await ap.storeFileToStorage("profilePic/", image!);
-
-          ap.createAccount(
-              emailController: emailController,
-              passwordController: passwordController,
-              context: context);
-          ap.saveUserDataToFirebase(
-            context: context,
-            userModel: userModel,
-            profilePic: image!,
-            onSuccess: () async {
-              // once data is saved  we store locally
-              ap.saveUserDataToSP().then(
-                (value) {
-                  ap.setSignIn();
-                  Navigator.pop(context, 'Update Sucessful');
-                },
-              );
-            },
-          );
-        } else {
-          showSnackBar(context, 'Please upload your profile photo');
-        }
-      } else {
-        print("Error");
-      }
+    //     barrierDismissible: false,
+    //     builder: (context) => const Center(
+    //           child: CircularProgressIndicator(),
+    //         ));
+    try {
+      await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: emailController.text.trim(),
+              password: passwordController.text.trim())
+          .then((value) => Navigator.pop(context));
+    } on FirebaseAuthException catch (e) {
+      showSnackBar(context, e.toString());
     }
+    // GlobalKey<NavigatorState>().currentState!.pop();
   }
+
+  // Future<void> userData() async {
+  //   final ap = Provider.of<AuthProvider>(context, listen: false);
+  //   // if (ap.userModel!.name.isNotEmpty) {
+  //   // UserModel userModel = UserModel(
+  //   //   gender: gender.trim(),
+  //   //   name: nameController.text.trim().isEmpty
+  //   //       ? ap.userModel!.name
+  //   //       : nameController.text.trim(),
+  //   //   email: emailController.text.trim().isEmpty
+  //   //       ? ap.userModel!.email
+  //   //       : emailController.text.trim(),
+  //   //   age: ageController.text.trim().isEmpty
+  //   //       ? ap.userModel!.age
+  //   //       : ageController.text.trim(),
+  //   //   profilePic: '',
+  //   //   createdAt: DateTime.now().toString(),
+  //   //   phoneNumber: phoneController.text.trim().isEmpty
+  //   //       ? ap.userModel!.phoneNumber
+  //   //       : phoneController.text.trim(),
+  //   //   // uid: phoneController.text.trim(),
+  //   // );
+  //   // if (image != null) {
+  //   //   userModel.profilePic =
+  //   //       await ap.storeFileToStorage("profilePic}", image!);
+  //   //   // ignore: use_build_context_synchronously
+  //   //   ap.updateUserDataToFirebase(
+  //   //     context: context,
+  //   //     userModel: userModel,
+  //   //     profilePic: image!,
+  //   //     onSuccess: () async {
+  //   //       // once data is saved  we store locally
+  //   //       ap.saveUserDataToSP().then(
+  //   //         (value) {
+  //   //           ap.setSignIn();
+  //   //           Navigator.pop(context, 'Update Sucessful');
+  //   //         },
+  //   //       );
+  //   //     },
+  //   //   );
+  //   // } else {
+  //   //   showSnackBar(context, 'Please upload your profile photo');
+  //   // }
+  //   // } else {
+  //   if (emailController.text.trim().isNotEmpty &&
+  //       image != null &&
+  //       nameController.text.trim().isNotEmpty &&
+  //       gender.isNotEmpty &&
+  //       ageController.text.isNotEmpty &&
+  //       emailController.text.trim().isNotEmpty &&
+  //       phoneController.text.trim().isNotEmpty) {
+  //     if (mounted) {
+  //       UserModel userModel = UserModel(
+  //         gender: gender.trim(),
+  //         name: nameController.text.trim(),
+  //         email: emailController.text.trim(),
+  //         age: ageController.text.trim(),
+  //         profilePic: '',
+  //         createdAt: DateTime.now().toString(),
+  //         phoneNumber: phoneController.text.trim(),
+  //         uid: phoneController.text.trim(),
+  //       );
+  //       if (image != null) {
+  //         userModel.profilePic =
+  //             await ap.storeFileToStorage("profilePic/", image!);
+
+  //         ap.createAccount(
+  //             emailController: emailController,
+  //             passwordController: passwordController,
+  //             context: context);
+  //         ap.saveUserDataToFirebase(
+  //           context: context,
+  //           userModel: userModel,
+  //           profilePic: image!,
+  //           onSuccess: () async {
+  //             // once data is saved  we store locally
+  //             ap.saveUserDataToSP().then(
+  //               (value) {
+  //                 // ap.setSignIn();
+  //                 Navigator.pop(context, 'Update Sucessful');
+  //               },
+  //             );
+  //           },
+  //         );
+  //       } else {
+  //         showSnackBar(context, 'Please upload your profile photo');
+  //       }
+  //     } else {
+  //       print("Error");
+  //     }
+  //   }
+  // }
 }
 // }

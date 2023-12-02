@@ -1,6 +1,4 @@
 // ignore_for_file: prefer_const_constructors
-
-import 'package:farmshield/constants.dart';
 import 'package:farmshield/firebase_options.dart';
 import 'package:farmshield/language/lang.dart';
 import 'package:farmshield/provider/firebase_collections.dart';
@@ -27,27 +25,29 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  DarkThemeProvider themeChangeProvider = DarkThemeProvider();
+  LanguageProvider languageChangeProvider = LanguageProvider();
+
+  void getCurrentAppTheme() async {
+    themeChangeProvider.setDarkTheme =
+        await themeChangeProvider.darkThemePreferences.getTheme();
+  }
+
+  @override
+  void initState() {
+    getCurrentAppTheme();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    DarkThemeProvider themeChangeProvider = DarkThemeProvider();
-
-    void getCurrentAppTheme() async {
-      themeChangeProvider.setDarkTheme =
-          await themeChangeProvider.darkThemePreferences.getTheme();
-    }
-
-    @override
-    void initState() {
-      getCurrentAppTheme();
-      super.initState();
-    }
-
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
           create: (_) => AuthProvider(),
         ),
         ChangeNotifierProvider(create: (_) => themeChangeProvider),
+        ChangeNotifierProvider(create: (_) => languageChangeProvider)
       ],
       child:
           Consumer<DarkThemeProvider>(builder: (context, themeProvider, child) {

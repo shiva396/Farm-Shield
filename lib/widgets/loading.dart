@@ -1,9 +1,8 @@
 // ignore_for_file: unused_import
 
-import 'package:farmshield/authentication/signin.dart';
 import 'package:farmshield/constants.dart';
-import 'package:farmshield/screens/disease_detection.dart';
 import 'package:farmshield/calc/fertilizer_calculator.dart';
+import 'package:farmshield/pages/disease_detection.dart';
 import 'package:farmshield/pages/plant_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';

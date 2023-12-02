@@ -8,7 +8,7 @@ class LocalString extends Translations {
         'en_US': {
           'hello': 'Hello',
           'title': 'Flutter Language - Localization',
-
+          'user': "User",
           //static names
 
           'account': "Account",
@@ -227,20 +227,20 @@ class LocalString extends Translations {
 
           //STRAWBERRIES
 
-          'strawberries': 'strawberries',
-          'strawberries_species_name': 'Fragaria  ananassa',
-          'strawberries_family_name': 'Rosaceae',
-          'strawberries_description':
-              'Strawberries (Fragaria  ananassa) are small, heart-shaped, red berries known for their succulent, sweet flavor. These fruits are often enjoyed fresh, in desserts, and as a garnish. Strawberry plants are low-growing with trifoliate leaves, and they produce white flowers that give way to the delectable red berries. Strawberries are celebrated for their intense fragrance and taste, making them a quintessential summer fruit.',
-          'strawberries_disease_1': "gray mold",
-          'strawberries_disease_2': "powdery mildew",
-          'strawberries_disease_3': "verticillium wilt",
-          'strawberries_disease_prevention':
-              "Planting disease-resistant cultivars, good spacing, and proper hygiene can help prevent strawberry diseases.",
-          'strawberries_fertilizer':
-              "Strawberries benefit from fertilizers with balanced nutrients.",
-          'strawberries_precautions':
-              "Mulching can help conserve soil moisture and prevent weed growth in strawberry beds.",
+          'strawberry': 'Strawberries',
+          'strawberry_species_name': 'Fragaria  ananassa',
+          'strawberry_family_name': 'Rosaceae',
+          'strawberry_description':
+              'Strawberry (Fragaria  ananassa) are small, heart-shaped, red berries known for their succulent, sweet flavor. These fruits are often enjoyed fresh, in desserts, and as a garnish. Strawberry plants are low-growing with trifoliate leaves, and they produce white flowers that give way to the delectable red berries. strawberry are celebrated for their intense fragrance and taste, making them a quintessential summer fruit.',
+          'strawberry_disease_1': "gray mold",
+          'strawberry_disease_2': "powdery mildew",
+          'strawberry_disease_3': "verticillium wilt",
+          'strawberry_disease_prevention':
+              "Planting disease-resistant cultivars, good spacing, and proper hygiene can help prevent Strawberry diseases.",
+          'strawberry_fertilizer':
+              "strawberry benefit from fertilizers with balanced nutrients.",
+          'strawberry_precautions':
+              "Mulching can help conserve soil moisture and prevent weed growth in Strawberry beds.",
 
           //GUAVA
 
@@ -332,6 +332,7 @@ class LocalString extends Translations {
         'mr_IN': {
           'hello': 'नमस्कार',
           'title': 'फ्लटर भाषा - स्थानिकीकरण',
+          'user': "वापरकर्ता",
 
           //static vars
 
@@ -548,7 +549,7 @@ class LocalString extends Translations {
           'orange_precautions':
               "संत्रा झाडे किंवा फळ उत्पादनासाठी पुरेशी आणि आकारदेखील महत्वाची आहे.",
 
-          //STRAWBERRIES
+          //strawberry
 
           'strawberry': 'स्ट्रॉबेरी',
           'strawberry_species_name': 'फ्रॅगेरिया अननासा',

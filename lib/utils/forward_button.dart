@@ -19,7 +19,10 @@ class ForwardButton extends StatelessWidget {
           color: Colors.grey.shade200,
           borderRadius: BorderRadius.circular(15),
         ),
-        child: const Icon(Ionicons.chevron_forward_outline),
+        child: const Icon(
+          Ionicons.chevron_forward_outline,
+          color: Colors.black,
+        ),
       ),
     );
   }

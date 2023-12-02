@@ -4,7 +4,7 @@ import 'package:farmshield/pages/home_page.dart';
 import 'package:farmshield/widgets/scanning_screen.dart';
 import 'package:farmshield/settings/account_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tflite/flutter_tflite.dart';
+// import 'package:flutter_tflite/flutter_tflite.dart';
 import 'package:get/get.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
@@ -22,45 +22,45 @@ class _DiseaseDetectionState extends State<DiseaseDetection> {
   bool imageSelected = false;
   bool isOut = false;
 
-  @override
-  void initState() {
-    super.initState();
-    loadModel();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   loadModel();
+  // }
 
   int pageNo = 0;
 
-  Future classifyDisease(File image) async {
-    var recognitions = await Tflite.runModelOnImage(
-      path: image.path, // required
-      imageMean: 127.5, // defaults to 117.0
-      imageStd: 127.5, // defaults to 1.0
-      numResults: 2, // defaults to 5
-      threshold: 0.2, // defaults to 0.1
-    );
+  // Future classifyDisease(File image) async {
+  //   var recognitions = await Tflite.runModelOnImage(
+  //     path: image.path, // required
+  //     imageMean: 127.5, // defaults to 117.0
+  //     imageStd: 127.5, // defaults to 1.0
+  //     numResults: 2, // defaults to 5
+  //     threshold: 0.2, // defaults to 0.1
+  //   );
 
-    setState(() {
-      results = recognitions!;
+  //   setState(() {
+  //     results = recognitions!;
 
-      image = image;
-      imageSelected = true;
-    });
-  }
+  //     image = image;
+  //     imageSelected = true;
+  //   });
+  // }
 
-  Future loadModel() async {
-    Tflite.close();
-    String? res;
-    res = await Tflite.loadModel(
-        model: "assets/model/model.tflite",
-        labels: "assets/model/Labels.txt",
-        numThreads: 1, // defaults to 1
-        isAsset:
-            true, // defaults to true, set to false to load resources outside assets
-        useGpuDelegate:
-            false // defaults to false, set to true to use GPU delegate
-        );
-    print(res);
-  }
+  // Future loadModel() async {
+  //   Tflite.close();
+  //   String? res;
+  //   res = await Tflite.loadModel(
+  //       model: "assets/model/model.tflite",
+  //       labels: "assets/model/Labels.txt",
+  //       numThreads: 1, // defaults to 1
+  //       isAsset:
+  //           true, // defaults to true, set to false to load resources outside assets
+  //       useGpuDelegate:
+  //           false // defaults to false, set to true to use GPU delegate
+  //       );
+  //   print(res);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +70,8 @@ class _DiseaseDetectionState extends State<DiseaseDetection> {
         body: pageNo == 0 ? const Home() : const AccountScreen(),
         floatingActionButton: FloatingActionButton(
           backgroundColor: const Color.fromARGB(255, 7, 255, 40),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
           onPressed: () async {
             showDialog<String>(
                 context: context,
@@ -77,8 +79,8 @@ class _DiseaseDetectionState extends State<DiseaseDetection> {
                       // icon: Icon(Icons.abc),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15)),
-                      title:  Text('identifydisease'.tr),
-                      content:  Text('Choose the method'.tr),
+                      title: Text('identifydisease'.tr),
+                      content: Text('Choose the method'.tr),
                       actions: <Widget>[
                         TextButton(
                           onPressed: () => pickImageFromCamera(),
@@ -97,10 +99,11 @@ class _DiseaseDetectionState extends State<DiseaseDetection> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: BottomAppBar(
-          //bottom navigation bar on scaffold
+          height: MediaQuery.of(context).size.height * 0.065,
           color: Color(0xFF1DB954),
-          shape: const CircularNotchedRectangle(), //shape of notch
+          shape: const CircularNotchedRectangle(),
           notchMargin: 7,
+          elevation: 0,
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -144,7 +147,7 @@ class _DiseaseDetectionState extends State<DiseaseDetection> {
     setState(() {
       image = File(pickedFile!.path);
     });
-    await classifyDisease(image);
+    // await classifyDisease(image);
     print(results);
     // ignore: use_build_context_synchronously
     Navigator.push(context, MaterialPageRoute(builder: (_) {
@@ -165,7 +168,7 @@ class _DiseaseDetectionState extends State<DiseaseDetection> {
     });
 
     print('done');
-    await classifyDisease(image);
+    // await classifyDisease(image);
     print(results);
     // ignore: use_build_context_synchronously
     Navigator.push(context, MaterialPageRoute(builder: (_) {

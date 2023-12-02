@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import '../screens/detection_image.dart';
+// import '../screens/detection_image.dart';
 
 // ignore: must_be_immutable
 class ScanningScreen extends StatefulWidget {
@@ -21,12 +21,13 @@ class ScanningScreen extends StatefulWidget {
 class _ScanningScreenState extends State<ScanningScreen> {
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 2), () {
-      print(widget.results);
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) {
-        return DetectionDeteils(image: widget.image, results: widget.results);
-      }));
-    });
+    // Future.delayed(const Duration(seconds: 2), () {
+    //   print(widget.results);
+    //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) {
+    //     // return 
+    //     // return DetectionDeteils(image: widget.image, results: widget.results);
+    //   }));
+    // });
     super.initState();
   }
 

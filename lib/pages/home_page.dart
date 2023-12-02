@@ -6,8 +6,6 @@ import 'package:farmshield/pages/information.dart';
 import 'package:farmshield/services/searching.dart';
 import 'package:farmshield/services/weather_service.dart';
 import 'package:farmshield/utils/color_util.dart';
-import 'package:farmshield/utils/custom_button.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -37,8 +35,6 @@ class _HomeState extends State<Home> {
     'cherry',
     'lemon'
   ];
-  String name = "User";
-
 //api key
   final _weatherService = WeatherService('f1fd87d085c9d19992fb6e5f415dedf0');
 
@@ -130,7 +126,7 @@ class _HomeState extends State<Home> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "${"hello".tr}  ${name} 🌿",
+                  "${"hello".tr}  ${"user".tr} 🌿",
                   style: TextStyle(
                       fontWeight: FontWeight.bold, fontSize: width * 0.06),
                 )
@@ -269,15 +265,6 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(100.0),
-            child: CustomButton(
-                onPressed: () async {
-                  await FirebaseAuth.instance.signOut().then((value) =>
-                      Navigator.of(context, rootNavigator: true).pop(context));
-                },
-                text: 'signout'.tr),
-          )
         ],
       ),
     ));

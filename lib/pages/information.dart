@@ -294,55 +294,46 @@ class _InformationPageState extends State<InformationPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 300,
-                child: Stack(
-                  children: [
-                    const Positioned(
-                      top: 2,
-                      bottom: 12,
-                      child: Image(
-                        image: AssetImage(
-                          "assets/icons/graph.png",
+              Align(
+                alignment: Alignment.topLeft,
+                child: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(
+                      Icons.chevron_left_sharp,
+                      size: 40,
+                    )),
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                      height: 300,
+                      width: 280,
+                      child: const Stack(children: [
+                        Positioned(
+                          top: 2,
+                          bottom: 12,
+                          child: Image(
+                            image: AssetImage(
+                              "assets/icons/graph.png",
+                            ),
+                          ),
                         ),
-                        width: 270,
-                      ),
-                    ),
-                    const Positioned(
-                      right: 159,
-                      left: 0,
-                      child: Image(
-                        image: AssetImage("assets/icons/pot.png"),
-                        width: 70,
-                        height: 250,
-                      ),
-                    ),
-                    Positioned(
-                        top: 60,
-                        right: 50,
-                        child: items_name("plantname".tr, widget.item.tr)),
-                    Positioned(
-                        top: 130,
-                        right: 50,
-                        child: items_name("species".tr, species)),
-                    Positioned(
-                        bottom: 50,
-                        right: 50,
-                        child: items_name("family".tr, family)),
-                    Positioned(
-                      top: 2,
-                      left: 10,
-                      child: IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: const Icon(
-                            Icons.chevron_left_sharp,
-                            size: 40,
-                          )),
-                    ),
-                  ],
-                ),
+                        Positioned(
+                          child: Image(
+                            image: AssetImage("assets/icons/pot.png"),
+                          ),
+                        )
+                      ])),
+                  Column(
+                    children: [
+                      items_name("plantname".tr, widget.item.tr),
+                      items_name("species".tr, species),
+                      items_name("family".tr, family),
+                    ],
+                  ),
+                ],
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
@@ -421,7 +412,10 @@ class _InformationPageState extends State<InformationPage> {
                                   builder: (context) => MyCustomForm(
                                       type: widget.item.toLowerCase())));
                         },
-                        child: Text("${widget.item.tr} ${'precisecalc'.tr}"))
+                        child: Text("${widget.item.tr} ${'precisecalc'.tr}")),
+                    const SizedBox(
+                      height: 20,
+                    )
                   ],
                 ),
               )
@@ -471,7 +465,7 @@ class _InformationPageState extends State<InformationPage> {
               fontSize: 16),
         ),
         SizedBox(
-          width: 106,
+          width: 109,
           child: Text(selecteditem,
               style: const TextStyle(
                   letterSpacing: 0,

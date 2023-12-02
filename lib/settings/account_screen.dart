@@ -1,4 +1,4 @@
-// ignore_for_file: unused_field, non_constant_identifier_names, unused_import
+// ignore_for_file: unused_field, non_constant_identifier_names, unused_import, unused_local_variable
 
 import 'dart:io';
 
@@ -12,6 +12,7 @@ import 'package:farmshield/theme/provider/dark_theme_provider.dart';
 import 'package:farmshield/utils/forward_button.dart';
 import 'package:farmshield/settings/setting_item.dart';
 import 'package:farmshield/settings/setting_switch.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -26,12 +27,9 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
-  // List<String> lang = ["English", "Marathi", "Hindi"];
-
   final List locale = [
-    {'name': 'ENGLISH', 'locale': Locale('en', 'US')},
-    {'name': 'MARATHI', 'locale': Locale('mr', 'IN')},
-    // {'name': 'HINDI', 'locale': Locale('hi', 'IN')},
+    {'name': 'ENGLISH', 'locale': const Locale('en', 'US')},
+    {'name': 'MARATHI', 'locale': const Locale('mr', 'IN')},
   ];
 
   updatelanguage(Locale locale) {
@@ -39,7 +37,7 @@ class _AccountScreenState extends State<AccountScreen> {
     Get.updateLocale(locale);
   }
 
-  builddialog(BuildContext context, String language_selected) {
+  builddialog(BuildContext context, languageChange) {
     showDialog(
         context: context,
         builder: (builder) {
@@ -55,7 +53,11 @@ class _AccountScreenState extends State<AccountScreen> {
                     child: GestureDetector(
                         onTap: () {
                           setState(() {
-                            language_selected = locale[index]['name'];
+                            // language_selected = locale[index]['name'];
+                            languageChange.setDarkTheme =
+                                languageChange.getDarkTheme == "ma"
+                                    ? "en"
+                                    : "ma";
                           });
                           updatelanguage(locale[index]['locale']);
                         },
@@ -63,7 +65,7 @@ class _AccountScreenState extends State<AccountScreen> {
                   );
                 },
                 separatorBuilder: (context, index) {
-                  return Divider(
+                  return const Divider(
                     color: Colors.blue,
                   );
                 },
@@ -77,11 +79,9 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
     final ap = Provider.of<AuthProvider>(context, listen: false);
-    String language_selected = Localizations.localeOf(context).languageCode;
-
-    print(language_selected);
 
     final themeChange = Provider.of<DarkThemeProvider>(context);
+    final languageChange = Provider.of<LanguageProvider>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -91,82 +91,81 @@ class _AccountScreenState extends State<AccountScreen> {
             children: [
               Text(
                 "settings".tr,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 36,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 40),
-              Text(
-                "account".tr,
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              const SizedBox(height: 20),
-              SizedBox(
-                width: double.infinity,
-                child: Row(
-                  children: [
-                    Image.asset("assets/icons/avatar.png",
-                        width: 70, height: 70),
-                    const SizedBox(width: 20),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          // ?
-                          "createaccount".tr,
-                          // : "View Account",
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        const Text(
-                          // ap.userModel.email.isEmpty ? "" : ap.userModel.email,
-                          "as",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey,
-                          ),
-                        )
-                      ],
-                    ),
-                    const Spacer(),
-                    ForwardButton(
-                      onTap: () {
-                        // if (ap.userModel.email.isEmpty) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const EditAccountScreen(),
-                          ),
-                        );
-                        // } else {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => const ShowProfile(),
-                        //   ),
-                        // );
-                        // }
-                      },
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(height: 40),
-              Text(
-                "settings".tr,
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              const SizedBox(height: 20),
+              // Text(
+              //   "account".tr,
+              //   style: const TextStyle(
+              //     fontSize: 24,
+              //     fontWeight: FontWeight.w500,
+              //   ),
+              // ),
+              // const SizedBox(height: 20),
+              // SizedBox(
+              //   width: double.infinity,
+              //   child: Row(
+              //     children: [
+              //       Image.asset("assets/icons/avatar.png",
+              //           width: 70, height: 70),
+              //       const SizedBox(width: 20),
+              //       Column(
+              //         crossAxisAlignment: CrossAxisAlignment.start,
+              //         children: [
+              //           Text(
+              //             // ?
+              //             "createaccount".tr,
+              //             // : "View Account",
+              //             style: const TextStyle(
+              //               fontSize: 18,
+              //               fontWeight: FontWeight.w500,
+              //             ),
+              //           ),
+              //           const SizedBox(height: 10),
+              //           const Text(
+              //             "as",
+              //             style: TextStyle(
+              //               fontSize: 14,
+              //               color: Colors.grey,
+              //             ),
+              //           ),
+              //         ],
+              //       ),
+              //       const Spacer(),
+              //       ForwardButton(
+              //         onTap: () {
+              //           // if (ap.userModel.email.isEmpty) {
+              //           Navigator.push(
+              //             context,
+              //             MaterialPageRoute(
+              //               builder: (context) => const EditAccountScreen(),
+              //             ),
+              //           );
+              //           // } else {
+              //           // Navigator.push(
+              //           //   context,
+              //           //   MaterialPageRoute(
+              //           //     builder: (context) => const ShowProfile(),
+              //           //   ),
+              //           // );
+              //           // }
+              //         },
+              //       )
+              //     ],
+              //   ),
+              // ),
+              // const SizedBox(height: 40),
+              // Text(
+              //   "settings".tr,
+              //   style: const TextStyle(
+              //     fontSize: 24,
+              //     fontWeight: FontWeight.w500,
+              //   ),
+              // ),
+              // const SizedBox(height: 20),
               // ap.userModel.name.isNotEmpty
               //     ? SettingItem(
               //         title: "Edit Profile",
@@ -187,21 +186,14 @@ class _AccountScreenState extends State<AccountScreen> {
                   icon: Ionicons.earth,
                   bgColor: Colors.orange.shade100,
                   iconColor: Colors.orange,
-                  value: language_selected == 'en'
-                      ? locale[0]['name']
-                      : locale[1]['name'],
+                  value: languageChange.getDarkTheme == "en"
+                      ? "English"
+                      : "Marathi",
                   onTap: () {
-                    builddialog(context, language_selected);
+                    builddialog(context, languageChange);
                   }),
               const SizedBox(height: 20),
-              SettingItem(
-                title: "notifications".tr,
-                icon: Ionicons.notifications,
-                bgColor: Colors.blue.shade100,
-                iconColor: Colors.blue,
-                onTap: () {},
-              ),
-              const SizedBox(height: 20),
+
               SettingSwitch(
                 title: "theme".tr,
                 icon: Ionicons.invert_mode,

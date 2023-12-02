@@ -16,3 +16,20 @@ class DarkThemePreferences {
         false;
   }
 }
+
+class LanguagePreferences {
+  static const THEME_STATUS = "language";
+
+  setDarkTheme(String value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString(THEME_STATUS, value);
+  }
+
+  Future<String> getTheme() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString(
+          THEME_STATUS,
+        ) ??
+        "en";
+  }
+}
