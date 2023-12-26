@@ -181,12 +181,12 @@ class _MyCustomFormState extends State<MyCustomForm> {
   }
 }
 
-String calculation(TextEditingController myController, double dap_value,
-    double mop_value, double urea_value) {
+String calculation(TextEditingController myController, double dapValue,
+    double mopValue, double ureaValue) {
   double acre = double.parse(myController.text);
-  double dap = dap_value * acre * 2;
-  double mop = mop_value * acre * 2;
-  double urea = urea_value * acre * 2;
+  double dap = dapValue * acre * 2;
+  double mop = mopValue * acre * 2;
+  double urea = ureaValue * acre * 2;
 
   return 'MOP: $mop kg,\nDAP: $dap kg \nUrea: $urea kg';
 }

@@ -89,17 +89,17 @@ class _PlantScreenState extends State<PlantScreen> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_back,
                     size: 30,
                     color: Colors.white,
                   )),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 20),
+              padding: const EdgeInsets.only(top: 20),
               child: Text(
                 "stayfocused".tr,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.white,
                     fontSize: 30,
                     fontWeight: FontWeight.bold),
@@ -133,10 +133,10 @@ class _PlantScreenState extends State<PlantScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 30),
+              padding: const EdgeInsets.only(bottom: 30),
               child: Text(
                 "timelefttogrowtheplant".tr,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.white60,
                     fontSize: 20,
                     fontWeight: FontWeight.normal),

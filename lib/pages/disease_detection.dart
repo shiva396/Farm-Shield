@@ -4,10 +4,13 @@ import 'package:farmshield/pages/home_page.dart';
 import 'package:farmshield/widgets/scanning_screen.dart';
 import 'package:farmshield/settings/account_screen.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_tflite/flutter_tflite.dart';
+import 'package:flutter_tflite/flutter_tflite.dart';
 import 'package:get/get.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
+import 'package:pytorch_mobile/enums/dtype.dart';
+import 'package:pytorch_mobile/model.dart';
+import 'package:pytorch_mobile/pytorch_mobile.dart';
 
 class DiseaseDetection extends StatefulWidget {
   const DiseaseDetection({super.key});
@@ -22,45 +25,53 @@ class _DiseaseDetectionState extends State<DiseaseDetection> {
   bool imageSelected = false;
   bool isOut = false;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   loadModel();
-  // }
+  @override
+  void initState() {
+    loadModel();
+    super.initState();
+  }
 
   int pageNo = 0;
 
-  // Future classifyDisease(File image) async {
-  //   var recognitions = await Tflite.runModelOnImage(
-  //     path: image.path, // required
-  //     imageMean: 127.5, // defaults to 117.0
-  //     imageStd: 127.5, // defaults to 1.0
-  //     numResults: 2, // defaults to 5
-  //     threshold: 0.2, // defaults to 0.1
-  //   );
+  // Model? _imageModel, _customModel;
 
-  //   setState(() {
-  //     results = recognitions!;
+  // String? _imagePrediction;
+  // List? _prediction;
+  // File? _image;
+  // ImagePicker _picker = ImagePicker();
 
-  //     image = image;
-  //     imageSelected = true;
-  //   });
-  // }
+  Future classifyDisease(File image) async {
+    var recognitions = await Tflite.runModelOnImage(
+      path: image.path, // required
+      imageMean: 127.5, // defaults to 117.0
+      imageStd: 127.5, // defaults to 1.0
+      numResults: 2, // defaults to 5
+      threshold: 0.2, // defaults to 0.1
+    );
+    setState(() {
+      results = recognitions!;
+      //   setState(() {
+      //     results = recognitions!;
 
-  // Future loadModel() async {
-  //   Tflite.close();
-  //   String? res;
-  //   res = await Tflite.loadModel(
-  //       model: "assets/model/model.tflite",
-  //       labels: "assets/model/Labels.txt",
-  //       numThreads: 1, // defaults to 1
-  //       isAsset:
-  //           true, // defaults to true, set to false to load resources outside assets
-  //       useGpuDelegate:
-  //           false // defaults to false, set to true to use GPU delegate
-  //       );
-  //   print(res);
-  // }
+      image = image;
+      imageSelected = true;
+    });
+  }
+
+  Future loadModel() async {
+    Tflite.close();
+    String? res;
+    res = await Tflite.loadModel(
+        model: "assets/model/model_unquant.tflite",
+        labels: "assets/model/labels.txt",
+        numThreads: 1, // defaults to 1
+        isAsset:
+            true, // defaults to true, set to false to load resources outside assets
+        useGpuDelegate:
+            false // defaults to false, set to true to use GPU delegate
+        );
+    print(res);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -147,6 +158,7 @@ class _DiseaseDetectionState extends State<DiseaseDetection> {
     setState(() {
       image = File(pickedFile!.path);
     });
+    await classifyDisease(image);
     // await classifyDisease(image);
     print(results);
     // ignore: use_build_context_synchronously
@@ -168,11 +180,12 @@ class _DiseaseDetectionState extends State<DiseaseDetection> {
     });
 
     print('done');
+    await classifyDisease(image);
     // await classifyDisease(image);
     print(results);
     // ignore: use_build_context_synchronously
     Navigator.push(context, MaterialPageRoute(builder: (_) {
-      return ScanningScreen(image: image, results: []);
+      return ScanningScreen(image: image, results: results);
     }));
   }
 }

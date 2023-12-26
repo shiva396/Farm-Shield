@@ -1,38 +1,44 @@
-Apple___Apple_scab
-Apple___Black_rot
-Apple___Cedar_apple_rust
-Apple___healthy
-Blueberry___healthy
-Cherry_(including_sour)___healthy
-Cherry_(including_sour)___Powdery_mildew
-Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot
-Corn_(maize)__Common_rust
-Corn_(maize)___healthy
-Corn_(maize)___Northern_Leaf_Blight
-Grape___Black_rot
-Grape__Esca(Black_Measles)
-Grape___healthy
-Grape__Leaf_blight(Isariopsis_Leaf_Spot)
-Orange__Haunglongbing(Citrus_greening)
-Peach___Bacterial_spot
-Peach___healthy
-Pepper,bell__Bacterial_spot
-Pepper,bell__healthy
-Potato___Early_blight
-Potato___healthy
-Potato___Late_blight
-Raspberry___healthy
-Soybean___healthy
-Squash___Powdery_mildew
-Strawberry___healthy
-Strawberry___Leaf_scorch
-Tomato___Bacterial_spot
-Tomato___Early_blight
-Tomato___healthy
-Tomato___Late_blight
-Tomato___Leaf_Mold
-Tomato___Septoria_leaf_spot
-Tomato___Spider_mites Two-spotted_spider_mite
-Tomato___Target_Spot
-Tomato___Tomato_mosaic_virus
-Tomato___Tomato_Yellow_Leaf_Curl_Virus
+0 Apple Black Rot
+1 Apple Cedar Rust
+2 Apple Healthy
+3 Apple Scab
+4 Blueberry Healthy
+5 Cherry Healthy
+6 Cherry Powdery mildew
+7 Corn Cercospora leaf spot or Gray leaf spot
+8 Corn Common rust
+9 Corn healthy
+10 Corn Northern Leaf Blight
+11 Grape Black rot
+12 Grape Esca (Black Measles)
+13 Grape healthy
+14 Grape Leaf blight (Isariopsis Leaf Spot)
+15 Mango Anthracnose
+16 Mango Bacterial Canker
+17 Mango Cutting Weevil
+18 Mango Die Back
+19 Mango Gall Midge
+20 Mango Healthy
+21 Mango Powdery Mildew
+22 Mango Sooty Mould
+23 Orange Haunglongbing (Citrus greening)
+24 Peach Bacterial spot
+25 Peach healthy
+26 Potato Early blight
+27 Potato healthy
+28 Potato Late blight
+29 Raspberry healthy
+30 Soybean healthy
+31 Squash Powdery mildew
+32 Strawberry healthy
+33 Strawberry Leaf scorch
+34 Tomato Bacterial spot
+35 Tomato Early blight
+36 Tomato healthy
+37 Tomato Late blight
+38 Tomato Leaf Mold
+39 Tomato Septoria leaf spot
+40 Tomato Spider mites Two spotted spider mite
+41 Tomato Target Spot
+42 Tomato Mosaic Virus
+43 Tomato Yellow Leaf Cur Virus

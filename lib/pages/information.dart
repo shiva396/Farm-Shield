@@ -9,7 +9,7 @@ class InformationPage extends StatefulWidget {
   final String item;
   final int item_index;
 
-  InformationPage({super.key, required this.item, required this.item_index});
+  const InformationPage({super.key, required this.item, required this.item_index});
 
   @override
   State<InformationPage> createState() => _InformationPageState();
@@ -307,10 +307,10 @@ class _InformationPageState extends State<InformationPage> {
               ),
               Row(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                       height: 300,
                       width: 280,
-                      child: const Stack(children: [
+                      child: Stack(children: [
                         Positioned(
                           top: 2,
                           bottom: 12,

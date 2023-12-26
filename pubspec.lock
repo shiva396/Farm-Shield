@@ -283,6 +283,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_tflite:
+    dependency: "direct main"
+    description:
+      name: flutter_tflite
+      sha256: "0d6b622af0fe90d92bd4d9bd28b98c3b213217f36ccb7b444d7104a742b03363"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -400,6 +408,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  image:
+    dependency: transitive
+    description:
+      name: image
+      sha256: "8e9d133755c3e84c73288363e6343157c383a0c6c56fc51afcc5d4d7180306d6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.3.0"
   image_picker:
     dependency: "direct main"
     description:
@@ -560,6 +576,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
+  path_provider:
+    dependency: transitive
+    description:
+      name: path_provider
+      sha256: a1aa8aaa2542a6bc57e381f132af822420216c80d4781f7aa085ca3229208aaa
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.1"
+  path_provider_android:
+    dependency: transitive
+    description:
+      name: path_provider_android
+      sha256: e595b98692943b4881b219f0a9e3945118d3c16bd7e2813f98ec6e532d905f72
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.1"
+  path_provider_foundation:
+    dependency: transitive
+    description:
+      name: path_provider_foundation
+      sha256: "19314d595120f82aca0ba62787d58dde2cc6b5df7d2f0daf72489e38d1b57f2d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.1"
   path_provider_linux:
     dependency: transitive
     description:
@@ -624,6 +664,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.1"
+  pytorch_mobile:
+    dependency: "direct main"
+    description:
+      name: pytorch_mobile
+      sha256: "43733398db3f2b7c97d6d02a6333a94eedcc1cfdfddb5b5c1aa62ee5b665fd9c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.2"
   rive:
     dependency: "direct main"
     description:
