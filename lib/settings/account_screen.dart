@@ -5,10 +5,12 @@ import 'dart:io';
 import 'package:farmshield/language/lang.dart';
 import 'package:farmshield/pages/plant_custom.dart';
 import 'package:farmshield/provider/firebase_collections.dart';
+import 'package:farmshield/screens/Login/login_form.dart';
 import 'package:farmshield/settings/account_view.dart';
 import 'package:farmshield/settings/edit_screen.dart';
 import 'package:farmshield/theme/models/dark_theme_preference.dart';
 import 'package:farmshield/theme/provider/dark_theme_provider.dart';
+import 'package:farmshield/utils/custom_button.dart';
 import 'package:farmshield/utils/forward_button.dart';
 import 'package:farmshield/settings/setting_item.dart';
 import 'package:farmshield/settings/setting_switch.dart';
@@ -224,6 +226,23 @@ class _AccountScreenState extends State<AccountScreen> {
                           builder: (context) => const PlantApp()));
                 },
               ),
+              const SizedBox(
+                height: 200,
+              ),
+              Center(
+                child: OutlinedButton(
+                    child: const Text("Sign out"),
+                    onPressed: () {
+                      ap
+                          .userSignOut()
+                          .whenComplete(() => Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const LoginScreen(),
+                              ),
+                              (route) => false));
+                    }),
+              )
             ],
             // final themeChange = Provider.of<DarkThemeProvider>(context);
             // return Scaffold(

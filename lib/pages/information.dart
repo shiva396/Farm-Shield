@@ -312,12 +312,15 @@ class _InformationPageState extends State<InformationPage> {
                       height: 300,
                       width: 280,
                       child: Stack(children: [
-                        const Positioned(
+                        Positioned(
                           top: 2,
                           bottom: 12,
-                          child: Image(
-                            image: AssetImage(
-                              "assets/icons/graph.png",
+                          child: Hero(
+                            tag: widget.item,
+                            child: const Image(
+                              image: AssetImage(
+                                "assets/icons/graph.png",
+                              ),
                             ),
                           ),
                         ),

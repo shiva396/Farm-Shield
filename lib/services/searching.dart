@@ -112,9 +112,12 @@ class CustomSearchDelegate extends SearchDelegate {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Lottie.asset("assets/json/notfound.json"),
-          const Text(
-            "Search not found",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          Text(
+            "Search not found".tr,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),
           )
         ],
       );

@@ -209,17 +209,20 @@ class _HomeState extends State<Home> {
                                     item: item ?? "apple",
                                   )));
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Container(
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle, color: Colors.white),
-                        child: SizedBox(
-                          height: 10,
-                          width: 60,
-                          child: Image.asset(
-                              'assets/icons/${plants[index]}.png',
-                              fit: BoxFit.scaleDown),
+                    child: Hero(
+                      tag: item ?? "apple",
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Container(
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle, color: Colors.white),
+                          child: SizedBox(
+                            height: 10,
+                            width: 60,
+                            child: Image.asset(
+                                'assets/icons/${plants[index]}.png',
+                                fit: BoxFit.scaleDown),
+                          ),
                         ),
                       ),
                     ),

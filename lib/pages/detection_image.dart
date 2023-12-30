@@ -82,7 +82,9 @@ class _DetectionDeteilsState extends State<DetectionDeteils> {
                     : widget.results[0]['label']
                         .toString()
                         .replaceAll(RegExp(r'\d+'), '')
-                        .trim(),
+                        .trim()
+                        .toString()
+                        .tr,
                 style: const TextStyle(
                     fontSize: 30,
                     color: Colors.black,
