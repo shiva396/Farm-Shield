@@ -33,12 +33,6 @@ class _DiseaseDetectionState extends State<DiseaseDetection> {
 
   int pageNo = 0;
 
-  // Model? _imageModel, _customModel;
-
-  // String? _imagePrediction;
-  // List? _prediction;
-  // File? _image;
-  // ImagePicker _picker = ImagePicker();
 
   Future classifyDisease(File image) async {
     var recognitions = await Tflite.runModelOnImage(
@@ -50,8 +44,6 @@ class _DiseaseDetectionState extends State<DiseaseDetection> {
     );
     setState(() {
       results = recognitions!;
-      //   setState(() {
-      //     results = recognitions!;
 
       image = image;
       imageSelected = true;
@@ -95,18 +87,17 @@ class _DiseaseDetectionState extends State<DiseaseDetection> {
                       actions: <Widget>[
                         TextButton(
                           onPressed: () => pickImageFromCamera(),
-                          child: Text('Take a Pic'.tr),
+                          child: Text('takeapic'.tr),
                         ),
                         TextButton(
                           onPressed: () => pickImageFromGallery(),
-                          child: Text('Choose  from Gallery'.tr),
+                          child: Text('choosefromgallery'.tr),
                         ),
                       ],
                     ));
           },
-          child: const Icon(
-            Icons.document_scanner_outlined,
-          ), //icon inside button
+          child: const Icon(Icons.document_scanner_outlined,
+              color: Colors.black), //icon inside button
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: BottomAppBar(

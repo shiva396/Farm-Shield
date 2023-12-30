@@ -50,9 +50,9 @@ class _DetectionDeteilsState extends State<DetectionDeteils> {
                         ),
                       ],
                     )
-                  : const Text(
-                      'Identified Disease',
-                      style: TextStyle(
+                  : Text(
+                      'identifydisease'.tr,
+                      style: const TextStyle(
                           fontSize: 30,
                           color: Colors.black,
                           fontWeight: FontWeight.bold),
@@ -78,8 +78,11 @@ class _DetectionDeteilsState extends State<DetectionDeteils> {
             Center(
               child: Text(
                 widget.results.isEmpty
-                    ? 'Caution Error'
-                    : widget.results[0]['label'].toString(),
+                    ? 'cautionerror'.tr
+                    : widget.results[0]['label']
+                        .toString()
+                        .replaceAll(RegExp(r'\d+'), '')
+                        .trim(),
                 style: const TextStyle(
                     fontSize: 30,
                     color: Colors.black,
@@ -102,7 +105,7 @@ class _DetectionDeteilsState extends State<DetectionDeteils> {
                       )
                     : Text(
                         "Possible Causes".tr +
-                            ":" +
+                            " :" +
                             '${Diseases(widget.results[0]['label'].toString(), languageChange)[0]}',
                         style: const TextStyle(
                             fontSize: 15,
@@ -117,7 +120,7 @@ class _DetectionDeteilsState extends State<DetectionDeteils> {
                 widget.results.isEmpty
                     ? ''
                     : "Possible Solution".tr +
-                        ":" +
+                        " :" +
                         '${Diseases(widget.results[0]['label'].toString(), languageChange)[1]}',
                 style: const TextStyle(
                     fontSize: 15,
@@ -136,142 +139,118 @@ class _DetectionDeteilsState extends State<DetectionDeteils> {
     String formattedDisease = name.replaceAll(RegExp(r'\d+'), '');
 
     if (languageChange.getDarkTheme == "ma") {
-      String diseaseName = "";
       switch (formattedDisease.trim()) {
         case "Apple Black Rot":
-          diseaseName = "सफेद ढळ";
-          causes = "कवक Botryosphaeria obtusa कारणीभूत.";
+          causes = "कवक  कारणीभूत.";
           solution = "संक्रमित क्षेत्रे काढा, फंगीसायड वापरा.";
           break;
 
         case "Apple Cedar Rust":
-          diseaseName = "सेदार जंग";
-          causes = "कवक Gymnosporangium juniperi-virginianae कारणीभूत.";
+          causes = "कवक  कारणीभूत.";
           solution = "जूनिपर पौधांची दूरस्थी करा, फंगीसायड वापरा.";
           break;
 
         case "Apple Healthy":
-          diseaseName = "स्वस्थ सेब";
           causes = "कोणतेही विशिष्ट रोग ओळखले नाहीत.";
           solution = "चंद्रोदय उत्पादन साधारित्य, नियमित मॉनिटरिंग.";
           break;
 
         case "Apple Scab":
-          diseaseName = "स्कॅब";
           causes = "कवक Venturia inaequalis कारणीभूत.";
           solution = "फंगीसायड लागू करा, संक्रमित शाखांची कंटें काढा.";
           break;
 
         case "Blueberry Healthy":
-          diseaseName = "स्वस्थ ब्ल्यूबेरी";
           causes = "कोणतेही विशिष्ट रोग ओळखले नाहीत.";
           solution = "चंद्रोदय उत्पादन साधारित्य, किडकांसाठी मॉनिटरिंग.";
           break;
 
         case "Cherry Healthy":
-          diseaseName = "स्वस्थ चेरी";
           causes = "कोणतेही विशिष्ट रोग ओळखले नाहीत.";
           solution = "चंद्रोदय उत्पादन साधारित्य, नियमित मॉनिटरिंग.";
           break;
 
         case "Cherry Powdery mildew":
-          diseaseName = "पाव्डरी मिल्ड्यू";
-          causes = "कवक Podosphaera spp. कारणीभूत.";
+          causes = "कवक  कारणीभूत.";
           solution = "फंगीसायड लागू करा, संक्रमित भाग काढा.";
           break;
 
         case "Corn Cercospora leaf spot or Gray leaf spot":
-          diseaseName = "सर्कोस्पोरा पानांची टाकळी किंवा ग्रे पान स्पॉट";
           causes = "कवक Cercospora zeae-maydis कारणीभूत.";
           solution = "प्रतिरोधी प्रजांचा वापर करा, फंगीसायड लागू करा.";
           break;
 
         case "Corn Common rust":
-          diseaseName = "कॉर्न कॉमन रस्ट";
-          causes = "कवक Puccinia sorghi कारणीभूत.";
+          causes = "कवक  कारणीभूत.";
           solution = "प्रतिरोधी प्रजांचा वापर करा, फंगीसायड लागू करा.";
           break;
 
         case "Corn healthy":
-          diseaseName = "स्वस्थ कॉर्न";
           causes = "कोणतेही विशिष्ट रोग ओळखले नाहीत.";
           solution = "फसळांची परिस्थिती बदला, चंद्रोदय उत्पादन साधारित्य.";
           break;
 
         case "Corn Northern Leaf Blight":
-          diseaseName = "कॉर्न नॉर्दन लीफ ब्लाईट";
-          causes = "कवक Exserohilum turcicum कारणीभूत.";
+          causes = "कवक  कारणीभूत.";
           solution = "प्रतिरोधी प्रजांचा वापर करा, फंगीसायड लागू करा.";
           break;
 
         case "Grape Black rot":
-          diseaseName = "द्राक्ष काळा ढळ";
-          causes = "कवक Guignardia bidwellii कारणीभूत.";
+          causes = "कवक  कारणीभूत.";
           solution = "संक्रमित क्षेत्रे काढा, फंगीसायड लागू करा.";
           break;
 
         case "Grape Esca (Black Measles)":
-          diseaseName = "द्राक्ष एस्का (काळं असणे)";
-          causes = "विविध कवक, सहितकं Phaeoacremonium spp. कारणीभूत.";
+          causes = "विविध कवक, सहितकं  कारणीभूत.";
           solution = "संक्रमित डाळे काढा, फंगीसायड लागू करा.";
           break;
 
         case "Grape healthy":
-          diseaseName = "स्वस्थ द्राक्ष";
           causes = "कोणतेही विशिष्ट रोग ओळखले नाहीत.";
           solution = "चंद्रोदय उत्पादन साधारित्य, नियमित मॉनिटरिंग.";
           break;
 
         case "Grape Leaf blight (Isariopsis Leaf Spot)":
-          diseaseName = "द्राक्ष पान स्पॉट (इसारिओप्सिस पान)";
-          causes = "कवक Isariopsis spp. कारणीभूत.";
+          causes = "कवक  कारणीभूत.";
           solution = "फंगीसायड लागू करा, संक्रमित भाग काढा.";
           break;
 
         case "Mango Anthracnose":
-          diseaseName = "आंबा एंथ्राकनोस";
-          causes = "कवक Colletotrichum gloeosporioides कारणीभूत.";
+          causes = "कवक कारणीभूत.";
           solution = "संक्रमित क्षेत्रे काढा, फंगीसायड लागू करा.";
           break;
 
         case "Mango Bacterial Canker":
-          diseaseName = "आंबा बॅक्टीरियल कॅनकर";
-          causes = "बॅक्टीरियम Xanthomonas campestris कारणीभूत.";
+          causes = "बॅक्टीरियम  कारणीभूत.";
           solution = "संक्रमित क्षेत्रे काढा, तांबटाचे स्प्रे लागू करा.";
           break;
 
         case "Mango Cutting Weevil":
-          diseaseName = "आंबा कटिंग वीविल";
-          causes = "कीडा Hypomeces squamosus कारणीभूत.";
+          causes = "कीडा  कारणीभूत.";
           solution = "उपयुक्त कीटकनाशक लागू करा, संक्रमित भाग काढा.";
           break;
 
         case "Mango Die Back":
-          diseaseName = "आंबा डाय बॅक";
           causes = "विविध कारके, कवक आणि पर्यावरणीय तंतूंसह कारणीभूत.";
           solution = "संक्रमित क्षेत्रे काढा, सांस्कृतिक प्रथा सुधारा.";
           break;
 
         case "Mango Gall Midge":
-          diseaseName = "आंबा गॅल मिज";
-          causes = "कीडा Procontarinia mangiferae कारणीभूत.";
+          causes = "कीडा  कारणीभूत.";
           solution = "संक्रमित पौध भाग काढा, कीटकनाशक लागू करा.";
           break;
 
         case "Mango Healthy":
-          diseaseName = "स्वस्थ आंबा";
           causes = "कोणतेही विशिष्ट रोग ओळखले नाहीत.";
           solution = "चंद्रोदय उत्पादन साधारित्य, नियमित मॉनिटरिंग.";
           break;
 
         case "Mango Powdery Mildew":
-          diseaseName = "आंबा पाव्डरी मिल्ड्यू";
           causes = "कवक Oidium mangiferae कारणीभूत.";
           solution = "फंगीसायड लागू करा, हवेची सरकुलेशन सुधारा.";
           break;
 
         case "Mango Sooty Mould":
-          diseaseName = "आंबा सूटी मोल्ड";
           causes =
               "कीटकांच्या शहाण्यांनी निकाललेल्या मधूसूटीवर वाढलेल्या कवकाने कारणीभूत.";
           solution =
@@ -279,132 +258,110 @@ class _DetectionDeteilsState extends State<DetectionDeteils> {
           break;
 
         case "Orange Haunglongbing (Citrus greening)":
-          diseaseName = "संत्राचा हॉंगलांगबिंग (सिट्रस ग्रीनिंग)";
-          causes = "बॅक्टीरियम Candidatus Liberibacter asiaticus कारणीभूत.";
+          causes = "बॅक्टीरियम कारणीभूत.";
           solution =
               "संक्रमित झाडे काढा, सिट्रस सायलिडचा नियंत्रण करा, एंटीबायोटिक लागू करा.";
           break;
 
         case "Peach Bacterial spot":
-          diseaseName = "पीच बॅक्टीरियल स्पॉट";
-          causes = "बॅक्टीरियम Xanthomonas arboricola pv. pruni कारणीभूत.";
+          causes = "बॅक्टीरियम  कारणीभूत.";
           solution = "संक्रमित शाखांची कंटें काढा, तांबटाचे स्प्रे लागू करा.";
           break;
 
         case "Peach healthy":
-          diseaseName = "स्वस्थ पीच";
           causes = "कोणतेही विशिष्ट रोग ओळखले नाहीत.";
           solution = "चंद्रोदय उत्पादन साधारित्य, नियमित मॉनिटरिंग.";
           break;
 
         case "Potato Early blight":
-          diseaseName = "बटाटा ताजे पानांची टाकळी";
-          causes = "कवक Alternaria solani कारणीभूत.";
+          causes = "कवक कारणीभूत.";
           solution =
               "फसलांचा परिस्थिती बदला, फंगीसायड लागू करा, चंद्रोदय उत्पादन साधारित्य.";
           break;
 
         case "Potato healthy":
-          diseaseName = "स्वस्थ बटाटा";
           causes = "कोणतेही विशिष्ट रोग ओळखले नाहीत.";
           solution = "फसलांचा परिस्थिती बदला, चंद्रोदय उत्पादन साधारित्य.";
           break;
 
         case "Potato Late blight":
-          diseaseName = "बटाटा किंवा ठेवण";
-          causes = "ओमायसिट्स Phytophthora infestans कारणीभूत.";
+          causes = "ओमायसिट्स  कारणीभूत.";
           solution = "प्रतिरोधी प्रजांचा वापर करा, फंगीसायड लागू करा.";
           break;
 
         case "Raspberry healthy":
-          diseaseName = "स्वस्थ रॅस्पबेरी";
           causes = "कोणतेही विशिष्ट रोग ओळखले नाहीत.";
           solution = "चंद्रोदय उत्पादन साधारित्य, किडकांसाठी मॉनिटरिंग.";
           break;
 
         case "Soybean healthy":
-          diseaseName = "स्वस्थ सोयाबीन";
           causes = "कोणतेही विशिष्ट रोग ओळखले नाहीत.";
           solution = "फसलांचा परिस्थिती बदला, चंद्रोदय उत्पादन साधारित्य.";
           break;
 
         case "Squash Powdery mildew":
-          diseaseName = "कोहळा पावडरी मिल्ड्यू";
-          causes = "कवक Podosphaera spp. कारणीभूत.";
+          causes = "कवक कारणीभूत.";
           solution = "फंगीसायड लागू करा, प्रतिरोधी प्रजांचा वापर करा.";
           break;
 
         case "Strawberry healthy":
-          diseaseName = "स्वस्थ स्ट्रॉबेरी";
           causes = "कोणतेही विशिष्ट रोग ओळखले नाहीत.";
           solution = "चंद्रोदय उत्पादन साधारित्य, किडकांसाठी मॉनिटरिंग.";
           break;
 
         case "Strawberry Leaf scorch":
-          diseaseName = "स्ट्रॉबेरी पानांची अंधकार";
-          causes = "बॅक्टीरियम Xanthomonas fragariae कारणीभूत.";
+          causes = "बॅक्टीरियम  कारणीभूत.";
           solution = "संक्रमित पाने काढा, कॉपर-आधारित स्प्रे लागू करा.";
           break;
 
         case "Tomato Bacterial spot":
-          diseaseName = "टमाटो बॅक्टीरियल स्पॉट";
-          causes =
-              "बॅक्टीरियम Xanthomonas campestris pv. vesicatoria कारणीभूत.";
+          causes = "बॅक्टीरियम  कारणीभूत.";
           solution = "संक्रमित क्षेत्रे काढा, कॉपर-आधारित स्प्रे लागू करा.";
           break;
 
         case "Tomato Early blight":
-          diseaseName = "टमाटो सुरुवाती पत्त्यांची स्पॉट";
-          causes = "कवक Alternaria solani कारणीभूत.";
+          causes = "कवक  कारणीभूत.";
           solution =
               "पुनरावृत्ती करा, फंगीसायड लागू करा, चंद्रोदय उत्पादन साधारित्य.";
           break;
 
         case "Tomato healthy":
-          diseaseName = "स्वस्थ टमाटो";
           causes = "कोणतेही विशिष्ट रोग ओळखले नाहीत.";
           solution = "पुनरावृत्ती करा, चंद्रोदय उत्पादन साधारित्य.";
           break;
 
         case "Tomato Late blight":
-          diseaseName = "टमाटो सध्याची ब्लायट";
-          causes = "ऊमायसेट Phytophthora infestans कारणीभूत.";
+          causes = "ऊमायसेट  कारणीभूत.";
           solution = "प्रतिरोधी प्रजांचा वापर करा, फंगीसायड लागू करा.";
           break;
 
         case "Tomato Leaf Mold":
-          diseaseName = "टमाटो लिफ मोल्ड";
-          causes = "कवक Passalora fulva कारणीभूत.";
+          causes = "कवक  कारणीभूत.";
           solution = "संक्रमित पाने काढा, फंगीसायड लागू करा.";
           break;
 
         case "Tomato Septoria leaf spot":
-          diseaseName = "टमाटो सेप्टोरिया पान स्पॉट";
-          causes = "कवक Septoria lycopersici कारणीभूत.";
+          causes = "कवक  कारणीभूत.";
           solution = "संक्रमित पाने काढा, फंगीसायड लागू करा.";
           break;
 
         case "Tomato Spider mites Two spotted spider mite":
-          diseaseName = "टमाटो स्पायडर माइट्स टू स्पॉटेड स्पायडर माइट";
-          causes = "अणुस्थान तेंडु ऊरल्यामुळे Tetranychus urticae कारणीभूत.";
+          causes = "अणुस्थान तेंडु ऊरल्यामुळे कारणीभूत.";
           solution = "एकॅरिसायड्स लागू करा, उच्च आर्द्रता बनावट बनवा.";
           break;
 
         case "Tomato Target Spot":
-          diseaseName = "टमाटो टार्गेट स्पॉट";
-          causes = "कवक Corynespora cassiicola कारणीभूत.";
+          causes = "कवक कारणीभूत.";
           solution = "संक्रमित क्षेत्रे काढा, फंगीसायड लागू करा.";
           break;
 
         case "Tomato Mosaic Virus":
-          diseaseName = "टमाटो मोझेक व्हायरस";
           causes = "विविध मोझेक व्हायरसांकिंवा कारणीभूत.";
           solution =
               "एफिड्सचा नियंत्रण करा, व्हायरस-प्रतिरोधी प्रजांचा वापर करा.";
           break;
 
         case "Tomato Yellow Leaf Cur Virus":
-          diseaseName = "टमाटो पिवळी पानांची कर व्हायरस";
           causes = "व्ह्याइटफ्लाय-संचालित बेगोमोवायरस कारणीभूत.";
           solution =
               "व्ह्याइटफ्लायचा नियंत्रण करा, व्हायरस-प्रतिरोधी प्रजांचा वापर करा.";

@@ -9,7 +9,8 @@ class InformationPage extends StatefulWidget {
   final String item;
   final int item_index;
 
-  const InformationPage({super.key, required this.item, required this.item_index});
+  const InformationPage(
+      {super.key, required this.item, required this.item_index});
 
   @override
   State<InformationPage> createState() => _InformationPageState();
@@ -307,11 +308,11 @@ class _InformationPageState extends State<InformationPage> {
               ),
               Row(
                 children: [
-                  const SizedBox(
+                  SizedBox(
                       height: 300,
                       width: 280,
                       child: Stack(children: [
-                        Positioned(
+                        const Positioned(
                           top: 2,
                           bottom: 12,
                           child: Image(
@@ -321,14 +322,21 @@ class _InformationPageState extends State<InformationPage> {
                           ),
                         ),
                         Positioned(
+                          top: 90,
+                          left: 50,
                           child: Image(
-                            image: AssetImage("assets/icons/pot.png"),
-                          ),
+                              height: 100,
+                              width: 200,
+                              image: AssetImage(
+                                  'assets/icons/${widget.item}.png')),
                         )
                       ])),
                   Column(
                     children: [
-                      items_name("plantname".tr, widget.item.tr),
+                      items_name(
+                          "plantname".tr,
+                          widget.item.tr[0].toUpperCase() +
+                              widget.item.tr.substring(1)),
                       items_name("species".tr, species),
                       items_name("family".tr, family),
                     ],
@@ -400,7 +408,8 @@ class _InformationPageState extends State<InformationPage> {
                     ),
                     OutlinedButton(
                         style: OutlinedButton.styleFrom(
-                            shape: const StadiumBorder(),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
                             side:
                                 const BorderSide(width: 2, color: Colors.green),
                             backgroundColor: Colors.greenAccent.shade100,
@@ -412,7 +421,8 @@ class _InformationPageState extends State<InformationPage> {
                                   builder: (context) => MyCustomForm(
                                       type: widget.item.toLowerCase())));
                         },
-                        child: Text("${widget.item.tr} ${'precisecalc'.tr}")),
+                        child: Text(
+                            "${widget.item.tr[0].toUpperCase() + widget.item.tr.substring(1)} ${'precisecalc'.tr}")),
                     const SizedBox(
                       height: 20,
                     )

@@ -4,11 +4,12 @@ import 'package:farmshield/language/lang.dart';
 import 'package:farmshield/provider/firebase_collections.dart';
 import 'package:farmshield/theme/consts/theme_data.dart';
 import 'package:farmshield/theme/provider/dark_theme_provider.dart';
-import 'package:farmshield/widgets/loading.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+
+import 'screens/auth_wrapper.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -82,7 +83,7 @@ class _MyAppState extends State<MyApp> {
           //         borderSide: BorderSide.none,
           //       ),
           //     )),
-          home: const Loading(),
+          home: const AuthWrapper(),
         );
       }),
     );
