@@ -4,9 +4,6 @@ import 'package:farmshield/screens/Login/login_top.dart';
 import 'package:farmshield/screens/components/background.dart';
 import 'package:flutter/material.dart';
 
-
-
-
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -18,32 +15,31 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return const Background(
-      child: SingleChildScrollView(
-        child: Responsive(
-          mobile: MobileLoginScreen(),
-          desktop: Row(
-            children: [
-              Expanded(
-                child: LoginScreenTopImage(),
+      child: Responsive(
+        mobile: MobileLoginScreen(),
+        desktop: Row(
+          children: [
+            Expanded(
+              child: LoginScreenTopImage(),
+            ),
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: 450,
+                    child: LoginForm(),
+                  ),
+                ],
               ),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 450,
-                      child: LoginForm(),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
+
 class MobileLoginScreen extends StatelessWidget {
   const MobileLoginScreen({
     Key? key,

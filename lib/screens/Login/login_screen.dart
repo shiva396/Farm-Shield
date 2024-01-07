@@ -34,90 +34,87 @@ class _LoginFormState extends State<LoginForm> {
   // var _text = "";
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-        valueListenable: emailController,
-        builder: (context, TextEditingValue value, __) {
-          return Form(
-              child: Column(
-            children: [
-              TextFormField(
-                controller: emailController,
-                keyboardType: TextInputType.emailAddress,
-                textInputAction: TextInputAction.next,
-                cursorColor: kPrimaryColor,
-                onSaved: (email) {},
-                decoration: const InputDecoration(
-                  hintText: "Your email",
-                  prefixIcon: Padding(
-                    padding: EdgeInsets.all(defaultPadding),
-                    child: Icon(Icons.person),
-                  ),
-                ),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          TextFormField(
+            controller: emailController,
+            keyboardType: TextInputType.emailAddress,
+            textInputAction: TextInputAction.next,
+            cursorColor: kPrimaryColor,
+            onSaved: (email) {},
+            decoration: const InputDecoration(
+              hintText: "Your email",
+              prefixIcon: Padding(
+                padding: EdgeInsets.all(defaultPadding),
+                child: Icon(Icons.person),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: defaultPadding),
-                child: TextFormField(
-                  controller: passwordContoller,
-                  textInputAction: TextInputAction.done,
-                  obscureText: show_password,
-                  cursorColor: kPrimaryColor,
-                  decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                      padding: EdgeInsets.zero,
-                      icon: Icon(
-                          color: const Color.fromARGB(255, 148, 67, 223),
-                          show_password == true
-                              ? Icons.visibility
-                              : Icons.visibility_off),
-                      onPressed: () {
-                        setState(() {
-                          show_password == true
-                              ? show_password = false
-                              : show_password = true;
-                        });
-                      },
-                    ),
-                    hintText: "Your password",
-                    prefixIcon: const Padding(
-                      padding: EdgeInsets.all(defaultPadding),
-                      child: Icon(Icons.lock),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: defaultPadding),
-              Hero(
-                tag: "login_btn",
-                child: ElevatedButton(
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+            child: TextFormField(
+              controller: passwordContoller,
+              textInputAction: TextInputAction.done,
+              obscureText: show_password,
+              cursorColor: kPrimaryColor,
+              decoration: InputDecoration(
+                suffixIcon: IconButton(
+                  padding: EdgeInsets.zero,
+                  icon: Icon(
+                      color: const Color.fromARGB(255, 148, 67, 223),
+                      show_password == true
+                          ? Icons.visibility
+                          : Icons.visibility_off),
                   onPressed: () {
-                    if (emailController.text.trim().isNotEmpty &&
-                        passwordContoller.text.trim().isNotEmpty) {
-                      signIn();
-                    } else {
-                      showSnackBar(context, 'Please Enter the field');
-                    }
+                    setState(() {
+                      show_password == true
+                          ? show_password = false
+                          : show_password = true;
+                    });
                   },
-                  child: Text(
-                    "Login".toUpperCase(),
-                  ),
+                ),
+                hintText: "Your password",
+                prefixIcon: const Padding(
+                  padding: EdgeInsets.all(defaultPadding),
+                  child: Icon(Icons.lock),
                 ),
               ),
-              const SizedBox(height: defaultPadding),
-              AlreadyHaveAnAccountCheck(
-                press: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return const SignUpScreen();
-                      },
-                    ),
-                  );
-                },
+            ),
+          ),
+          const SizedBox(height: defaultPadding),
+          Hero(
+            tag: "login_btn",
+            child: ElevatedButton(
+              onPressed: () {
+                if (emailController.text.trim().isNotEmpty &&
+                    passwordContoller.text.trim().isNotEmpty) {
+                  signIn();
+                } else {
+                  showSnackBar(context, 'Please Enter the field');
+                }
+              },
+              child: Text(
+                "Login".toUpperCase(),
               ),
-            ],
-          ));
-        });
+            ),
+          ),
+          const SizedBox(height: defaultPadding),
+          AlreadyHaveAnAccountCheck(
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const SignUpScreen();
+                  },
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+    );
   }
 
   Future signIn() async {
@@ -126,8 +123,8 @@ class _LoginFormState extends State<LoginForm> {
           .signInWithEmailAndPassword(
               email: emailController.text.trim(),
               password: passwordContoller.text.trim())
-          .whenComplete(
-            () => Navigator.pushReplacement(
+          .then(
+            (v) => Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                 builder: (context) => const Loading(),

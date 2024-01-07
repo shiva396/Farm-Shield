@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farmshield/screens/Login/login_form.dart';
 import 'package:farmshield/screens/components/alreadyhaveaccount.dart';
 import 'package:farmshield/utils/color_util.dart';
@@ -17,6 +18,7 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -34,6 +36,20 @@ class _SignUpFormState extends State<SignUpForm> {
     return Form(
       child: Column(
         children: [
+          TextFormField(
+            controller: nameController,
+            keyboardType: TextInputType.name,
+            textInputAction: TextInputAction.next,
+            cursorColor: kPrimaryColor,
+            onSaved: (email) {},
+            decoration: const InputDecoration(
+              hintText: "Your Name",
+              prefixIcon: Padding(
+                padding: EdgeInsets.all(defaultPadding),
+                child: Icon(Icons.person),
+              ),
+            ),
+          ),
           TextFormField(
             controller: emailController,
             keyboardType: TextInputType.emailAddress,
@@ -116,14 +132,22 @@ class _SignUpFormState extends State<SignUpForm> {
           .createUserWithEmailAndPassword(
               email: emailController.text.trim(),
               password: passwordController.text.trim())
-          .whenComplete(
-            () => Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const Loading(),
-              ),
-            ),
-          );
+          .then((v) {
+        CollectionReference firebase =
+            FirebaseFirestore.instance.collection('users');
+        firebase.doc(FirebaseAuth.instance.currentUser!.uid).set({
+          'name': nameController.text.trim(),
+          'email': emailController.text.trim(),
+          'password': passwordController.text.trim()
+        });
+
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const Loading(),
+          ),
+        );
+      });
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.toString());
     }
