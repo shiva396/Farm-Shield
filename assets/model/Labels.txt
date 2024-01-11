@@ -3,42 +3,33 @@
 2 Apple Healthy
 3 Apple Scab
 4 Blueberry Healthy
-5 Cherry Healthy
-6 Cherry Powdery mildew
-7 Corn Cercospora leaf spot or Gray leaf spot
-8 Corn Common rust
-9 Corn healthy
-10 Corn Northern Leaf Blight
-11 Grape Black rot
-12 Grape Esca (Black Measles)
-13 Grape healthy
-14 Grape Leaf blight (Isariopsis Leaf Spot)
-15 Mango Anthracnose
-16 Mango Bacterial Canker
-17 Mango Cutting Weevil
-18 Mango Die Back
-19 Mango Gall Midge
-20 Mango Healthy
-21 Mango Powdery Mildew
-22 Mango Sooty Mould
-23 Orange Haunglongbing (Citrus greening)
-24 Peach Bacterial spot
-25 Peach healthy
-26 Potato Early blight
-27 Potato healthy
-28 Potato Late blight
-29 Raspberry healthy
-30 Soybean healthy
-31 Squash Powdery mildew
-32 Strawberry healthy
-33 Strawberry Leaf scorch
-34 Tomato Bacterial spot
-35 Tomato Early blight
-36 Tomato healthy
-37 Tomato Late blight
-38 Tomato Leaf Mold
-39 Tomato Septoria leaf spot
-40 Tomato Spider mites Two spotted spider mite
-41 Tomato Target Spot
-42 Tomato Mosaic Virus
-43 Tomato Yellow Leaf Cur Virus
+5 Corn Cercospora leaf spot or Gray leaf spot
+6 Corn Common rust
+7 Corn healthy
+8 Corn Northern Leaf Blight
+9 Grape Black rot
+10 Grape Esca (Black Measles)
+11 Grape healthy
+12 Grape Leaf blight (Isariopsis Leaf Spot)
+13 Mango Anthracnose
+14 Mango Bacterial Canker
+15 Mango Die Back
+16 Mango Gall Midge
+17 Mango Healthy
+18 Mango Powdery Mildew
+19 Mango Sooty Mould
+20 Orange Haunglongbing (Citrus greening)
+21 Potato Early blight
+22 Potato healthy
+23 Potato Late blight
+24 Tomato Bacterial spot
+25 Tomato Early blight
+26 Tomato healthy
+27 Tomato Late blight
+28 Tomato Leaf Mold
+29 Tomato mosaic virus
+30 Tomato Septoria leaf spot
+31 Tomato Spider mites Two spotted spider mite
+32 Tomato Target Spot
+33 Tomato Yellow Leaf Cur Virus
+34 Background Without Images
