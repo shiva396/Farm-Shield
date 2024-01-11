@@ -369,6 +369,11 @@ class _DetectionDeteilsState extends State<DetectionDeteils> {
               "व्ह्याइटफ्लायचा नियंत्रण करा, व्हायरस-प्रतिरोधी प्रजांचा वापर करा.";
           break;
 
+        case "Background Without Images":
+          causes = "हे सठीस छायाचित्र नाही";
+          solution = "आपल्याकडून हे पान कसंबर केलं नाही.";
+          break;
+
         default:
           causes = "";
           solution = "";
@@ -605,6 +610,10 @@ class _DetectionDeteilsState extends State<DetectionDeteils> {
           solution = "Control whiteflies, use virus-resistant varieties.";
           break;
 
+        case "Background Without Images":
+          causes = "This is not an Proper image";
+          solution = "We have not trained for this leaf";
+          break;
 // End of the list
 
         default:
