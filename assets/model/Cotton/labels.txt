@@ -1,0 +1,7 @@
+0 Cotton Aphids
+1 Cotton Army worm
+2 Cotton Bacterial Blight
+3 Cotton Healthy
+4 Cotton Powdery Mildew
+5 Cotton Target spot
+6 No Leaf Found

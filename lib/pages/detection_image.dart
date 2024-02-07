@@ -501,6 +501,12 @@ class _DetectionDeteilsState extends State<DetectionDeteils> {
           solution = "Control insect pests, clean and treat affected areas.";
           break;
 
+        case "Mango Diseased":
+          causes =
+              "Caused by the growth of sooty mold on honeydew excreted by insects.";
+          solution = "Control insect pests, clean and treat affected areas.";
+          break;
+
         case "Orange Haunglongbing (Citrus greening)":
           causes = "Caused by the bacterium Candidatus Liberibacter asiaticus.";
           solution =

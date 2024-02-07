@@ -1,0 +1,6 @@
+0 Guava Canker
+1 Guava Dot
+2 Guava Mummification
+3 Guava Rust
+4 No Leaf Found
+5 Guava Diseased

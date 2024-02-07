@@ -1,0 +1,10 @@
+0 Mango Anthracnose
+1 Mango Bacterial Canker
+2 Mango Cutting Weevil
+3 Mango Die Back
+4 Mango Gall Midge
+5 Mango Healthy
+6 Mango Powdery Mildew
+7 Mango Sooty Mould
+8 Mango Diseased
+9 No Leaf Found

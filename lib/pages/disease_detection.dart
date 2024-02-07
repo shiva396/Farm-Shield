@@ -27,12 +27,13 @@ class _DiseaseDetectionState extends State<DiseaseDetection> {
 
   @override
   void initState() {
-    loadModel();
+    // loadModel();
     super.initState();
   }
 
   int pageNo = 0;
 
+  String choosen = "";
 
   Future classifyDisease(File image) async {
     var recognitions = await Tflite.runModelOnImage(
@@ -50,12 +51,12 @@ class _DiseaseDetectionState extends State<DiseaseDetection> {
     });
   }
 
-  Future loadModel() async {
+  Future loadModel({required String path, required String label}) async {
     Tflite.close();
     String? res;
     res = await Tflite.loadModel(
-        model: "assets/model/model_unquant.tflite",
-        labels: "assets/model/labels.txt",
+        model: path,
+        labels: label,
         numThreads: 1, // defaults to 1
         isAsset:
             true, // defaults to true, set to false to load resources outside assets
@@ -64,6 +65,9 @@ class _DiseaseDetectionState extends State<DiseaseDetection> {
         );
     print(res);
   }
+
+  List list = ["Mango", "Tomato", "Potato"];
+  String dropdownValue = "Mango";
 
   @override
   Widget build(BuildContext context) {
@@ -83,14 +87,84 @@ class _DiseaseDetectionState extends State<DiseaseDetection> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15)),
                       title: Text('identifydisease'.tr),
-                      content: Text('Choose the method'.tr),
+                      content: DropdownMenu<String>(
+                        initialSelection: list.first,
+                        onSelected: (String? value) {
+                          // This is called when the user selects an item.
+                          setState(() {
+                            dropdownValue = value!;
+                          });
+                        },
+                        dropdownMenuEntries:
+                            list.map<DropdownMenuEntry<String>>((value) {
+                          return DropdownMenuEntry<String>(
+                              value: value, label: value);
+                        }).toList(),
+                      ),
+
                       actions: <Widget>[
                         TextButton(
-                          onPressed: () => pickImageFromCamera(),
+                          onPressed: () async {
+                            if (dropdownValue == "Mango") {
+                              await loadModel(
+                                  path:
+                                      "assets/model/Mango/model_unquant.tflite",
+                                  label: "assets/model/Mango/labels.txt");
+                            } else if (dropdownValue == "Tomato") {
+                              await loadModel(
+                                  path:
+                                      "assets/model/Tomato/model_unquant.tflite",
+                                  label: "assets/model/Tomato/labels.txt");
+                            } else if (dropdownValue == "Potato") {
+                              await loadModel(
+                                  path:
+                                      "assets/model/Potato/model_unquant.tflite",
+                                  label: "assets/model/Potato/labels.txt");
+                            } else if (dropdownValue == "Guava") {
+                              await loadModel(
+                                  path:
+                                      "assets/model/Guava/model_unquant.tflite",
+                                  label: "assets/model/Guava/labels.txt");
+                            } else if (dropdownValue == "Cotton") {
+                              await loadModel(
+                                  path:
+                                      "assets/model/Cotton/model_unquant.tflite",
+                                  label: "assets/model/Cotton/labels.txt");
+                            }
+                            await pickImageFromCamera();
+                          },
                           child: Text('takeapic'.tr),
                         ),
                         TextButton(
-                          onPressed: () => pickImageFromGallery(),
+                          onPressed: () async {
+                            if (dropdownValue == "Mango") {
+                              await loadModel(
+                                  path:
+                                      "assets/model/Mango/model_unquant.tflite",
+                                  label: "assets/model/Mango/labels.txt");
+                            } else if (dropdownValue == "Tomato") {
+                              await loadModel(
+                                  path:
+                                      "assets/model/Tomato/model_unquant.tflite",
+                                  label: "assets/model/Tomato/labels.txt");
+                            } else if (dropdownValue == "Potato") {
+                              await loadModel(
+                                  path:
+                                      "assets/model/Potato/model_unquant.tflite",
+                                  label: "assets/model/Potato/labels.txt");
+                            } else if (dropdownValue == "Guava") {
+                              await loadModel(
+                                  path:
+                                      "assets/model/Guava/model_unquant.tflite",
+                                  label: "assets/model/Guava/labels.txt");
+                            } else if (dropdownValue == "Cotton") {
+                              await loadModel(
+                                  path:
+                                      "assets/model/Cotton/model_unquant.tflite",
+                                  label: "assets/model/Cotton/labels.txt");
+                            }
+                            await pickImageFromGallery();
+                          },
                           child: Text('choosefromgallery'.tr),
                         ),
                       ],
@@ -149,9 +223,11 @@ class _DiseaseDetectionState extends State<DiseaseDetection> {
     setState(() {
       image = File(pickedFile!.path);
     });
+
     await classifyDisease(image);
     // await classifyDisease(image);
     print(results);
+
     // ignore: use_build_context_synchronously
     Navigator.push(context, MaterialPageRoute(builder: (_) {
       return ScanningScreen(
@@ -171,6 +247,11 @@ class _DiseaseDetectionState extends State<DiseaseDetection> {
     });
 
     print('done');
+    if (dropdownValue == "Mango") {
+      print("Mango");
+    } else if (dropdownValue == "Tomato") {
+      print("Tomato");
+    }
     await classifyDisease(image);
     // await classifyDisease(image);
     print(results);

@@ -1,0 +1,9 @@
+0 Potato Bacteria
+1 Potato Fungi
+2 Potato Healthy
+3 Potato Nematode
+4 Potato Pest
+5 Potato Phytopthora
+6 Potato Virus
+7 Potato Diseased
+8 No leaf found

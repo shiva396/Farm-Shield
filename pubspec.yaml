@@ -81,8 +81,11 @@ flutter:
     - assets/json/
     - assets/model/
     - assets/svg/
-    - assets/model/model_unquant.tflite
-    - assets/model/labels.txt
+    - assets/model/Mango/
+    - assets/model/Tomato/
+    - assets/model/Potato/   
+    - assets/model/Cotton/   
+    - assets/model/Guava/     
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
