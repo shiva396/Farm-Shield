@@ -4,7 +4,7 @@
 
 ---
 
-## 🌱 Features
+## Features
 
 - **Crop & Plant Management**: Catalog, track, and manage a wide variety of plants (apples, mango, potato, tomato, corn, soybean, grapes, oranges, strawberries, guava, pomegranate, and more).
 - **Intelligent Weather Insights**: Real-time weather info and forecasts tailored to your local crops.
@@ -18,7 +18,7 @@
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Prerequisites
 
